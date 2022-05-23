@@ -18,15 +18,14 @@ if (isset($_POST['submit'])) {
      if ($count == 1) {
           $_SESSION['login'] = $user_phone;
           $sql2 = "SELECT * FROM user WHERE user_phone = " . $_SESSION['login'];
-          // $user_name = "<script>localStorage.setItem('user_name', $row['user_name']);</script>";
           $res2 = mysqli_query($conn, $sql2);
-
           $row = mysqli_fetch_assoc($res2);
+          $name = $row['user_name'];
 
           if ($row['role_user'] == 0) {
-               echo "<script type='text/javascript'> window.location.assign('?page=list-user')</script>";
+               echo "<script type='text/javascript'> window.location.assign('?page=list-user'); localStorage.setItem('name', '" . $name . "');</script>";
           } else {
-               echo "<script type='text/javascript'> window.location.assign('../?page=home')</script>";
+               echo "<script type='text/javascript'> window.location.assign('../?page=home'); localStorage.setItem('name', '" . $name . "');</script>";
           }
      } else {
           echo "<script type='text/javascript'> window.location.assign('?page=login')</script>";
