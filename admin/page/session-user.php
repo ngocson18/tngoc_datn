@@ -21,11 +21,12 @@ if (isset($_POST['submit'])) {
           $res2 = mysqli_query($conn, $sql2);
           $row = mysqli_fetch_assoc($res2);
           $name = $row['user_name'];
+          $user_id = $row['user_id'];
 
           if ($row['role_user'] == 0) {
                echo "<script type='text/javascript'> window.location.assign('?page=list-user'); localStorage.setItem('name', '" . $name . "');</script>";
           } else {
-               echo "<script type='text/javascript'> window.location.assign('../?page=home'); localStorage.setItem('name', '" . $name . "');</script>";
+               echo "<script type='text/javascript'> window.location.assign('../?page=home'); localStorage.setItem('name', '" . $name . "');localStorage.setItem('user_id', '" . $user_id . "');</script>";
           }
      } else {
           echo "<script type='text/javascript'> window.location.assign('?page=login')</script>";

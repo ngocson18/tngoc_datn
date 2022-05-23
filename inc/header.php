@@ -5,7 +5,11 @@
      <title>BEP CUA NGOC</title>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+     <!-- <script type="text/javascript">
+          let a = localStorage.getItem('user_id');
+          console.log( document.getElementById('temp_id'));
+          document.getElementById('temp_id').innerHTML = a;
+     </script> -->
      <link href="./public/css/bootstrap/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
      <link href="./public/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
      <link href="./public/reset.css" rel="stylesheet" type="text/css" />
@@ -20,8 +24,8 @@
      <script src="public/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
      <script src="public/js/carousel/owl.carousel.js" type="text/javascript"></script>
      <script src="public/js/main.js" type="text/javascript"></script>
+     
 </head>
-
 <body>
      <div id="site">
           <div id="container">
@@ -52,6 +56,7 @@
                          </div>
                     </div>
                     <div id="head-body" class="clearfix">
+                         <div class="d-none" id="temp_id"></div>
                          <div class="wp-inner">
                               <a href="?page=home" title="" id="logo" class="fl-left"><img
                                         src="./public/images/logo_BCN.png" /></a>
@@ -61,6 +66,7 @@
                                         <button type="submit" id="sm-s">Tìm kiếm</button>
                                    </form>
                               </div>
+                              
                               <div id="action-wp" class="fl-right">
                                    <div id="advisory-wp" class="fl-left">
                                         <span class="title">Liên hệ</span>
@@ -80,27 +86,28 @@
                                         <div id="dropdown">
                                              <p class="desc">Có <span>2 sản phẩm</span> trong giỏ hàng</p>
                                              <ul class="list-cart">
+                                                  <?php
+                                                       include './pages/load_cart.php';
+                                                       if ($count2 > 0) {
+                                                            while ($row2 = mysqli_fetch_assoc($res2)) {
+                                                                 $name_prod_in_cart = $row2['name'];
+                                                                 $price_prod_in_cart = $row2['price'];
+                                                                 $quantity_prod_in_cart = $row2['quantity'];
+                                                  ?>
                                                   <li class="clearfix">
                                                        <a href="" title="" class="thumb fl-left">
                                                             <img src="public/images/img-pro-11.png" alt="">
                                                        </a>
                                                        <div class="info fl-right">
-                                                            <a href="" title="" class="product-name">Sony Express X6</a>
-                                                            <p class="price">6.250.000đ</p>
-                                                            <p class="qty">Số lượng: <span>1</span></p>
+                                                            <a href="" title="" class="product-name"><?= $name_prod_in_cart ?></a>
+                                                            <p class="price"><?= $price_prod_in_cart ?> đ</p>
+                                                            <p class="qty">Số lượng: <span><?= $quantity_prod_in_cart ?></span></p>
                                                        </div>
                                                   </li>
-                                                  <li class="clearfix">
-                                                       <a href="" title="" class="thumb fl-left">
-                                                            <img src="public/images/img-pro-23.png" alt="">
-                                                       </a>
-                                                       <div class="info fl-right">
-                                                            <a href="" title="" class="product-name">Laptop Lenovo
-                                                                 10</a>
-                                                            <p class="price">16.250.000đ</p>
-                                                            <p class="qty">Số lượng: <span>1</span></p>
-                                                       </div>
-                                                  </li>
+                                                  <?php
+                                                            }
+                                                       }
+                                                  ?>
                                              </ul>
                                              <div class="total-price clearfix">
                                                   <p class="title fl-left">Tổng:</p>

@@ -1,3 +1,7 @@
+<?php 
+     include 'connect.php';
+     include './header.php';
+?>
 <div id="main-content-wp" class="list-product-page">
      <div class="wrap clearfix">
           <?php require './sidebar.php'; ?>
@@ -104,3 +108,6 @@
           </div>
      </div>
 </div>
+<?php 
+     include './footer.php';
+?>
