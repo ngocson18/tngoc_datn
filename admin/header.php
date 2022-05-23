@@ -129,7 +129,7 @@
                                    <div id="thumb-circle" class="fl-left">
                                         <img src="./images/img-admin.png" alt="" />
                                    </div>
-                                   <h3 id="account" class="fl-right"><a href="?page=login">Admin</a></h3>
+                                   <h3 id="account" class="fl-right"><a class="text-white" style="color: #fff" id="user_name"></a></h3>
                               </button>
                               <ul class="dropdown-menu">
                                    <li>

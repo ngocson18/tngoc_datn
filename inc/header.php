@@ -44,7 +44,8 @@
                                              <a href="?page=detail_blog" title="">Giới thiệu</a>
                                         </li>
                                         <li>
-                                             <a href="?page=detail_blog" title="">Liên hệ</a>
+                                             <a href="#"  id="user_name">
+                                             </a>
                                         </li>
                                    </ul>
                               </div>
@@ -116,4 +117,3 @@
                               </div>
                          </div>
                     </div>
-               </div>

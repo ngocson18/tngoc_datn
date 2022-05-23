@@ -90,7 +90,7 @@
                                                        $price_discount = $row['price_discount'];
                                                        $category = $row['category'];
                                                        $img = $row['img'];
-                                                       $img_src = '../image/'.$img;
+                                                       $img_src = '../'.$img;
                                                        // $img = $row['img'];
                                                        // $name = $row['name'];
                                                        ?>
