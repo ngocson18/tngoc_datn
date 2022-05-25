@@ -9,18 +9,18 @@ include './admin/page/connect.php';
      <div class="section-detail">
           <ul class="list-item">
                <?php
-                    $sql = "SELECT * FROM product WHERE isSpecial = 1";
+               $sql = "SELECT * FROM product WHERE isSpecial = 1";
 
-                    $res = mysqli_query($conn, $sql);
+               $res = mysqli_query($conn, $sql);
 
-                    $count = mysqli_num_rows($res);
-                    if ($count > 0) {
-                         while ($row = mysqli_fetch_assoc($res)) {
-                              $prod_id = $row['product_id'];
-                              $img = $row['img'];
-                              $name = $row['name'];
-                              $old_price = $row['price'];
-                              $new_price = $row['price'] - $row['price']*$row['discount']/100;
+               $count = mysqli_num_rows($res);
+               if ($count > 0) {
+                    while ($row = mysqli_fetch_assoc($res)) {
+                         $prod_id = $row['product_id'];
+                         $img = $row['img'];
+                         $name = $row['name'];
+                         $old_price = $row['price'];
+                         $new_price = $row['price'] - $row['price'] * $row['discount'] / 100;
                ?>
                <li>
                     <a href="?page=detail_product&id=<?= $prod_id ?>" title="" class="thumb">

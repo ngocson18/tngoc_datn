@@ -111,7 +111,7 @@
                               </li>
 
                               <li>
-                                   <a href="?page=upload">Báo cáo - thống kê</a>
+                                   <a href="?page=statistical">Báo cáo - thống kê</a>
                                    <ul class="sub-menu">
                                         <li>
                                              <a href="">Báo cáo</a>
@@ -129,7 +129,8 @@
                                    <div id="thumb-circle" class="fl-left">
                                         <img src="./images/img-admin.png" alt="" />
                                    </div>
-                                   <h3 id="account" class="fl-right"><a class="text-white" style="color: #fff" id="user_name"></a></h3>
+                                   <h3 id="account" class="fl-right"><a class="text-white" style="color: #fff"
+                                             id="user_name"></a></h3>
                               </button>
                               <ul class="dropdown-menu">
                                    <li>

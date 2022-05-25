@@ -9,7 +9,7 @@ session_start();
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Trang đăng nhập</title>
+     <title>Trang đăng kí</title>
      <link rel="stylesheet" href="./css/login.css">
      <link rel="stylesheet" href="./css/style-login.css">
 
@@ -47,9 +47,14 @@ session_start();
           <div class="row">
                <div class="login_form col-md-6">
                     <h1 class="display-5"
-                         style="font-weight: 150; border-bottom: 1px solid #FFF; padding-bottom: 12px;">Đăng nhập</h1>
-
+                         style="font-weight: 150; border-bottom: 1px solid #FFF; padding-bottom: 12px;">Đăng ký</h1>
                     <form action="?page=session-user" method="POST">
+                         <div class="form-group">
+                              <label>Họ và tên</label>
+                              <input type="number" name="user_name" class="form-control" placeholder="Vui lòng nhập tên"
+                                   require>
+                         </div>
+
                          <div class="form-group">
                               <label>Số điện thoại</label>
                               <input type="number" name="user_phone" class="form-control"
@@ -57,18 +62,33 @@ session_start();
                          </div>
 
                          <div class="form-group">
+                              <label>Email</label>
+                              <input type="number" name="user_email" class="form-control"
+                                   placeholder="Vui lòng nhập Email" require>
+                         </div>
+
+                         <div class="form-group">
+                              <label>Địa chỉ</label>
+                              <input type="number" name="user_address" class="form-control"
+                                   placeholder="Vui lòng nhập địa chỉ" require>
+                         </div>
+
+                         <div class="form-group">
                               <label>Mật khẩu</label>
                               <input type="text" name="password" class="form-control"
-                                   placeholder="Vui lòng nhập số mật khẩu">
+                                   placeholder="Vui lòng nhập mật khẩu">
                          </div>
-                         <input type="submit" value="Đăng nhập" name="submit" class="btn btn-info mb-3">
-                         <p class="float-right">Bạn chưa có tài khoản?<a href="?page=register"> Đăng kí</a></p>
+
+                         <div class="form-group">
+                              <label>Nhập lại mật khẩu</label>
+                              <input type="text" name="rPassword" class="form-control"
+                                   placeholder="Vui lòng nhập mật khẩu">
+                         </div>
+                         <input type="submit" value="Đăng kí" name="submit" class="btn btn-info mb-3">
+                         <a href="?page=login" class="float-right">Đăng nhập</a>
                     </form>
                     <div style="font-size:15px;text-align: center; color:red; margin-top:10px 0px 30px 0px;">
-                         <?php if (isset($_SESSION['error'])) {
-                              echo  $_SESSION['error'];
-                              unset($_SESSION['error']);
-                         } ?>
+
                     </div>
                </div>
           </div>

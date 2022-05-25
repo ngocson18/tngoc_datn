@@ -1,13 +1,13 @@
 <?php
-     include './admin/page/connect.php';
-     $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-     $parts = parse_url($url);
-     parse_str($parts['query'], $query);
-     $prod_id_from_url = $query['id'];
-     
-     $sql = "SELECT * FROM product WHERE product_id = $prod_id_from_url ";
-     $res = mysqli_query($conn, $sql);
-     $count = mysqli_num_rows($res);
+include './admin/page/connect.php';
+$url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$parts = parse_url($url);
+parse_str($parts['query'], $query);
+$prod_id_from_url = $query['id'];
+
+$sql = "SELECT * FROM product WHERE product_id = $prod_id_from_url ";
+$res = mysqli_query($conn, $sql);
+$count = mysqli_num_rows($res);
 ?>
 <div id="main-content-wp" class="clearfix detail-product-page">
      <div class="wp-inner">
@@ -18,12 +18,12 @@
                               <a href="" title="">Trang chủ</a>
                          </li>
                          <li>
-                         <?php
+                              <?php
                               if ($count > 0) {
                                    while ($row = mysqli_fetch_assoc($res)) {
                                         $prod_name = $row['name'];
                                         $main_img = $row['img'];
-                                        $main_img2 = $row['img3'];
+                                        $main_img2 = $row['img2'];
                                         $main_img3 = $row['img3'];
                                         $main_img4 = $row['img4'];
                                         $main_img5 = $row['img5'];
@@ -33,19 +33,19 @@
                                         $status = $row['status'];
                                         $quantity = $row['quantity'];
                                         $old_price = $row['price'];
-                                        $new_price = $row['price'] - $row['price']*$row['discount'] / 100;
+                                        $new_price = $row['price'] - $row['price'] * $row['discount'] / 100;
                                         $description = $row['description'];
-                         ?>
+                              ?>
                               <a href="" title=""><?= $prod_name ?></a>
-                         <?php 
+                              <?php
+                                   }
                               }
-                         }
-                         ?>
+                              ?>
                          </li>
                     </ul>
                </div>
           </div>
-          
+
           <div class="main-content fl-right">
                <div class="section" id="detail-product-wp">
                     <div class="section-detail clearfix">
@@ -81,11 +81,11 @@
                               </div>
                               <div class="num-product">
                                    <span class="">Sản phẩm: </span>
-                                   <?php if ($status == 1): ?>
-                                        <span class="status">Còn <?= $quantity ?> cái</span>
+                                   <?php if ($status == 1) : ?>
+                                   <span class="status">Còn <?= $quantity ?> cái</span>
                                    <?php endif; ?>
-                                   <?php if ($status != 1): ?>
-                                        <span class="status">Hết hàng</span>
+                                   <?php if ($status != 1) : ?>
+                                   <span class="status">Hết hàng</span>
                                    <?php endif; ?>
                               </div>
                               <div class="price">
