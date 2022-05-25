@@ -1,3 +1,19 @@
+<?php
+require("page/session-user.php");
+if (isset($_SESSION['login'])) {
+  $sql2 = "SELECT * FROM user where user_phone = " . $_SESSION['login'];
+  $result2 = $conn->query($sql2);
+  $data = $result2->fetch_assoc();
+  if ($data['role_user'] == 0) {
+          // echo "<script type='text/javascript'> window.location.assign('?page=list-product')</script>";
+  } else {
+     echo "<script type='text/javascript'> window.location.assign('?page=home')</script>";
+  }
+} else {
+  echo "<script type='text/javascript'> window.location.assign('?page=login')</script>";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -9,7 +9,7 @@ include './admin/page/connect.php';
      <div class="section-detail">
           <ul class="list-item">
                <?php
-               $sql = "SELECT * FROM product WHERE isSpecial = 1";
+               $sql = "SELECT * FROM product WHERE isSpecial = 1 LIMIT 2";
 
                $res = mysqli_query($conn, $sql);
 
@@ -32,7 +32,7 @@ include './admin/page/connect.php';
                          <span class="old"><?= $old_price; ?> đ</span>
                     </div>
                     <div class="action clearfix">
-                         <a href="?page=cart" title="" class="add-cart fl-left">Thêm giỏ hàng</a>
+                         <a type="button" onClick="showHint('<?= $name ?>', '<?= $img ?>' ,'<?= $new_price  ?>')"  title="" class="add-cart fl-left">Thêm giỏ hàng</a>
                          <a href="?page=checkout" title="" class="buy-now fl-right">Mua ngay</a>
                     </div>
                </li>

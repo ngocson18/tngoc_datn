@@ -45,7 +45,7 @@
                                              <a href="?page=blog" title="">Blog</a>
                                         </li>
                                         <li>
-                                             <a href="?page=detail_blog" title="">Giới thiệu</a>
+                                             <a href="admin/?page=login" title="">Login</a>
                                         </li>
                                         <li>
                                              <a href="#"  id="user_name">
@@ -87,7 +87,12 @@
                                              <p class="desc">Có <span>2 sản phẩm</span> trong giỏ hàng</p>
                                              <ul class="list-cart">
                                                   <?php
-                                                       include './pages/load_cart.php';
+                                                       include './admin/page/connect.php';
+                                                       $user_id = 36;
+                                                       // $user_id = $_POST['user_id'];
+                                                       $sql2 = "SELECT * FROM cart WHERE user_id = '$user_id'";
+                                                       $res2 = mysqli_query($conn, $sql2);
+                                                       $count2 = mysqli_num_rows($res2);
                                                        if ($count2 > 0) {
                                                             while ($row2 = mysqli_fetch_assoc($res2)) {
                                                                  $name_prod_in_cart = $row2['name'];

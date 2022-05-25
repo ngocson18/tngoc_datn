@@ -1,5 +1,6 @@
 <?php
 include 'connect.php';
+session_start();
 
 if (isset($_POST['submit'])) {
      $user_phone = $_POST['user_phone'];
@@ -22,7 +23,8 @@ if (isset($_POST['submit'])) {
           $row = mysqli_fetch_assoc($res2);
           $name = $row['user_name'];
           $user_id = $row['user_id'];
-
+          $_SESSION['role_user'] = $row['role_user'];
+          
           if ($row['role_user'] == 0) {
                echo "<script type='text/javascript'> window.location.assign('?page=list-user'); localStorage.setItem('name', '" . $name . "');</script>";
           } else {

@@ -32,7 +32,7 @@ include './admin/page/connect.php';
                          <span class="old"><?= $old_price ?> vnđ</span>
                     </div>
                     <div class="action clearfix">
-                         <a href="?page=cart" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ
+                         <a type="button" onClick="showHint('<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"  title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ
                               hàng</a>
                          <a href="?page=checkout" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
                     </div>
@@ -74,7 +74,7 @@ include './admin/page/connect.php';
                          <span class="old"><?= $old_price ?> vnđ</span>
                     </div>
                     <div class="action clearfix">
-                         <a type="button" onClick="showHint('<?= $name ?>', '<?= $new_price  ?>')" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ
+                         <a type="button" onClick="showHint('<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ
                               hàng</a>
                          <a href="?page=checkout" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
                     </div>
