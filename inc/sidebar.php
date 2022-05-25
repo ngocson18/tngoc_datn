@@ -12,44 +12,45 @@ include './admin/page/connect.php';
                     <div class="secion-detail">
                          <ul class="list-item">
                               <?php
-                                   $sql = "SELECT * FROM category WHERE parent = 0";
+                              $sql = "SELECT * FROM category WHERE parent = 0";
 
-                                   $res = mysqli_query($conn, $sql);
+                              $res = mysqli_query($conn, $sql);
 
-                                   $count = mysqli_num_rows($res);
-                                   if ($count > 0) {
-                                        while ($row = mysqli_fetch_assoc($res)) {
-                                             $cate_id = $row['category_id'];
-                                             $cate_name = $row['category_name'];
-                                             $parent= $row['parent'];
+                              $count = mysqli_num_rows($res);
+                              if ($count > 0) {
+                                   while ($row = mysqli_fetch_assoc($res)) {
+                                        $cate_id = $row['category_id'];
+                                        $cate_name = $row['category_name'];
+                                        $parent = $row['parent'];
                               ?>
                               <li>
-                                   <a href="?page=category_product&cate_id=<?= $cate_id ?>&paging=1" title=""><?= $cate_name ?></a>
+                                   <a href="?page=category_product&cate_id=<?= $cate_id ?>&paging=1"
+                                        title=""><?= $cate_name ?></a>
                                    <?php
-                                        if ($parent == $cate_id) {
-                                   ?>
-                                        <ul class="sub-menu">
-                                             <li>
-                                                  <a href="?page=category_product" title="">Bánh tráng trộn</a>
-                                                  <ul class="sub-menu">
-                                                       <li>
-                                                            <a href="?page=category_product" title="">Bánh tráng trộn đặc
-                                                                 biệt</a>
-                                                       </li>
-                                                       <li>
-                                                            <a href="?page=category_product" title="">Bánh tráng trộn
-                                                                 chay</a>
-                                                       </li>
-                                                       <li>
-                                                            <a href="?page=category_product" title="">Bánh tráng trộn bơ
-                                                                 sữa</a>
-                                                       </li>
-                                                  </ul>
-                                             </li>
-                                        </ul>
+                                             if ($parent == $cate_id) {
+                                             ?>
+                                   <ul class="sub-menu">
+                                        <li>
+                                             <a href="?page=category_product" title="">Bánh tráng trộn</a>
+                                             <ul class="sub-menu">
+                                                  <li>
+                                                       <a href="?page=category_product" title="">Bánh tráng trộn đặc
+                                                            biệt</a>
+                                                  </li>
+                                                  <li>
+                                                       <a href="?page=category_product" title="">Bánh tráng trộn
+                                                            chay</a>
+                                                  </li>
+                                                  <li>
+                                                       <a href="?page=category_product" title="">Bánh tráng trộn bơ
+                                                            sữa</a>
+                                                  </li>
+                                             </ul>
+                                        </li>
+                                   </ul>
                                    <?php
-                                   }
-                                   ?>
+                                             }
+                                             ?>
                               </li>
                               <?php
                                    }
@@ -67,25 +68,26 @@ include './admin/page/connect.php';
                <div class="section-detail">
                     <ul class="list-item">
                          <?php
-                              $sql = "SELECT * FROM product WHERE isSpecial = 1";
+                         $sql = "SELECT * FROM product WHERE isSpecial = 1 LIMIT 2";
 
-                              $res = mysqli_query($conn, $sql);
+                         $res = mysqli_query($conn, $sql);
 
-                              $count = mysqli_num_rows($res);
-                              if ($count > 0) {
-                                   while ($row = mysqli_fetch_assoc($res)) {
-                                        $prod_id = $row['product_id'];
-                                        $img = $row['img'];
-                                        $name = $row['name'];
-                                        $old_price = $row['price'];
-                                        $new_price = $row['price'] - $row['price']*$row['discount']/100;
+                         $count = mysqli_num_rows($res);
+                         if ($count > 0) {
+                              while ($row = mysqli_fetch_assoc($res)) {
+                                   $prod_id = $row['product_id'];
+                                   $img = $row['img'];
+                                   $name = $row['name'];
+                                   $old_price = $row['price'];
+                                   $new_price = $row['price'] - $row['price'] * $row['discount'] / 100;
                          ?>
                          <li class="clearfix">
                               <a href="?page=detail_product&id=<?= $prod_id ?>" title="" class="thumb fl-left">
                                    <img src="<?= $img ?>">
                               </a>
                               <div class="info fl-right">
-                                   <a href="?page=detail_product&id=<?= $prod_id ?>" title="" class="product-name"><?= $name; ?></a>
+                                   <a href="?page=detail_product&id=<?= $prod_id ?>" title=""
+                                        class="product-name"><?= $name; ?></a>
                                    <div class="price">
                                         <span class="new"><?= $new_price; ?> đ</span>
                                         <span class="old"><?= $old_price; ?> đ</span>

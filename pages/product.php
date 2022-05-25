@@ -1,7 +1,6 @@
 <?php
 include './admin/page/connect.php';
 ?>
-
 <div class="section" id="list-product-wp">
      <div class="section-head">
           <h3 class="section-title">Đồ ăn vặt Việt Nam</h3>
@@ -10,9 +9,7 @@ include './admin/page/connect.php';
           <ul class="list-item clearfix">
                <?php
                $sql = "SELECT * FROM product WHERE category = 1 LIMIT 8";
-
                $res = mysqli_query($conn, $sql);
-
                $count = mysqli_num_rows($res);
                if ($count > 0) {
                     while ($row = mysqli_fetch_assoc($res)) {
@@ -32,7 +29,8 @@ include './admin/page/connect.php';
                          <span class="old"><?= $old_price ?> vnđ</span>
                     </div>
                     <div class="action clearfix">
-                         <a type="button" onClick="showHint('<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"  title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ
+                         <a type="button" onClick="showHint('<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"
+                              title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ
                               hàng</a>
                          <a href="?page=checkout" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
                     </div>
@@ -52,9 +50,7 @@ include './admin/page/connect.php';
           <ul class="list-item clearfix">
                <?php
                $sql = "SELECT * FROM product WHERE category = 2 LIMIT 8";
-
                $res = mysqli_query($conn, $sql);
-
                $count = mysqli_num_rows($res);
                if ($count > 0) {
                     while ($row = mysqli_fetch_assoc($res)) {
@@ -74,7 +70,8 @@ include './admin/page/connect.php';
                          <span class="old"><?= $old_price ?> vnđ</span>
                     </div>
                     <div class="action clearfix">
-                         <a type="button" onClick="showHint('<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ
+                         <a type="button" onClick="showHint('<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"
+                              title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ
                               hàng</a>
                          <a href="?page=checkout" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
                     </div>

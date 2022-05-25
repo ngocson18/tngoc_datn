@@ -128,14 +128,6 @@ if (isset($_SESSION['login'])) {
 
                               <li>
                                    <a href="?page=statistical">Báo cáo - thống kê</a>
-                                   <ul class="sub-menu">
-                                        <li>
-                                             <a href="">Báo cáo</a>
-                                        </li>
-                                        <li>
-                                             <a href="">Thống kê hàng tuần</a>
-                                        </li>
-                                   </ul>
                               </li>
                          </ul>
 

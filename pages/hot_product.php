@@ -1,7 +1,6 @@
 <?php
 include './admin/page/connect.php';
 ?>
-
 <div class="section" id="feature-product-wp">
      <div class="section-head">
           <h3 class="section-title">Món ăn nổi bật</h3>
@@ -12,7 +11,6 @@ include './admin/page/connect.php';
                $sql = "SELECT * FROM product WHERE isSpecial = 1 LIMIT 2";
 
                $res = mysqli_query($conn, $sql);
-
                $count = mysqli_num_rows($res);
                if ($count > 0) {
                     while ($row = mysqli_fetch_assoc($res)) {
@@ -20,7 +18,7 @@ include './admin/page/connect.php';
                          $img = $row['img'];
                          $name = $row['name'];
                          $old_price = $row['price'];
-                         $new_price = $row['price'] - $row['price'] * $row['discount'] / 100;
+                         $new_price = $row['price'] - ($row['price'] * $row['discount'] / 100);
                ?>
                <li>
                     <a href="?page=detail_product&id=<?= $prod_id ?>" title="" class="thumb">
@@ -32,7 +30,8 @@ include './admin/page/connect.php';
                          <span class="old"><?= $old_price; ?> đ</span>
                     </div>
                     <div class="action clearfix">
-                         <a type="button" onClick="showHint('<?= $name ?>', '<?= $img ?>' ,'<?= $new_price  ?>')"  title="" class="add-cart fl-left">Thêm giỏ hàng</a>
+                         <a type="button" onClick="showHint('<?= $name ?>', '<?= $img ?>' ,'<?= $new_price  ?>')"
+                              title="" class="add-cart fl-left">Thêm giỏ hàng</a>
                          <a href="?page=checkout" title="" class="buy-now fl-right">Mua ngay</a>
                     </div>
                </li>

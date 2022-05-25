@@ -6,7 +6,7 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Trang Quản Lý</title>
 
-     <link rel="stylesheet" href="./css/style.css">
+     <!-- <link rel="stylesheet" href="./css/style.css"> -->
      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous">
      </script>
@@ -28,7 +28,10 @@
           integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
      </script>
 </head>
-<?php include './header.php'; ?>
+<?php
+include './header.php';
+include 'connect.php';
+?>
 
 <body class="sb-nav-fixed">
      <div id="layoutSidenav">
@@ -59,7 +62,7 @@
                               </div>
                               <div class="col-xl-3 col-md-6">
                                    <div class="card bg-success text-white mb-4">
-                                        <div class="card-body">Doanh thu Nam</div>
+                                        <div class="card-body">Doanh thu Năm</div>
                                         <div class="card-footer d-flex align-items-center justify-content-between">
 
                                         </div>
@@ -120,8 +123,6 @@
                                              </thead>
                                              <tbody>
                                                   <tr>
-
-
                                                        <th></th>
 
                                                        <th></th>
@@ -188,6 +189,9 @@
                                    </div>
                               </div>
                          </div>
+
+                         <button type="submit" name="submit" id=" btn btn-submit">In thống kê</button>
+                         <br>
                     </div>
                </main>
           </div>
