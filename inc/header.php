@@ -45,11 +45,11 @@
                                              <a href="?page=blog" title="">Blog</a>
                                         </li>
                                         <li>
-                                             <a href="admin/?page=login" title="">Login</a>
-                                        </li>
-                                        <li>
                                              <a href="#"  id="user_name">
                                              </a>
+                                        </li>
+                                        <li>
+                                             <a href="admin/?page=login" onClick="<?= session_unset();session_destroy(); ?>" title="">Logout</a>
                                         </li>
                                    </ul>
                               </div>
@@ -85,10 +85,10 @@
                                         </div>
                                         <div id="dropdown">
                                              <p class="desc">Có <span>2 sản phẩm</span> trong giỏ hàng</p>
-                                             <ul class="list-cart">
+                                             <ul class="list-cart" id="card-detail">
                                                   <?php
                                                        include './admin/page/connect.php';
-                                                       $user_id = 36;
+                                                       $user_id = 53;
                                                        // $user_id = $_POST['user_id'];
                                                        $sql2 = "SELECT * FROM cart WHERE user_id = '$user_id'";
                                                        $res2 = mysqli_query($conn, $sql2);
@@ -118,12 +118,12 @@
                                                   <p class="title fl-left">Tổng:</p>
                                                   <p class="price fl-right">18.500.000đ</p>
                                              </div>
-                                             <dic class="action-cart clearfix">
+                                             <div class="action-cart clearfix">
                                                   <a href="?page=cart" title="Giỏ hàng" class="view-cart fl-left">Giỏ
                                                        hàng</a>
                                                   <a href="?page=checkout" title="Thanh toán"
                                                        class="checkout fl-right">Thanh toán</a>
-                                             </dic>
+                                             </div>
                                         </div>
                                    </div>
                               </div>

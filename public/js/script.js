@@ -15,24 +15,15 @@ function showHint(name, img, new_price) {
         img: img
       },
       success : function (result1) {
-        $.ajax({
-          url : 'pages/load_cart2.php',
-          type : 'GET',
-          dataType: 'text',
-          data: {
-            user_id: user_id,
-          },
-          success : function (result2) {
-             console.log ("success", result2);
-             console.log ("success", result1);
-            //  $('#dropdown').html(result);
-          },
-        });
+        document.getElementById("card-detail").innerHTML = "";
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "pages/load_cart2.php");
+        xmlhttp.send(); 
+        setTimeout(function() {
+          console.log(xmlhttp);
+          document.getElementById("card-detail").innerHTML = xmlhttp.responseText;
+        }, 2000); 
       },
-      error : function (e) {
-         console.log (e);
-      }
-  
     });
   }
 }
