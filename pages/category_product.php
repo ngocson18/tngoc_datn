@@ -50,31 +50,59 @@ $count3 = mysqli_num_rows($res3);
                          <div class="filter-wp fl-right">
                               <p class="desc">Hiển thị <?= $count3 ?> trên <?= $count2  ?> món ăn</p>
                               <div class="form-filter">
-                                   <form method="POST" action="">
-                                        <select name="select" name="taskOption">
+                                   <form method="POST">
+                                        <select name="taskOption">
                                              <option value="0">Sắp xếp</option>
-                                             <option value="1">Từ A-Z</option>
-                                             <option value="2">Từ Z-A</option>
+                                             <option value="1">Từ A - Z</option>
+                                             <option value="2">Từ Z - A</option>
                                              <option value="3">Giá cao xuống thấp</option>
                                              <option value="4">Giá thấp lên cao</option>
                                         </select>
+                                        <!-- <div class="dropdown">  
+                                             <button class="dropbtn"> ---Sắp xếp---</button>  
+                                             <div class="dropdown-content">  
+                                                  <a href="sort.php?q=asc"> A - Z </a>  
+                                                  <a href=""> Z - A </a>  
+                                                  <a href=""> Giá cáo -> thấp </a>  
+                                                  <a href=""> Giá thấp -> cao </a>  
+                                             </div>  
+                                        </div>   -->
                                         <?php
                                         if (isset($_POST['taskOption'])) {
                                              $select = $_POST['taskOption'];
+                                             include './admin/page/connect.php';
+                                             $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+                                             $parts = parse_url($url);
+                                             parse_str($parts['query'], $query);
+                                             $cate_id_from_url = $query['cate_id'];
+                                             $paging = $query['paging'];
+
+                                             $sql2 = "SELECT * FROM product WHERE category = $cate_id_from_url ";
+                                             $res2 = mysqli_query($conn, $sql2);
+                                             $count2 = mysqli_num_rows($res2);
+                                             $results_per_page = 8;
+                                             $number_of_page = ceil($count2 / $results_per_page);
+                                             $start = ($paging - 1) * $results_per_page;
                                              switch ($select) {
                                                   case '1':
-                                                       $sql3 = "SELECT * FROM product WHERE category = $cate_id_from_url LIMIT $start, $results_per_page ORDER BY name DESC";
+                                                       $sql3 = "SELECT * FROM bepcuangoc.product WHERE category = '$cate_id_from_url' ORDER BY name ASC LIMIT $start, $results_per_page";
                                                        $res3 = mysqli_query($conn, $sql3);
                                                        $count3 = mysqli_num_rows($res3);
                                                        break;
                                                   case '2':
-                                                       echo 'value2<br/>';
+                                                       $sql3 = "SELECT * FROM bepcuangoc.product WHERE category = '$cate_id_from_url' ORDER BY name DESC LIMIT $start, $results_per_page";
+                                                       $res3 = mysqli_query($conn, $sql3);
+                                                       $count3 = mysqli_num_rows($res3);
                                                        break;
                                                   case '3':
-                                                       echo 'value2<br/>';
+                                                       $sql3 = "SELECT * FROM bepcuangoc.product WHERE category = '$cate_id_from_url' ORDER BY price DESC LIMIT $start, $results_per_page";
+                                                       $res3 = mysqli_query($conn, $sql3);
+                                                       $count3 = mysqli_num_rows($res3);
                                                        break;
                                                   case '4':
-                                                       echo 'value2<br/>';
+                                                       $sql3 = "SELECT * FROM bepcuangoc.product WHERE category = '$cate_id_from_url' ORDER BY price ASC LIMIT $start, $results_per_page";
+                                                       $res3 = mysqli_query($conn, $sql3);
+                                                       $count3 = mysqli_num_rows($res3);
                                                        break;
                                                   default:
                                                        # code...

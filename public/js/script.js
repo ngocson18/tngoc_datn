@@ -28,4 +28,5 @@ function showHint(name, img, new_price) {
   }
 }
 
+
 $(document).ready(showHint);

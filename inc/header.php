@@ -24,7 +24,27 @@
      <script src="public/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
      <script src="public/js/carousel/owl.carousel.js" type="text/javascript"></script>
      <script src="public/js/main.js" type="text/javascript"></script>
-     
+     <script type="text/javascript">
+          function search(str) {
+               if (str.length == 0) {
+                    document.getElementById("result").innerHTML = "";
+                    return;
+               }
+               else 
+               {
+                    var xmlhttp = new XMLHttpRequest();
+
+                    xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                         document.getElementById("result").style.display = 'block';
+                         document.getElementById("result").innerHTML = xmlhttp.responseText;
+                    }
+                    }
+                    xmlhttp.open("GET", "pages/live_search.php?q=" + str, true);
+                    xmlhttp.send();
+               }
+          }
+     </script>
 </head>
 <body>
      <div id="site">
@@ -62,9 +82,10 @@
                                         src="./public/images/logo_BCN.png" /></a>
                               <div id="search-wp" class="fl-left">
                                    <form method="POST" action="">
-                                        <input type="text" name="s" id="s" placeholder="Nhập từ khóa tìm kiếm tại đây!">
+                                        <input type="text" name="s" id="s"  onkeyup="search(this.value)"  placeholder="Nhập từ khóa tìm kiếm tại đây!">
                                         <button type="submit" id="sm-s">Tìm kiếm</button>
                                    </form>
+                                   <div id="result"></div>
                               </div>
                               
                               <div id="action-wp" class="fl-right">
