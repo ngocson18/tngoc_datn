@@ -11,7 +11,9 @@
   echo '<a href="?page=detail_product&id=' . $value['product_id'] .'">';
   echo ' '.$value['name'].'';
   echo '</a>';
+  echo '<div class="s_price">';
+  echo '' .$value['price']  . ' đ';
   echo '</div>';
-  echo '<br />';
+  echo '</div>';
   endforeach
 ?>
