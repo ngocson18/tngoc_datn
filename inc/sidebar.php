@@ -63,12 +63,12 @@ include './admin/page/connect.php';
 
           <div>
                <div class="section-head">
-                    <h3 class="section-title">Tuần này có gì ?</h3>
+                    <h3 class="section-title">Gợi ý tuần mới</h3>
                </div>
                <div class="section-detail">
                     <ul class="list-item">
                          <?php
-                         $sql = "SELECT * FROM product WHERE isSpecial = 1 LIMIT 2";
+                         $sql = "SELECT * FROM product ORDER BY RAND() LIMIT 2";
 
                          $res = mysqli_query($conn, $sql);
 

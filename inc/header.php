@@ -25,27 +25,26 @@
      <script src="public/js/carousel/owl.carousel.js" type="text/javascript"></script>
      <script src="public/js/main.js" type="text/javascript"></script>
      <script type="text/javascript">
-          function search(str) {
-               if (str.length == 0) {
-                    document.getElementById("result").innerHTML = "";
-                    return;
-               }
-               else 
-               {
-                    var xmlhttp = new XMLHttpRequest();
+     function search(str) {
+          if (str.length == 0) {
+               document.getElementById("result").innerHTML = "";
+               return;
+          } else {
+               var xmlhttp = new XMLHttpRequest();
 
-                    xmlhttp.onreadystatechange = function() {
+               xmlhttp.onreadystatechange = function() {
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                          document.getElementById("result").style.display = 'block';
                          document.getElementById("result").innerHTML = xmlhttp.responseText;
                     }
-                    }
-                    xmlhttp.open("GET", "pages/live_search.php?q=" + str, true);
-                    xmlhttp.send();
                }
+               xmlhttp.open("GET", "pages/live_search.php?q=" + str, true);
+               xmlhttp.send();
           }
+     }
      </script>
 </head>
+
 <body>
      <div id="site">
           <div id="container">
@@ -65,11 +64,13 @@
                                              <a href="?page=blog" title="">Blog</a>
                                         </li>
                                         <li>
-                                             <a href="#"  id="user_name">
+                                             <a href="#" id="user_name">
                                              </a>
                                         </li>
                                         <li>
-                                             <a href="admin/?page=login" onClick="<?= session_unset();session_destroy(); ?>" title="">Logout</a>
+                                             <a href="admin/?page=login" onClick="<?= session_unset();
+                                                                                     session_destroy(); ?>"
+                                                  title="">Logout</a>
                                         </li>
                                    </ul>
                               </div>
@@ -82,16 +83,17 @@
                                         src="./public/images/logo_BCN.png" /></a>
                               <div id="search-wp" class="fl-left">
                                    <form method="POST" action="">
-                                        <input type="text" name="s" id="s"  onkeyup="search(this.value)"  placeholder="Nhập từ khóa tìm kiếm tại đây!">
+                                        <input type="text" name="s" id="s" onkeyup="search(this.value)"
+                                             placeholder="Nhập từ khóa tìm kiếm tại đây!">
                                         <button type="submit" id="sm-s">Tìm kiếm</button>
                                    </form>
                                    <div id="result"></div>
                               </div>
-                              
+
                               <div id="action-wp" class="fl-right">
                                    <div id="advisory-wp" class="fl-left">
                                         <span class="title">Liên hệ</span>
-                                        <span class="phone">0987.654.321</span>
+                                        <span class="phone">0968.876.944</span>
                                    </div>
                                    <div id="btn-respon" class="fl-right"><i class="fa fa-bars" aria-hidden="true"></i>
                                    </div>
@@ -108,31 +110,34 @@
                                              <p class="desc">Có <span>2 sản phẩm</span> trong giỏ hàng</p>
                                              <ul class="list-cart" id="card-detail">
                                                   <?php
-                                                       include './admin/page/connect.php';
-                                                       $user_id = 53;
-                                                       // $user_id = $_POST['user_id'];
-                                                       $sql2 = "SELECT * FROM cart WHERE user_id = '$user_id'";
-                                                       $res2 = mysqli_query($conn, $sql2);
-                                                       $count2 = mysqli_num_rows($res2);
-                                                       if ($count2 > 0) {
-                                                            while ($row2 = mysqli_fetch_assoc($res2)) {
-                                                                 $name_prod_in_cart = $row2['name'];
-                                                                 $price_prod_in_cart = $row2['price'];
-                                                                 $quantity_prod_in_cart = $row2['quantity'];
+                                                  include './admin/page/connect.php';
+                                                  $user_id = 53;
+                                                  // $user_id = $_POST['user_id'];
+                                                  $sql2 = "SELECT * FROM cart WHERE user_id = '$user_id'";
+                                                  $res2 = mysqli_query($conn, $sql2);
+                                                  $count2 = mysqli_num_rows($res2);
+                                                  if ($count2 > 0) {
+                                                       while ($row2 = mysqli_fetch_assoc($res2)) {
+                                                            $name_prod_in_cart = $row2['name'];
+                                                            $price_prod_in_cart = $row2['price'];
+                                                            $quantity_prod_in_cart = $row2['quantity'];
                                                   ?>
                                                   <li class="clearfix">
                                                        <a href="" title="" class="thumb fl-left">
                                                             <img src="public/images/img-pro-11.png" alt="">
                                                        </a>
                                                        <div class="info fl-right">
-                                                            <a href="" title="" class="product-name"><?= $name_prod_in_cart ?></a>
+                                                            <a href="" title=""
+                                                                 class="product-name"><?= $name_prod_in_cart ?></a>
                                                             <p class="price"><?= $price_prod_in_cart ?> đ</p>
-                                                            <p class="qty">Số lượng: <span><?= $quantity_prod_in_cart ?></span></p>
+                                                            <p class="qty">Số lượng:
+                                                                 <span><?= $quantity_prod_in_cart ?></span>
+                                                            </p>
                                                        </div>
                                                   </li>
                                                   <?php
-                                                            }
                                                        }
+                                                  }
                                                   ?>
                                              </ul>
                                              <div class="total-price clearfix">
