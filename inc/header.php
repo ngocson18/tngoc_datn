@@ -44,6 +44,11 @@
                     xmlhttp.send();
                }
           }
+
+          function gotoSearch() {
+               let a = document.getElementById("s").value;
+               window.location.href=`?page=search_product&q=${a}`;
+          }
      </script>
 </head>
 <body>
@@ -83,7 +88,7 @@
                               <div id="search-wp" class="fl-left">
                                    <form method="POST" action="">
                                         <input type="text" name="s" id="s"  onkeyup="search(this.value)"  placeholder="Nhập từ khóa tìm kiếm tại đây!">
-                                        <button type="submit" id="sm-s">Tìm kiếm</button>
+                                        <a type="button" onClick="gotoSearch()" id="sm-s">Tìm kiếm</a>
                                    </form>
                                    <div id="result"></div>
                               </div>
@@ -97,36 +102,40 @@
                                    </div>
                                    <a href="?page=cart" title="giỏ hàng" id="cart-respon-wp" class="fl-right">
                                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                        <span id="num">2</span>
+                                        <!-- <span id="num">2</span> -->
                                    </a>
                                    <div id="cart-wp" class="fl-right">
                                         <div id="btn-cart">
                                              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                             <span id="num">2</span>
                                         </div>
                                         <div id="dropdown">
-                                             <p class="desc">Có <span>2 sản phẩm</span> trong giỏ hàng</p>
+                                             <!-- <p class="desc">Có <span>2 sản phẩm</span> trong giỏ hàng</p> -->
                                              <ul class="list-cart" id="card-detail">
                                                   <?php
                                                        include './admin/page/connect.php';
-                                                       $user_id = 53;
-                                                       // $user_id = $_POST['user_id'];
+                                                       $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+                                                       $parts = parse_url($url);
+                                                       parse_str($parts['query'], $query);
+                                                       $user_id = $query['user_id'];
+                                                       $total = 0;
                                                        $sql2 = "SELECT * FROM cart WHERE user_id = '$user_id'";
                                                        $res2 = mysqli_query($conn, $sql2);
                                                        $count2 = mysqli_num_rows($res2);
                                                        if ($count2 > 0) {
                                                             while ($row2 = mysqli_fetch_assoc($res2)) {
+                                                                 $img = $row2['img'];
                                                                  $name_prod_in_cart = $row2['name'];
                                                                  $price_prod_in_cart = $row2['price'];
                                                                  $quantity_prod_in_cart = $row2['quantity'];
+                                                                 $total = $total + $price_prod_in_cart;
                                                   ?>
                                                   <li class="clearfix">
                                                        <a href="" title="" class="thumb fl-left">
-                                                            <img src="public/images/img-pro-11.png" alt="">
+                                                            <img src="<?= $img ?>" alt="">
                                                        </a>
                                                        <div class="info fl-right">
                                                             <a href="" title="" class="product-name"><?= $name_prod_in_cart ?></a>
-                                                            <p class="price"><?= $price_prod_in_cart ?> đ</p>
+                                                            <p class="price-cart" style="display: inline-block; color: #000"><?= $price_prod_in_cart ?> </p> <span style="color: #000">đ</span>
                                                             <p class="qty">Số lượng: <span><?= $quantity_prod_in_cart ?></span></p>
                                                        </div>
                                                   </li>
@@ -135,9 +144,10 @@
                                                        }
                                                   ?>
                                              </ul>
-                                             <div class="total-price clearfix">
-                                                  <p class="title fl-left">Tổng:</p>
-                                                  <p class="price fl-right">18.500.000đ</p>
+                                             <div class="total-price d-flex flex-row">
+                                                  <span class="title">Tổng:</span>
+                                                  <span id="total-price" class="price"><?= $total ?> </span>
+                                                  <span>đ</span>
                                              </div>
                                              <div class="action-cart clearfix">
                                                   <a href="?page=cart" title="Giỏ hàng" class="view-cart fl-left">Giỏ

@@ -72,10 +72,10 @@ if (isset($_GET['id'])) {
                                         <tr>
                                              <!-- <td><input type="checkbox" name="CheckItem" class="checkItem"></td> -->
                                              <td><span class="tbody-text"><?php echo $sn++ ?></span></td>
-                                             <td class="clearfix">
-                                                  <div class="tb-title fl-left">
-                                                       <span><?php echo $user_name; ?></span>
-                                                  </div>
+                                             <td class="tbody-text">
+                                                  <span class="tb-title fl-left">
+                                                       <?php echo $user_name; ?>
+                                                  </span>
                                              </td>
                                              <td><span class="tbody-text"><?php echo $password; ?></span></td>
                                              <td><span class="tbody-text"><?php echo $user_address; ?></span></td>
