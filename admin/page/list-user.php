@@ -92,7 +92,7 @@ if (isset($_GET['id'])) {
                                                                  }
                                                                  ?>
                                                   </span></td>
-                                             <td class="clearfix">
+                                             <td class="tbody-text">
                                                   <ul class="list-operation fl-right">
                                                        <li><a href="?page=update-user&id=<?= $user_id; ?>" title="Sửa"
                                                                  class="edit"><i class="fa fa-pencil" aria-hidden="true"

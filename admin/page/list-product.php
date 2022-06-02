@@ -1,42 +1,42 @@
-<?php 
-     include 'connect.php';
-     include './header.php';
+<?php
+include 'connect.php';
+include './header.php';
 ?>
 
-<?php 
-     // include 'login.php';
+<?php
+// include 'login.php';
 
-     // if(isset($_SESSION['submit'])){
-     //      $sql2 = "SELECT * FROM user WHERE user_phone =".$_SESSION['user'];
-     //      $res2 = mysqli_query($conn, $sql2);
-     //      $row = mysqli_fetch_assoc($res2);
+// if(isset($_SESSION['submit'])){
+//      $sql2 = "SELECT * FROM user WHERE user_phone =".$_SESSION['user'];
+//      $res2 = mysqli_query($conn, $sql2);
+//      $row = mysqli_fetch_assoc($res2);
 
-     //      if($row['role_user'] == 0){
-               
-     //      }else{
-     //           echo "Login successfully";
-     //           echo "<script type='text/javascript'> window.location.assign('?page=list-product')</script>";
-     //      }
-     // }else{
-     //      echo "<script type='text/javascript'> window.location.assign('?page=login')</script>";
-     // }
+//      if($row['role_user'] == 0){
+
+//      }else{
+//           echo "Login successfully";
+//           echo "<script type='text/javascript'> window.location.assign('?page=list-product')</script>";
+//      }
+// }else{
+//      echo "<script type='text/javascript'> window.location.assign('?page=login')</script>";
+// }
 ?>
 
-<?php 
+<?php
 //Delete product by ID
-     if(isset($_GET['id'])){
-          $id = $_GET['id'];
+if (isset($_GET['id'])) {
+     $id = $_GET['id'];
 
-          $sql1 = "DELETE FROM product WHERE product_id = $id";
+     $sql1 = "DELETE FROM product WHERE product_id = $id";
 
-          $res1= mysqli_query($conn, $sql1);
-          if($res1 === TRUE){
-               echo "Delete product Successfully";
-               echo "<script type='text/javascript'> window.location.assign('?page=list-product')</script>";
-          }else{
-               echo "Error: ".$sql.":-".mysqli_error($conn);
-          }
+     $res1 = mysqli_query($conn, $sql1);
+     if ($res1 === TRUE) {
+          echo "Delete product Successfully";
+          echo "<script type='text/javascript'> window.location.assign('?page=list-product')</script>";
+     } else {
+          echo "Error: " . $sql . ":-" . mysqli_error($conn);
      }
+}
 ?>
 
 <div id="main-content-wp" class="list-product-page">
@@ -71,66 +71,66 @@
                                    </thead>
 
                                    <tbody>
-                                        <?php 
-                                             $sql = "SELECT * FROM product ORDER BY product_id DESC";
+                                        <?php
+                                        $sql = "SELECT * FROM product ORDER BY product_id DESC";
 
-                                             $res = mysqli_query($conn, $sql);
+                                        $res = mysqli_query($conn, $sql);
 
-                                             $count = mysqli_num_rows($res);
+                                        $count = mysqli_num_rows($res);
 
-                                             $sn = 1;
-                                             if($count > 0){
-                                                  while($row = mysqli_fetch_assoc($res)){
-                                                       $product_id = $row['product_id'];
-                                                       $name = $row['name'];
-                                                       $title = $row['title'];
-                                                       $description = $row['description'];
-                                                       $price = $row['price'];
-                                                       $discount = $row['discount'];
-                                                       $price_discount = $row['price_discount'];
-                                                       $category = $row['category'];
-                                                       $img = $row['img'];
-                                                       $img_src = '../'.$img;
-                                                       // $img = $row['img'];
-                                                       // $name = $row['name'];
-                                                       ?>
+                                        $sn = 1;
+                                        if ($count > 0) {
+                                             while ($row = mysqli_fetch_assoc($res)) {
+                                                  $product_id = $row['product_id'];
+                                                  $name = $row['name'];
+                                                  $title = $row['title'];
+                                                  $description = $row['description'];
+                                                  $price = $row['price'];
+                                                  $discount = $row['discount'];
+                                                  $new_price = $row['price'] - $row['price'] * $row['discount'] / 100;
+                                                  $category = $row['category'];
+                                                  $img = $row['img'];
+                                                  $img_src = '../' . $img;
+                                                  // $img = $row['img'];
+                                                  // $name = $row['name'];
+                                        ?>
                                         <tr>
                                              <!-- <td><input type="checkbox" name="checkItem" class="checkItem"></td> -->
-                                             <td><span class="tbody-text"><?php echo $sn++ ;?></span></td>
-                                             <td><span class="tbody-text"><?php echo $name;?></span></td>
+                                             <td><span class="tbody-text"><?php echo $sn++; ?></span></td>
+                                             <td><span class="tbody-text"><?php echo $name; ?></span></td>
                                              <td style="max-width: 100px;"><span
                                                        class="tbody-text"><?php echo $title; ?></span></td>
                                              <td style="max-width: 200px;"><span
                                                        class="tbody-text"><?php echo $description; ?></span></td>
                                              <td><span class="tbody-text">
                                                        <?php
-                                                            if($category == 1){
-                                                                 echo "Đồ ăn vặt Việt Nam";
-                                                            }elseif($category == 2){
-                                                                 echo "Đồ ăn vặt Hàn Quốc";
-                                                            }elseif($category == 3){
-                                                                 echo "Đồ ăn vặt Thái Lan";
-                                                            }elseif($category == 4){
-                                                                 echo "Đồ ăn vặt Khác";
-                                                            }elseif($category == 5){
-                                                                 echo "Đồ uống";
-                                                            }elseif($category == 6){
-                                                                 echo "Bánh ngọt";
-                                                            }
-                                                       ?>
+                                                                 if ($category == 1) {
+                                                                      echo "Đồ ăn vặt Việt Nam";
+                                                                 } elseif ($category == 2) {
+                                                                      echo "Đồ ăn vặt Hàn Quốc";
+                                                                 } elseif ($category == 3) {
+                                                                      echo "Đồ ăn vặt Thái Lan";
+                                                                 } elseif ($category == 4) {
+                                                                      echo "Đồ ăn vặt Khác";
+                                                                 } elseif ($category == 5) {
+                                                                      echo "Đồ uống";
+                                                                 } elseif ($category == 6) {
+                                                                      echo "Bánh ngọt";
+                                                                 }
+                                                                 ?>
                                                   </span></td>
                                              <td style="max-width: 100px;"><span
                                                        class="tbody-text"><?php echo $price; ?> đ</span></td>
                                              <td><span class="tbody-text"><?php echo $discount; ?>%</span></td>
-                                             <td><span class="tbody-text"><?php echo $price_discount; ?> đ</span></td>
+                                             <td><span class="tbody-text"><?php echo $new_price; ?> đ</span></td>
                                              <td><span class="tbody-text">
-                                                       <?php  
-                                                            echo "<div><img src=$img_src style='width:250px'></div>";
-                                                       ?>
+                                                       <?php
+                                                                 echo "<div><img src=$img_src style='width:250px'></div>";
+                                                                 ?>
                                              </td>
                                              <td class="tbody-text">
                                                   <ul class="list-operation fl-left">
-                                                       <li><a href="?page=update-product&id=<?= $product_id;?>"
+                                                       <li><a href="?page=update-product&id=<?= $product_id; ?>"
                                                                  title="Sửa" class="edit"><i class="fa fa-pencil"
                                                                       aria-hidden="true"
                                                                       style="font-size: 20px; margin-bottom: 10px; padding-bottom: 10px ;"></i></a>
@@ -144,8 +144,8 @@
                                              </td>
                                         </tr>
                                         <?php
-                                                  }
                                              }
+                                        }
                                         ?>
                                    </tbody>
                               </table>
@@ -155,6 +155,6 @@
           </div>
      </div>
 </div>
-<?php 
-     include './footer.php';
+<?php
+include './footer.php';
 ?>

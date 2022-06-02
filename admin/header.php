@@ -1,18 +1,17 @@
-
 <?php
-     require("page/session-user.php");
-     // if (isset($_SESSION['login'])) {
-     //      $sql2 = "SELECT * FROM user where user_phone = " . $_SESSION['login'];
-     //      $result2 = $conn->query($sql2);
-     //      $data = $result2->fetch_assoc();
-     //      if ($data['role_user'] == 0) {
-     //           echo "<script type='text/javascript'> window.location.assign('?page=list-user')</script>";
-     //      } else {
-     //           echo "<script type='text/javascript'> window.location.assign('?page=home')</script>";
-     //      }
-     // } else {
-     //      echo "<script type='text/javascript'> window.location.assign('?page=login')</script>";
-     // }
+require("page/session-user.php");
+// if (isset($_SESSION['login'])) {
+//      $sql2 = "SELECT * FROM user where user_phone = " . $_SESSION['login'];
+//      $result2 = $conn->query($sql2);
+//      $data = $result2->fetch_assoc();
+//      if ($data['role_user'] == 0) {
+//           echo "<script type='text/javascript'> window.location.assign('?page=list-user')</script>";
+//      } else {
+//           echo "<script type='text/javascript'> window.location.assign('?page=home')</script>";
+//      }
+// } else {
+//      echo "<script type='text/javascript'> window.location.assign('?page=login')</script>";
+// }
 ?>
 
 <!DOCTYPE html>
@@ -130,11 +129,12 @@
                               <li>
                                    <a href="?page=statistical">Báo cáo - thống kê</a>
                               </li>
+
                               <li>
-                                   <a href="?page=login" onClick="<?= session_unset();session_destroy(); ?>" title="">Logout</a>
+                                   <a href="?page=login" onClick="<?= session_unset();
+                                                                      session_destroy(); ?>" title="">Logout</a>
                               </li>
                          </ul>
-
                          <div id="dropdown-user" class="dropdown dropdown-extended fl-right">
                               <button class="dropdown-toggle clearfix" type="button" date-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="true">
@@ -145,12 +145,7 @@
                                              id="user_name"></a></h3>
                               </button>
                               <ul class="dropdown-menu">
-                                   <li>
-                                        <a href="#" title="thông tin cá nhân">Thông tin tài khoản</a>
-                                   </li>
-                                   <li>
-                                        <a href="#" title="Thoát">Thoát</a>
-                                   </li>
+
                               </ul>
                          </div>
                     </div>

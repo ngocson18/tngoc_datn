@@ -25,32 +25,31 @@
      <script src="public/js/carousel/owl.carousel.js" type="text/javascript"></script>
      <script src="public/js/main.js" type="text/javascript"></script>
      <script type="text/javascript">
-          function search(str) {
-               if (str.length == 0) {
-                    document.getElementById("result").innerHTML = "";
-                    return;
-               }
-               else 
-               {
-                    var xmlhttp = new XMLHttpRequest();
+     function search(str) {
+          if (str.length == 0) {
+               document.getElementById("result").innerHTML = "";
+               return;
+          } else {
+               var xmlhttp = new XMLHttpRequest();
 
-                    xmlhttp.onreadystatechange = function() {
+               xmlhttp.onreadystatechange = function() {
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                          document.getElementById("result").style.display = 'block';
                          document.getElementById("result").innerHTML = xmlhttp.responseText;
                     }
-                    }
-                    xmlhttp.open("GET", "pages/live_search.php?q=" + str, true);
-                    xmlhttp.send();
                }
+               xmlhttp.open("GET", "pages/live_search.php?q=" + str, true);
+               xmlhttp.send();
           }
+     }
 
-          function gotoSearch() {
-               let a = document.getElementById("s").value;
-               window.location.href=`?page=search_product&q=${a}`;
-          }
+     function gotoSearch() {
+          let a = document.getElementById("s").value;
+          window.location.href=`?page=search_product&q=${a}`;
+     }
      </script>
 </head>
+
 <body>
      <div id="site">
           <div id="container">
@@ -70,11 +69,13 @@
                                              <a href="?page=blog" title="">Blog</a>
                                         </li>
                                         <li>
-                                             <a href="#"  id="user_name">
+                                             <a href="#" id="user_name">
                                              </a>
                                         </li>
                                         <li>
-                                             <a href="admin/?page=login" onClick="<?= session_unset();session_destroy(); ?>" title="">Logout</a>
+                                             <a href="admin/?page=login" onClick="<?= session_unset();
+                                                                                     session_destroy(); ?>"
+                                                  title="">Logout</a>
                                         </li>
                                    </ul>
                               </div>
@@ -83,7 +84,7 @@
                     <div id="head-body" class="clearfix">
                          <div class="d-none" id="temp_id"></div>
                          <div class="wp-inner">
-                              <a href="?page=home" title="" id="logo" class="fl-left"><img
+                              <a href="#" title="" id="logo" class="fl-left"><img
                                         src="./public/images/logo_BCN.png" /></a>
                               <div id="search-wp" class="fl-left">
                                    <form method="POST" action="">
@@ -92,11 +93,11 @@
                                    </form>
                                    <div id="result"></div>
                               </div>
-                              
+
                               <div id="action-wp" class="fl-right">
                                    <div id="advisory-wp" class="fl-left">
                                         <span class="title">Liên hệ</span>
-                                        <span class="phone">0987.654.321</span>
+                                        <span class="phone">0968.876.944</span>
                                    </div>
                                    <div id="btn-respon" class="fl-right"><i class="fa fa-bars" aria-hidden="true"></i>
                                    </div>
@@ -140,8 +141,8 @@
                                                        </div>
                                                   </li>
                                                   <?php
-                                                            }
                                                        }
+                                                  }
                                                   ?>
                                              </ul>
                                              <div class="total-price d-flex flex-row">

@@ -1,15 +1,16 @@
 <?php
-     include 'connect.php';
-     if (isset($_POST['submit'])) {
-          $user_phone = $_POST['user_phone'];
+session_start();
+include 'connect.php';
+if (isset($_POST['submit'])) {
+     $user_phone = $_POST['user_phone'];
 
-          $password = $_POST['password'];
+     $password = $_POST['password'];
 
-          $sql = "SELECT * FROM user WHERE user_phone = '$user_phone' AND password = '$password'";
+     $sql = "SELECT * FROM user WHERE user_phone = '$user_phone' AND password = '$password'";
 
-          $res = mysqli_query($conn, $sql);
+     $res = mysqli_query($conn, $sql);
 
-          $count = mysqli_num_rows($res);
+     $count = mysqli_num_rows($res);
 
           if ($count == 1) {
                session_start();
@@ -32,5 +33,6 @@
                echo "<script type='text/javascript'> window.location.assign('?page=login')</script>";
                $_SESSION['error'] = "Sai số điện thoại hoặc mật khẩu";
           }
-     }
+}
+
 ?>

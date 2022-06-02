@@ -1,6 +1,6 @@
 <?php
-     include 'connect.php';
-     include './header.php';
+include 'connect.php';
+include './header.php';
 ?>
 <div id="main-content-wp" class="add-cat-page">
      <div class="wrap clearfix">
@@ -35,10 +35,6 @@
                                    <input type="text" name="discount" id="price">
                               </div>
 
-                              <div class="form-group">
-                                   <label for="discount">Gía Khuyễn mãi</label>
-                                   <input type="text" name="price_discount" id="price">
-                              </div>
 
                               <div class="form-group">
                                    <label for="discretion">Mô tả món ăn</label>
@@ -75,105 +71,96 @@
 </div>
 
 
-<?php 
-     // $img = "";
-     // function randomString()
-     // {
-     //      $random = substr(md5(mt_rand()), 0, 7);
-     //      return $random;
-     // }
-     
-     if(isset($_POST['submit'])){
-          $name = $_POST['name'];
-          $title = $_POST['title'];
-          $description = $_POST['description'];
-          $price = $_POST['price'];
-          $discount = $_POST['discount'];
-          $price_discount = $_POST['price_discount'];
-          $category = $_POST['category'];
+<?php
+// $img = "";
+// function randomString()
+// {
+//      $random = substr(md5(mt_rand()), 0, 7);
+//      return $random;
+// }
 
-          // $target_dir = "public/images/Food_img/";
-          // $file = $_FILES['fileToUpload']['name'];
-          // $target_file = $target_dir . $file;
-          // $uploadOk = 1;
+if (isset($_POST['submit'])) {
+     $name = $_POST['name'];
+     $title = $_POST['title'];
+     $description = $_POST['description'];
+     $price = $_POST['price'];
+     $discount = $_POST['discount'];
+     $price_discount = $_POST['price_discount'];
+     $category = $_POST['category'];
 
-          //Thư mục bạn sẽ lưu file upload
-          $target_dir    = "public/images/Food_img/";
-          //Vị trí file lưu tạm trong server (file sẽ lưu trong uploads, với tên giống tên ban đầu)
-          $target_file   = $target_dir . basename($_FILES["upload-thumb"]["name"]);
+     // $target_dir = "public/images/Food_img/";
+     // $file = $_FILES['fileToUpload']['name'];
+     // $target_file = $target_dir . $file;
+     // $uploadOk = 1;
 
-          $allowUpload   = true;
+     //Thư mục bạn sẽ lưu file upload
+     $target_dir    = "public/images/Food_img/";
+     //Vị trí file lưu tạm trong server (file sẽ lưu trong uploads, với tên giống tên ban đầu)
+     $target_file   = $target_dir . basename($_FILES["upload-thumb"]["name"]);
 
-          //Lấy phần mở rộng của file (jpg, png, ...)
-          $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+     $allowUpload   = true;
 
-          // Cỡ lớn nhất được upload (bytes)
-          $maxfilesize   = 800000;
+     //Lấy phần mở rộng của file (jpg, png, ...)
+     $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
-          ////Những loại file được phép upload
-          $allowtypes    = array('jpg', 'png', 'jpeg', 'gif');
-          // var_dump($_FILES, $file);
-          // die();
-          $check = getimagesize($_FILES["upload-thumb"]["tmp_name"]);
+     // Cỡ lớn nhất được upload (bytes)
+     $maxfilesize   = 800000;
 
-          if($check !== false)
-          {
-              echo "Đây là file ảnh - " . $check["mime"] . ".";
-              $allowUpload = true;
-          }
-          else
-          {
-              echo "Không phải file ảnh.";
-              $allowUpload = false;
-          }
+     ////Những loại file được phép upload
+     $allowtypes    = array('jpg', 'png', 'jpeg', 'gif');
+     // var_dump($_FILES, $file);
+     // die();
+     $check = getimagesize($_FILES["upload-thumb"]["tmp_name"]);
+
+     if ($check !== false) {
+          echo "Đây là file ảnh - " . $check["mime"] . ".";
+          $allowUpload = true;
+     } else {
+          echo "Không phải file ảnh.";
+          $allowUpload = false;
+     }
 
 
-          if (file_exists($target_file))
-          {
-               echo "Tên file đã tồn tại trên server, không được ghi đè";
-               $allowUpload = false;
-          }
+     if (file_exists($target_file)) {
+          echo "Tên file đã tồn tại trên server, không được ghi đè";
+          $allowUpload = false;
+     }
 
-          if (!in_array($imageFileType,$allowtypes ))
-          {
-               echo "Chỉ được upload các định dạng JPG, PNG, JPEG, GIF";
-               $allowUpload = false;
-          }
+     if (!in_array($imageFileType, $allowtypes)) {
+          echo "Chỉ được upload các định dạng JPG, PNG, JPEG, GIF";
+          $allowUpload = false;
+     }
 
-          //Code xu ly
-          if($name == ""){
-               header('location: ?page=add-product');
-          } else {
-               // Xử lý di chuyển file tạm ra thư mục cần lưu trữ, dùng hàm move_uploaded_file
-               if (move_uploaded_file($_FILES["upload-thumb"]["tmp_name"], $target_file))
-               {
-                    echo "File". basename( $_FILES["upload-thumb"]["name"]).
+     //Code xu ly
+     if ($name == "") {
+          header('location: ?page=add-product');
+     } else {
+          // Xử lý di chuyển file tạm ra thư mục cần lưu trữ, dùng hàm move_uploaded_file
+          if (move_uploaded_file($_FILES["upload-thumb"]["tmp_name"], $target_file)) {
+               echo "File" . basename($_FILES["upload-thumb"]["name"]) .
                     "Đã upload thành công.";
 
-                    echo "File lưu tại" . $target_file;
-
-               }
-               else
-               {
-                    echo "Có lỗi xảy ra khi upload file.";
-               }
-               
-               $sql = "INSERT INTO product(name, title, description, price, img, discount, price_discount, category) 
-               VALUES ('$name', '$title', '$description', '$price', '$target_file',  '$discount', '$price_discount','$category')";
-               
-               $res = mysqli_query($conn, $sql);
-     
-               if($res === true){
-                    echo "Add product successfully";
-                    echo "<script type='text/javascript'> window.location.assign('?page=list-product')</script>";
-               }else{
-                    echo "Error: ".$sql.":-".mysqli_error($conn);
-               }
+               echo "File lưu tại" . $target_file;
+          } else {
+               echo "Có lỗi xảy ra khi upload file.";
           }
-     // mysqli_close($conn);
+
+          $sql = "INSERT INTO product(name, title, description, price, img, discount, price_discount, category) 
+               VALUES ('$name', '$title', '$description', '$price', '$target_file',  '$discount', '$price_discount','$category')";
+
+          $res = mysqli_query($conn, $sql);
+
+          if ($res === true) {
+               echo "Add product successfully";
+               echo "<script type='text/javascript'> window.location.assign('?page=list-product')</script>";
+          } else {
+               echo "Error: " . $sql . ":-" . mysqli_error($conn);
+          }
      }
+     // mysqli_close($conn);
+}
 ?>
 
 <?php
-     include './footer.php';
+include './footer.php';
 ?>

@@ -63,12 +63,12 @@ include './admin/page/connect.php';
 
           <div>
                <div class="section-head">
-                    <h3 class="section-title">Tuần này có gì ?</h3>
+                    <h3 class="section-title">Gợi ý tuần mới</h3>
                </div>
                <div class="section-detail">
                     <ul class="list-item">
                          <?php
-                         $sql = "SELECT * FROM product WHERE isSpecial = 1 LIMIT 2";
+                         $sql = "SELECT * FROM product ORDER BY RAND() LIMIT 2";
 
                          $res = mysqli_query($conn, $sql);
 
@@ -83,14 +83,14 @@ include './admin/page/connect.php';
                          ?>
                          <li class="clearfix">
                               <a href="?page=detail_product&id=<?= $prod_id ?>" title="" class="thumb fl-left">
-                                   <img src="<?= $img ?>">
+                                   <img src="<?= $img ?>" style="width: 600px;height: 100px; object-fit: cover">
                               </a>
                               <div class="info fl-right">
                                    <a href="?page=detail_product&id=<?= $prod_id ?>" title=""
                                         class="product-name"><?= $name; ?></a>
                                    <div class="price">
-                                        <span class="new"><?= $new_price; ?> đ</span>
-                                        <span class="old"><?= $old_price; ?> đ</span>
+                                        <span class="new"><?= $new_price; ?> vnđ</span>
+                                        <span class="old"><?= $old_price; ?> vnđ</span>
                                    </div>
                                    <a href="" title="" class="buy-now">Mua ngay</a>
                               </div>
