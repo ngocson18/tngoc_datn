@@ -128,7 +128,7 @@ if (isset($_GET['id'])) {
                                                                  echo "<div><img src=$img_src style='width:250px'></div>";
                                                                  ?>
                                              </td>
-                                             <td class="clearfix">
+                                             <td class="tbody-text">
                                                   <ul class="list-operation fl-left">
                                                        <li><a href="?page=update-product&id=<?= $product_id; ?>"
                                                                  title="Sửa" class="edit"><i class="fa fa-pencil"

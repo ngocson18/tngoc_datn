@@ -6,8 +6,8 @@
           <div class=" item">
                <img src="./public/images/banner/banner-2.jpg" alt="">
           </div>
-          <div class=" item">
+          <!-- <div class=" item">
                <img src="./public/images/banner/banner-1.jpg" alt="">
-          </div>
+          </div> -->
      </div>
 </div>

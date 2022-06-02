@@ -8,7 +8,7 @@ include './admin/page/connect.php';
      <div class="section-detail">
           <ul class="list-item">
                <?php
-               $sql = "SELECT * FROM product WHERE isSpecial = 1 LIMIT 2";
+               $sql = "SELECT * FROM product WHERE isSpecial = 1 ORDER BY RAND() LIMIT 4";
 
                $res = mysqli_query($conn, $sql);
                $count = mysqli_num_rows($res);
@@ -22,12 +22,12 @@ include './admin/page/connect.php';
                ?>
                <li>
                     <a href="?page=detail_product&id=<?= $prod_id ?>" title="" class="thumb">
-                         <img src="<?= $img; ?>">
+                         <img src="<?= $img; ?>" style="width: 600px;height: 200px; object-fit: cover">
                     </a>
                     <a href="?page=detail_product&id=<?= $prod_id ?>" title="" class="product-name"><?= $name; ?></a>
                     <div class="price">
-                         <span class="new"><?= $new_price; ?> đ</span>
-                         <span class="old"><?= $old_price; ?> đ</span>
+                         <span class="new"><?= $new_price; ?> vnđ</span>
+                         <span class="old"><?= $old_price; ?> vnđ</span>
                     </div>
                     <div class="action clearfix">
                          <a type="button" onClick="showHint('<?= $name ?>', '<?= $img ?>' ,'<?= $new_price  ?>')"

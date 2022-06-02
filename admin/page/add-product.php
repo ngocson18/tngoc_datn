@@ -35,10 +35,6 @@ include './header.php';
                                    <input type="text" name="discount" id="price">
                               </div>
 
-                              <div class="form-group">
-                                   <label for="discount">Gía Khuyễn mãi</label>
-                                   <input type="text" name="price_discount" id="price">
-                              </div>
 
                               <div class="form-group">
                                    <label for="discretion">Mô tả món ăn</label>

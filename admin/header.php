@@ -129,6 +129,11 @@ require("page/session-user.php");
                               <li>
                                    <a href="?page=statistical">Báo cáo - thống kê</a>
                               </li>
+
+                              <li>
+                                   <a href="?page=login" onClick="<?= session_unset();
+                                                                      session_destroy(); ?>" title="">Logout</a>
+                              </li>
                          </ul>
                          <div id="dropdown-user" class="dropdown dropdown-extended fl-right">
                               <button class="dropdown-toggle clearfix" type="button" date-toggle="dropdown"
@@ -140,10 +145,7 @@ require("page/session-user.php");
                                              id="user_name"></a></h3>
                               </button>
                               <ul class="dropdown-menu">
-                                   <li>
-                                        <a href="?page=login" onClick="<?= session_unset();
-                                                                           session_destroy(); ?>" title="">Logout</a>
-                                   </li>
+
                               </ul>
                          </div>
                     </div>

@@ -124,12 +124,12 @@
                                                   ?>
                                                   <li class="clearfix">
                                                        <a href="" title="" class="thumb fl-left">
-                                                            <img src="public/images/img-pro-11.png" alt="">
+                                                            <img src="./public/images/Food_img/cake-1.jpg" alt="">
                                                        </a>
                                                        <div class="info fl-right">
                                                             <a href="" title=""
                                                                  class="product-name"><?= $name_prod_in_cart ?></a>
-                                                            <p class="price"><?= $price_prod_in_cart ?> đ</p>
+                                                            <p class="price"><?= $price_prod_in_cart ?> vnđ</p>
                                                             <p class="qty">Số lượng:
                                                                  <span><?= $quantity_prod_in_cart ?></span>
                                                             </p>
@@ -142,7 +142,7 @@
                                              </ul>
                                              <div class="total-price clearfix">
                                                   <p class="title fl-left">Tổng:</p>
-                                                  <p class="price fl-right">18.500.000đ</p>
+                                                  <p class="price fl-right">50.000đ</p>
                                              </div>
                                              <div class="action-cart clearfix">
                                                   <a href="?page=cart" title="Giỏ hàng" class="view-cart fl-left">Giỏ

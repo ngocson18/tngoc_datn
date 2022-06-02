@@ -83,14 +83,14 @@ include './admin/page/connect.php';
                          ?>
                          <li class="clearfix">
                               <a href="?page=detail_product&id=<?= $prod_id ?>" title="" class="thumb fl-left">
-                                   <img src="<?= $img ?>">
+                                   <img src="<?= $img ?>" style="width: 600px;height: 100px; object-fit: cover">
                               </a>
                               <div class="info fl-right">
                                    <a href="?page=detail_product&id=<?= $prod_id ?>" title=""
                                         class="product-name"><?= $name; ?></a>
                                    <div class="price">
-                                        <span class="new"><?= $new_price; ?> đ</span>
-                                        <span class="old"><?= $old_price; ?> đ</span>
+                                        <span class="new"><?= $new_price; ?> vnđ</span>
+                                        <span class="old"><?= $old_price; ?> vnđ</span>
                                    </div>
                                    <a href="" title="" class="buy-now">Mua ngay</a>
                               </div>
