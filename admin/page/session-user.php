@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 include 'connect.php';
 if (isset($_POST['submit'])) {
      $user_phone = $_POST['user_phone'];
@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
      $count = mysqli_num_rows($res);
 
           if ($count == 1) {
-               session_start();
+               // session_start();
                $_SESSION['login'] = $user_phone;
                $sql2 = "SELECT * FROM user WHERE user_phone = " . $_SESSION['login'];
                $res2 = mysqli_query($conn, $sql2);
@@ -22,15 +22,15 @@ if (isset($_POST['submit'])) {
                $user_id = $row['user_id'];
                $_SESSION['role_user'] = $row['role_user'];
 
-               if (isset($_SESSION['login'])) {
+               // if (isset($_SESSION['login'])) {
                     if ($row['role_user'] == 0) {
                          echo "<script type='text/javascript'> window.location.assign('?page=list-user'); localStorage.setItem('name', '" . $name . "');</script>";
                     } else {
                          echo "<script type='text/javascript'> window.location.assign('../?page=home&user_id=${user_id}'); localStorage.setItem('name', '" . $name . "');localStorage.setItem('user_id', '" . $user_id . "');</script>";
                     }
-               }
+               // }
           } else {
-               echo "<script type='text/javascript'> window.location.assign('?page=login')</script>";
+               // echo "<script type='text/javascript'> window.location.assign('?page=login')</script>";
                $_SESSION['error'] = "Sai số điện thoại hoặc mật khẩu";
           }
 }

@@ -100,8 +100,8 @@
                               <div class="form-group">
                                    <label for="exampleFormControlSelect1">Quyền truy cập</label>
                                    <select class="form-control" name='role_user' value="<?php echo  $role_user;?>">
-                                        <option value='0'>Quản trị viên</option>
-                                        <option value='1'>Khách hàng</option>
+                                        <option value='0' <?php if($role_user == 0) {echo 'selected';} ?>>Quản trị viên</option>
+                                        <option value='1' <?php if($role_user == 1) {echo 'selected';} ?>>Khách hàng</option>
                                    </select>
                               </div>
 

@@ -52,7 +52,7 @@ require("page/session-user.php");
           <div id="container">
                <div id="header-wp">
                     <div class="wp-inner clearfix">
-                         <a href="?page=list-role" title="" id="logo" class="fl-left">ADMIN</a>
+                         <a href="?page=list-user" title="" id="logo" class="fl-left">ADMIN</a>
                          <ul id="main-menu" class="fl-left">
                               <!-- <li>
                                    <a href="?page=list-role">Quyền người dùng</a>
@@ -114,7 +114,7 @@ require("page/session-user.php");
                                    </ul>
                               </li>
 
-                              <li>
+                              <!-- <li>
                                    <a href="?page=upload">Blogs</a>
                                    <ul class="sub-menu">
                                         <li>
@@ -124,7 +124,7 @@ require("page/session-user.php");
                                              <a href="">Danh sách Blogs</a>
                                         </li>
                                    </ul>
-                              </li>
+                              </li> -->
 
                               <li>
                                    <a href="?page=statistical">Báo cáo - thống kê</a>
@@ -145,7 +145,6 @@ require("page/session-user.php");
                                              id="user_name"></a></h3>
                               </button>
                               <ul class="dropdown-menu">
-
                               </ul>
                          </div>
                     </div>

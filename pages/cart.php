@@ -2,20 +2,6 @@
 include './admin/page/connect.php';
 ?>
 <div id="main-content-wp" class="cart-page">
-     <div class="section" id="breadcrumb-wp">
-          <div class="wp-inner">
-               <div class="section-detail">
-                    <ul class="list-item clearfix">
-                         <li>
-                              <a href="?page=home" title="">Trang chủ</a>
-                         </li>
-                         <li>
-                              <a href="" title="">Bánh ngọt</a>
-                         </li>
-                    </ul>
-               </div>
-          </div>
-     </div>
      <div id="wrapper" class="wp-inner clearfix">
           <div class="section" id="info-cart-wp">
                <div class="section-detail table-responsive">
@@ -30,49 +16,58 @@ include './admin/page/connect.php';
                               </tr>
                          </thead>
                          <tbody>
+                              <?php
+                                   $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+                                   $parts = parse_url($url);
+                                   parse_str($parts['query'], $query);
+                                   $user_id = $query['user_id'];
+                                   $sql = "SELECT * FROM cart WHERE user_id = '$user_id' GROUP BY name";
+
+                                   $res = mysqli_query($conn, $sql);
+                                   $count = mysqli_num_rows($res);
+                                   $total = 0;
+                                   if ($count > 0) {
+                                        while ($row = mysqli_fetch_assoc($res)) {
+                                             $img = $row['img'];
+                                             $name = $row['name'];
+                                             $price = $row['price'];
+                                             $priceDisplay = number_format($row['price']);
+                                             $id = $row['id'];
+                                             $total = $total + $price;
+                                             // $temp = $total;
+                                             // $totalDisplay = number_format($total);
+                              ?>
                               <tr>
 
                                    <td>
                                         <a href="" title="" class="thumb">
-                                             <img src="./public/images/Food_img/thailand-1.jpg" alt="">
+                                             <img style="width: 150px; height: 100px" src="<?= $img ?>" alt="">
                                         </a>
                                    </td>
                                    <td>
-                                        <a href="" title="" class="name-product">Bánh bông lan trứng muối</a>
+                                        <div><?= $name ?></div>
                                    </td>
-                                   <td>500.000đ</td>
+                                   <td id="price<?= $id ?>"><?= $price ?></td>
                                    <td>
-                                        <input type="text" name="num-order" value="1" class="num-order">
+                                        <input onChange="changePrice(this.value, <?= $id ?>)" type="text" name="num-order" value="1" class="num-order">
                                    </td>
-                                   <td>500.000đ</td>
+                                   <td class="priceTotal" id="total<?= $id ?>">
+                                        <?= $price ?>
+                                   </td>
                                    <td>
                                         <a href="" title="" class="del-product"><i class="fa fa-trash-o"></i></a>
                                    </td>
                               </tr>
-                              <tr>
-                                   <td>
-                                        <a href="" title="" class="thumb">
-                                             <img src="./public/images/Food_img/thailand-1.jpg" alt="">
-                                        </a>
-                                   </td>
-                                   <td>
-                                        <a href="" title="" class="name-product">Bánh bông lan trứng muối</a>
-                                   </td>
-                                   <td>350.000đ</td>
-                                   <td>
-                                        <input type="text" name="num-order" value="1" class="num-order">
-                                   </td>
-                                   <td>350.000đ</td>
-                                   <td>
-                                        <a href="" title="" class="del-product"><i class="fa fa-trash-o"></i></a>
-                                   </td>
-                              </tr>
+                              <?php
+                                   }
+                              }
+                              ?>
                          </tbody>
                          <tfoot>
                               <tr>
                                    <td colspan="7">
                                         <div class="clearfix">
-                                             <p id="total-price" class="fl-right">Tổng giá: <span>850.000đ</span></p>
+                                             <p id="total-price" class="fl-right">Tổng giá: <span id="allPrice"><?= $total ?></span> <span>đ</span></p>
                                         </div>
                                    </td>
                               </tr>
@@ -92,10 +87,6 @@ include './admin/page/connect.php';
           </div>
           <div class="section" id="action-cart-wp">
                <div class="section-detail">
-                    <p class="title">Click vào <span>“Cập nhật giỏ hàng”</span> để cập nhật số lượng. Nhập vào số lượng
-                         <span>0</span> để xóa sản phẩm khỏi giỏ hàng. Nhấn vào thanh toán để hoàn tất mua hàng.
-                    </p>
-                    <a href="?page=home" title="" id="buy-more">Mua tiếp</a><br />
                     <a href="" title="" id="delete-cart">Xóa giỏ hàng</a>
                </div>
           </div>

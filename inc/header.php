@@ -5,11 +5,6 @@
      <title>BEP CUA NGOC</title>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!-- <script type="text/javascript">
-          let a = localStorage.getItem('user_id');
-          console.log( document.getElementById('temp_id'));
-          document.getElementById('temp_id').innerHTML = a;
-     </script> -->
      <link href="./public/css/bootstrap/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
      <link href="./public/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
      <link href="./public/reset.css" rel="stylesheet" type="text/css" />
@@ -28,6 +23,7 @@
      function search(str) {
           if (str.length == 0) {
                document.getElementById("result").innerHTML = "";
+               // document.getElementById("result").style.display = 'block';
                return;
           } else {
                var xmlhttp = new XMLHttpRequest();
@@ -46,6 +42,11 @@
      function gotoSearch() {
           let a = document.getElementById("s").value;
           window.location.href=`?page=search_product&q=${a}`;
+     }
+
+     function goCart() {
+          let a = localStorage.getItem('user_id');
+          window.location.href=`?page=cart&user_id=${a}`;
      }
      </script>
 </head>
@@ -151,7 +152,7 @@
                                                   <span>đ</span>
                                              </div>
                                              <div class="action-cart clearfix">
-                                                  <a href="?page=cart" title="Giỏ hàng" class="view-cart fl-left">Giỏ
+                                                  <a id="goCart" onClick="goCart()" title="Giỏ hàng" class="view-cart fl-left">Giỏ
                                                        hàng</a>
                                                   <a href="?page=checkout" title="Thanh toán"
                                                        class="checkout fl-right">Thanh toán</a>

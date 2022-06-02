@@ -36,5 +36,17 @@ function showHint(name, img, new_price) {
   }
 }
 
+function changePrice(quantity, id) {
+  let count = 0;
+  $(`#total${id}`).html(parseInt(quantity) * parseInt($(`#price${id}`).html()));
+  let a = $('.priceTotal');
+  [...a].forEach(elm => {
+    count += parseInt(elm.innerText)
+  })
+  $('#allPrice').html(count);
+
+}
+
 
 $(document).ready(showHint);
+$(document).ready(changePrice);

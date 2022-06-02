@@ -73,7 +73,7 @@
                </ul>
           </li>
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
                <a href="" class="nav-link nav-toggle">
                     <span class="fa fa-sliders icon"></span>
                     <span class="title">Blogs</span>
@@ -86,6 +86,6 @@
                          <a href="#" class="nav-link">Danh sách Blogs</a>
                     </li>
                </ul>
-          </li>
+          </li> -->
      </ul>
 </div>

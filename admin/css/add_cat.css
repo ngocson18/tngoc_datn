@@ -15,6 +15,15 @@
     margin-bottom: 15px;
 }
 
+
+.add-cat-page #detail-page .section-detail input[type="number"] {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    width: 35%;
+    margin-bottom: 15px;
+}
+
 .add-cat-page #detail-page .section-detail textarea {
     display: block;
     padding: 5px 10px;

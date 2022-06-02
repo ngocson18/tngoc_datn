@@ -118,7 +118,7 @@ include 'connect.php';
                                                             <?= date("Y"); ?></th>
                                                   </tr>
                                              </thead>
-                                             <tbody id="data">Th?ng kê nam
+                                             <tbody id="data">Thống kê năm
                                                   <?php for ($i = 1; $i < (int)date("m") + 1; $i++) { ?>
                                                   <tr>
                                                        <th>Tháng <?= $i ?></th>
@@ -164,7 +164,6 @@ include 'connect.php';
                                                        <th>Tháng 10</th>
                                                        <th>Tháng 11</th>
                                                        <th>Tháng 12</th>
-
                                                   </tr>
                                              </thead>
                                              <tbody>

@@ -7,8 +7,10 @@
      $id = $_GET['id'];
 
      $sql = "SELECT * FROM product WHERE product_id = $id";
+     $sql5 = "SELECT * FROM category WHERE parent = 0";
 
      $res = mysqli_query($conn, $sql);
+     $res5 = mysqli_query($conn, $sql5);
 
      if(!$res){
           die("Không thể thực hiện câu lệnh SQL: ".mysqli_error($conn));
@@ -24,6 +26,8 @@
           $discount = $row['discount'];
           $price_discount = $row['price_discount'];
           $category = $row['category'];
+          $isSpecial = $row['isSpecial'];
+          $img = $row['img'];
      }
 
      // Update product
@@ -36,6 +40,14 @@
           $discount = $_POST['discount'];
           $price_discount = $row['price_discount'];
           $category = $_POST['category'];
+          $isSpecial = $_POST['isSpecial'];
+          if($_POST['image'] != '') {
+               $image = $_POST['image'];
+               $imageForSave = 'public/images/Food_img/'.$image;
+          } else {
+               $image = $img;
+               $imageForSave = $image;
+          }
 
           $sql2 = "UPDATE Product SET
                name = '$name',
@@ -44,7 +56,9 @@
                price = '$price',
                discount = '$discount',
                price_discount = '$price_discount',
-               category = '$category' 
+               category = '$category' ,
+               isSpecial = '$isSpecial',
+               img = '$imageForSave'
                WHERE product_id = $product_id
           ";
           
@@ -98,12 +112,8 @@
 
                               <div class="form-group">
                                    <label for="discount">Khuyễn mãi</label>
-                                   <input type="text" name="discount" id="price" value="<?= $discount; ?>">
-                              </div>
-
-                              <div class="form-group">
-                                   <label for="discount">Gía Khuyễn mãi</label>
-                                   <input type="text" name="price_discount" id="price" value="<?= $price_discount; ?>">
+                                   <input type="number" name="discount" min="0" max="100" id="price" value="<?= $discount; ?>">
+                                   <span>%</span>
                               </div>
 
                               <div class="form-group">
@@ -116,20 +126,30 @@
                               <div class="form-group">
                                    <label for="exampleFormControlSelect1">Danh mục món ăn</label>
                                    <select name="category" class="form-control">
-                                        <option value="1">Đồ ăn vặt Việt Nam</option>
-                                        <option value="2">Đồ ăn vặt Hàn Quốc</option>
-                                        <option value="3">Đồ ăn vặt Thái Lan</option>
-                                        <option value="4">Đồ ăn vặt Khác</option>
-                                        <option value="5">Đồ uống</option>
-                                        <option value="6">Bánh ngọt</option>
+                                        <?php
+                                             foreach ($res5 as $key => $value):
+                                                  echo '<option value="'. $value['category_id'].'" '. ($category === $value['category_id'] ? "selected" : "") .'>'.$value['category_name'].'</option>';
+                                             endforeach
+                                        ?>
                                    </select>
                               </div>
 
                               <div class="form-group">
                                    <label>Hình ảnh</label>
+                                   <div>
+                                        <img src="../<?= $img ?>" style="width: 300px;height: 200px; object-fit: cover">
+                                   </div>
                                    <div id="uploadFile">
                                         <input type="file" name="image" id="upload-thumb">
                                    </div>
+                              </div>
+
+                              <div class="form-group">
+                                   <label>Món đặc biệt</label>
+                                   <select name="isSpecial">
+                                        <option value="1" <?php if($isSpecial == 1) {echo 'selected';} ?>>Có</option>
+                                        <option value="0" <?php if($isSpecial == 0) {echo 'selected';} ?>>Không</option>
+                                   </select>
                               </div>
                               <div class="from-group">
                                    <button type="submit" name="submit" id="btn-submit">Cập nhật món ăn</button>
