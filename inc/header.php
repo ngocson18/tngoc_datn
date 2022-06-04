@@ -20,6 +20,12 @@
      <script src="public/js/carousel/owl.carousel.js" type="text/javascript"></script>
      <script src="public/js/main.js" type="text/javascript"></script>
      <script type="text/javascript">
+          let user_exist = localStorage.getItem('user_id');
+          if(user_exist === null) {
+               localStorage.setItem('user_id', 0);
+          }
+     </script>
+     <script type="text/javascript">
      function search(str) {
           if (str.length == 0) {
                document.getElementById("result").innerHTML = "";
@@ -47,6 +53,34 @@
      function goCart() {
           let a = localStorage.getItem('user_id');
           window.location.href=`?page=cart&user_id=${a}`;
+     }
+
+     function thanhtoan() {
+          // href="?page=checkout&user_id= $user_id"
+          let allPrice = document.getElementById('allPrice').innerHTML;
+          let listId = $('.prod-id');
+          let listNum = $('.num-order');
+          let iDArr = [];
+          let numArr = [];
+          [...listId].forEach(elm => {
+               iDArr.push(elm.value);
+          });
+          [...listNum].forEach(elm2 => {
+               numArr.push(elm2.value);
+          });
+          $.ajax({
+               url : 'pages/thanhtoan.php',
+               type : 'POST',
+               data: { 
+                    total_money: allPrice,
+                    idArr: iDArr,
+                    numArr: numArr
+               },
+               success : function (result1) {
+                    
+               },
+          });
+          window.location.href = `?page=checkout&user_id=${user_exist}`;
      }
      </script>
 </head>

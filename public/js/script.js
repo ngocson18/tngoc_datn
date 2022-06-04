@@ -1,8 +1,11 @@
 let user_name = localStorage.getItem('name')
 let user_id = localStorage.getItem('user_id')
+if(user_id === null) {
+  user_id = 00;
+} 
 document.getElementById("user_name").innerHTML = user_name;
 
-function showHint(name, img, new_price) {
+function showHint(prod_id, name, img, new_price) {
   if(typeof name === 'string') {
     $.ajax({
       url : 'pages/insert_cart.php',
@@ -10,9 +13,10 @@ function showHint(name, img, new_price) {
       dataType: 'text',
       data: { 
         name: name, 
+        prod_id: prod_id,
         new_price: new_price, 
         user_id: user_id,
-        img: img
+        img: img,
       },
       success : function (result1) {
         // document.getElementById("card-detail").innerHTML = "";
@@ -45,6 +49,9 @@ function changePrice(quantity, id) {
   })
   $('#allPrice').html(count);
 
+}
+function goToCheckout() {
+  
 }
 
 

@@ -49,6 +49,7 @@ include './admin/page/connect.php';
                                    </td>
                                    <td id="price<?= $id ?>"><?= $price ?></td>
                                    <td>
+                                        <input class="prod-id" style="display: none" value="<?=$id ?>" />
                                         <input onChange="changePrice(this.value, <?= $id ?>)" type="text" name="num-order" value="1" class="num-order">
                                    </td>
                                    <td class="priceTotal" id="total<?= $id ?>">
@@ -76,7 +77,7 @@ include './admin/page/connect.php';
                                         <div class="clearfix">
                                              <div class="fl-right">
                                                   <a href="" title="" id="update-cart">Cập nhật giỏ hàng</a>
-                                                  <a href="?page=checkout" title="" id="checkout-cart">Thanh toán</a>
+                                                  <a onClick="thanhtoan()" title="" id="checkout-cart">Thanh toán</a>
                                              </div>
                                         </div>
                                    </td>
