@@ -143,6 +143,11 @@
                alert("Vui lòng điền tên và số đt");
           }
      }
+
+     function logout() {
+          localStorage.removeItem("name");
+          localStorage.removeItem("user_id");
+     }
      </script>
 </head>
 
@@ -169,8 +174,7 @@
                                              </a>
                                         </li>
                                         <li>
-                                             <a href="admin/?page=login" onClick="<?= session_unset();
-                                                                                     session_destroy(); ?>"
+                                             <a href="admin/?page=login" onClick="logout()"
                                                   title="">Logout</a>
                                         </li>
                                    </ul>
