@@ -20,7 +20,7 @@
      <script src="public/js/carousel/owl.carousel.js" type="text/javascript"></script>
      <script src="public/js/main.js" type="text/javascript"></script>
      <script type="text/javascript">
-          let user_exist = localStorage.getItem('user_id');
+          var user_exist = localStorage.getItem('user_id');
           if(user_exist === null) {
                localStorage.setItem('user_id', 0);
           }
@@ -58,6 +58,7 @@
      function thanhtoan() {
           // href="?page=checkout&user_id= $user_id"
           let allPrice = document.getElementById('allPrice').innerHTML;
+          
           let listId = $('.prod-id');
           let listNum = $('.num-order');
           let iDArr = [];
@@ -68,19 +69,79 @@
           [...listNum].forEach(elm2 => {
                numArr.push(elm2.value);
           });
+          for(let i = 0; i < iDArr.length; i ++) {
+               console.log(numArr[i]);
+               $.ajax({
+                    url : 'pages/thanhtoan.php',
+                    type : 'POST',
+                    data: { 
+                         total_money: allPrice,
+                         prod_id: iDArr[i],
+                         num: numArr[i],
+                         user_id: user_exist
+                    },
+                    success : function (result1) {
+                         // console.log(result1);
+                    }
+          });
+          }
+          
           $.ajax({
-               url : 'pages/thanhtoan.php',
+               url : 'pages/insert_order.php',
                type : 'POST',
                data: { 
                     total_money: allPrice,
-                    idArr: iDArr,
-                    numArr: numArr
+                    user_id: user_exist,
+                    name: "user",
+                    phone: "000",
                },
-               success : function (result1) {
-                    
-               },
-          });
+               success : function (result2) {
+                    for(let i = 0; i < iDArr.length; i ++) {
+                         $.ajax({
+                              url : 'pages/update_order_detail.php',
+                              type : 'POST',
+                              data: { 
+                                   prod_id: iDArr[i],
+                                   quantity: numArr[i],
+                                   user_id: user_exist,
+                                   order_id: result2,
+                              },
+                              success : function (result3) {
+                                   // console.log(result2);
+                                   
+                              }
+                         })
+                    }
+                    var order_id = result2;
+               }
+          })
           window.location.href = `?page=checkout&user_id=${user_exist}`;
+     }
+
+     function confirmOK() {
+          let name = document.getElementById('fullname').value;
+          let phone = document.getElementById('phone').value;
+          let email = document.getElementById('email').value;
+          let address = document.getElementById('address').value;
+          if(name !== '' && phone !== '') {
+               $.ajax({
+                    url : 'pages/giaohang.php',
+                    type : 'POST',
+                    data: { 
+                         user_id: user_exist,
+                         name: name,
+                         phone: phone,
+                         email: email,
+                         address: address
+                    },
+                    success : function (result2) {
+                         alert("Đặt hàng thành công");
+                         window.location.href = `?page=home`;
+                    }
+               })
+          } else {
+               alert("Vui lòng điền tên và số đt");
+          }
      }
      </script>
 </head>

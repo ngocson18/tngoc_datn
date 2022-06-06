@@ -2,7 +2,15 @@ let user_name = localStorage.getItem('name')
 let user_id = localStorage.getItem('user_id')
 if(user_id === null) {
   user_id = 00;
-} 
+}
+
+let listPrice = $(".priceOneProd")
+let a = 0;
+for(let i = 0; i < [...listPrice].length; i ++) {
+  console.log(listPrice[i].innerHTML);
+  a += parseInt(listPrice[i].innerHTML);
+}
+$(".total-price2").html(a);
 document.getElementById("user_name").innerHTML = user_name;
 
 function showHint(prod_id, name, img, new_price) {
@@ -19,6 +27,7 @@ function showHint(prod_id, name, img, new_price) {
         img: img,
       },
       success : function (result1) {
+        console.log(result1);
         // document.getElementById("card-detail").innerHTML = "";
         var param = `user_id=${user_id}`;
         var xmlhttp = new XMLHttpRequest();

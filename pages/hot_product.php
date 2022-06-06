@@ -30,7 +30,7 @@ include './admin/page/connect.php';
                          <span class="old"><?= $old_price; ?> vnđ</span>
                     </div>
                     <div class="action clearfix">
-                         <a type="button" onClick="showHint('<?= $name ?>', '<?= $img ?>' ,'<?= $new_price  ?>')"
+                         <a type="button" onClick="showHint('<?= $prod_id ?>','<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"
                               title="" class="add-cart fl-left">Thêm giỏ hàng</a>
                          <a href="?page=checkout" title="" class="buy-now fl-right">Mua ngay</a>
                     </div>

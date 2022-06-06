@@ -78,7 +78,7 @@ include 'connect.php';
                                         <div class="card-body">Doanh thu Năm <?= date("Y"); ?></div>
                                         <div class="card-footer d-flex align-items-center justify-content-between">
                                              <?php
-                                             $sql3 = "SELECT SUM(order.total_money) as tongtien FROM bepcuangoc.order WHERE YEAR(`created_at`) = YEAR(CURDATE()) AND status =1";
+                                             $sql3 = "SELECT SUM(order.total_money) as tongtien FROM bepcuangoc.order WHERE YEAR(`created_at`) = YEAR(CURDATE()) AND status = 1";
                                              $result3 = mysqli_query($conn, $sql3);
                                              $data3 = mysqli_fetch_assoc($result3);
                                              $nam = number_format($data3['tongtien']);

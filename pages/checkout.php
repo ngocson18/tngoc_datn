@@ -138,7 +138,7 @@
               <tr class="cart-item">
                 <td class="product-name"><?= $name2 ?><strong class="product-quantity">x <?= $quantity2 ?></strong>
                 </td>
-                <td class="product-total"><?= $price2 * $quantity2 ?>đ</td>
+                <td class="product-total"><span class="priceOneProd"><?= $price2 * $quantity2 ?></span> <span>đ</span></td>
               </tr>
               <?php 
                }
@@ -147,7 +147,7 @@
             <tfoot>
               <tr class="order-total">
                 <td>Tổng đơn hàng:</td>
-                <td><strong class="total-price">80.000đ</strong></td>
+                <td><strong class="total-price2"></strong> đ</td>
               </tr>
             </tfoot>
           </table>
@@ -164,7 +164,7 @@
             </ul>
           </div>
           <div class="place-order-wp clearfix">
-            <input type="submit" id="order-now" value="Đặt hàng">
+            <input type="button" onClick="confirmOK()" id="order-now" value="Đặt hàng">
           </div>
         </div>
       </div>
