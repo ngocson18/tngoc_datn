@@ -1,3 +1,36 @@
+<?php 
+     include 'connect.php';
+     include './header.php';
+     $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+     $parts = parse_url($url);
+     parse_str($parts['query'], $query);
+     $order_id = $query['order_id'];
+
+     $sql = "
+     SELECT 
+          order_details.quantity as quantity,
+          order_details.product_id as prod_id,
+          order_details.order_detail_id as order_detail_id,
+          product.name as name,
+          product.img as img,
+          product.price as price,
+          product.discount as discount,
+          bepcuangoc.order.total_money as total_money,
+          bepcuangoc.order.status as status
+     FROM bepcuangoc.order_details
+     INNER JOIN bepcuangoc.product ON order_details.product_id = product.product_id 
+     INNER JOIN bepcuangoc.order ON order_details.order_id = bepcuangoc.order.order_id 
+     WHERE order_details.order_id = $order_id
+     ";
+     $res = mysqli_query($conn, $sql);
+     $count = mysqli_num_rows($res);
+
+     $sqlectorder = "SELECT * FROM bepcuangoc.order WHERE order_id = $order_id";
+     $resorder = mysqli_query($conn, $sqlectorder);
+     $countorder = mysqli_num_rows($resorder);
+
+     
+?>
 <div id="main-content-wp" class="list-product-page">
      <div class="wrap clearfix">
           <?php require './sidebar.php'; ?>
@@ -7,27 +40,41 @@
                          <h3 class="section-title">Thông tin đơn hàng</h3>
                     </div>
                     <ul class="list-item">
+                         <?php
+                              if ($countorder > 0) {
+                                   while ($roworder = mysqli_fetch_assoc($resorder)) {
+                                        $address = $roworder['address'];
+                                        $status = $roworder['status'];
+                                        $total_money = $roworder['total_money'];
+                                   
+                         ?>
                          <li>
                               <h3 class="title">Mã đơn hàng</h3>
-                              <span class="detail">KB-1-001</span>
+                              <span class="detail"><?= $order_id ?></span>
                          </li>
                          <li>
                               <h3 class="title">Địa chỉ nhận hàng</h3>
-                              <span class="detail">Hà Nội / 0968876944</span>
+                              <span class="detail"><?= $address ?></span>
                          </li>
                          <li>
                               <h3 class="title">Thông tin vận chuyển</h3>
                               <span class="detail">Thanh toán tại nhà</span>
                          </li>
+                         <?php
+                              }
+                         }
+                         ?>
                          <form method="POST" action="">
                               <li>
                                    <h3 class="title">Tình trạng đơn hàng</h3>
-                                   <select name="status">
-                                        <option value='0'>Chờ duyệt</option>
-                                        <option selected='selected' value='1'>Đang vận chuyển</option>
-                                        <option value='2'>Thành công</option>
+                                   <select onChange="changeStatus(this.value, <?= $order_id ?>)"  name="status">
+                                        <option value=''>Chọn</option>
+                                        <option value='0' <?= $status == 0 ? ' selected' : '' ?>>Đã đặt hàng</option>
+                                        <option value='1' <?= $status == 1 ? ' selected' : '' ?>>Đã xác nhận đơn hàng</option>
+                                        <option value='2' <?= $status == 2 ? ' selected' : '' ?>>Đang giao</option>
+                                        <option value='3' <?= $status == 3 ? ' selected' : '' ?>>Huỷ đơn</option>
+                                        <option value='4' <?= $status == 4 ? ' selected' : '' ?>>Đơn hoàn</option>
                                    </select>
-                                   <input type="submit" name="sm_status" value="Cập nhật đơn hàng">
                               </li>
                          </form>
                     </ul>
@@ -39,6 +86,7 @@
                     <div class="table-responsive">
                          <table class="table info-exhibition">
                               <thead>
+                                  
                                    <tr>
                                         <td class="thead-text">STT</td>
                                         <td class="thead-text">Ảnh sản phẩm</td>
@@ -49,42 +97,32 @@
                                    </tr>
                               </thead>
                               <tbody>
+                              <?php 
+                                   if ($count > 0) {
+                                        $sn = 1;
+                                        while ($row = mysqli_fetch_assoc($res)) {
+                                             $main_img = $row['img'];
+                                             $name = $row['name'];
+                                             $price = $row['price'] - $row['price'] * $row['discount'] / 100;
+                                             $quantity = $row['quantity'];
+                                             $total_money = $row['total_money'];
+                                   ?>
                                    <tr>
-                                        <td class="thead-text">1</td>
+                                        <td class="thead-text"><?= $sn++ ?></td>
                                         <td class="thead-text">
                                              <div class="thumb">
-                                                  <img src="./images/img-product.png" alt="">
+                                                  <img src=".<?= $main_img ?>" alt="">
                                              </div>
                                         </td>
-                                        <td class="thead-text">Chân váy nữ</td>
-                                        <td class="thead-text">145,000 VNĐ</td>
-                                        <td class="thead-text">5</td>
-                                        <td class="thead-text">725,000 VNĐ</td>
+                                        <td class="thead-text"><?= $name ?></td>
+                                        <td class="thead-text"><?= $price ?></td>
+                                        <td class="thead-text"><?= $quantity ?></td>
+                                        <td class="thead-text"><span><?= $price * $quantity ?></span><span> đ</span></td>
                                    </tr>
-                                   <tr>
-                                        <td class="thead-text">1</td>
-                                        <td class="thead-text">
-                                             <div class="thumb">
-                                                  <img src="./images/img-product.png" alt="">
-                                             </div>
-                                        </td>
-                                        <td class="thead-text">Chân váy nữ</td>
-                                        <td class="thead-text">145,000 VNĐ</td>
-                                        <td class="thead-text">5</td>
-                                        <td class="thead-text">725,000 VNĐ</td>
-                                   </tr>
-                                   <tr>
-                                        <td class="thead-text">1</td>
-                                        <td class="thead-text">
-                                             <div class="thumb">
-                                                  <img src="./images/img-product.png" alt="">
-                                             </div>
-                                        </td>
-                                        <td class="thead-text">Chân váy nữ</td>
-                                        <td class="thead-text">145,000 VNĐ</td>
-                                        <td class="thead-text">5</td>
-                                        <td class="thead-text">725,000 VNĐ</td>
-                                   </tr>
+                                   <?php
+                                        }
+                                   }
+                                   ?>
                               </tbody>
                          </table>
                     </div>
@@ -98,8 +136,8 @@
                                    <span class="total">Tổng đơn hàng</span>
                               </li>
                               <li>
-                                   <span class="total-fee">5 sản phẩm</span>
-                                   <span class="total">725,000 VNĐ</span>
+                                   <span class="total-fee"><?= $count ?> sản phẩm</span>
+                                   <span class="total"><?= $total_money ?></span>
                               </li>
                          </ul>
                     </div>
@@ -107,3 +145,6 @@
           </div>
      </div>
 </div>
+<?php 
+     include './footer.php';
+?>

@@ -31,9 +31,10 @@ include './admin/page/connect.php';
                                              $img = $row['img'];
                                              $name = $row['name'];
                                              $price = $row['price'];
+                                             $quantity = $row['quantity'];
                                              $priceDisplay = number_format($row['price']);
-                                             $id = $row['id'];
-                                             $total = $total + $price;
+                                             $id = $row['prod_id'];
+                                             $total = $total + $price * $quantity;
                                              // $temp = $total;
                                              // $totalDisplay = number_format($total);
                               ?>
@@ -50,10 +51,10 @@ include './admin/page/connect.php';
                                    <td id="price<?= $id ?>"><?= $price ?></td>
                                    <td>
                                         <input class="prod-id" style="display: none" value="<?=$id ?>" />
-                                        <input onChange="changePrice(this.value, <?= $id ?>)" type="text" name="num-order" value="1" class="num-order">
+                                        <input onChange="changePrice(this.value, <?= $id ?>)" type="text" name="num-order" value="<?= $quantity ?>" class="num-order">
                                    </td>
                                    <td class="priceTotal" id="total<?= $id ?>">
-                                        <?= $price ?>
+                                        <?= $price * $quantity ?>
                                    </td>
                                    <td>
                                         <a href="" title="" class="del-product"><i class="fa fa-trash-o"></i></a>

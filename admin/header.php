@@ -54,18 +54,6 @@ require("page/session-user.php");
                     <div class="wp-inner clearfix">
                          <a href="?page=list-user" title="" id="logo" class="fl-left">ADMIN</a>
                          <ul id="main-menu" class="fl-left">
-                              <!-- <li>
-                                   <a href="?page=list-role">Quyền người dùng</a>
-                                   <ul class="sub-menu">
-                                        <li>
-                                             <a href="?page=add-role">Thêm quyền người dùng</a>
-                                        </li>
-                                        <li>
-                                             <a href="?page=list-role">Danh sách quyền người dùng</a>
-                                        </li>
-                                   </ul>
-                              </li> -->
-
                               <li>
                                    <a href="?page=list-user">Quản lý truy cập</a>
                                    <ul class="sub-menu">

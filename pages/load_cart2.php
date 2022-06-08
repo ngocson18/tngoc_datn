@@ -21,7 +21,7 @@
       echo "<div class='info fl-right'>";
       echo "<a href='' title='' class='product-name'>". $row['name'] ."</a>";
       echo "<p class='price-cart' style='display: inline-block; color: #000'>" . $row['price'] ."</p> <span style='color: #000'>đ</span>";
-      echo "<p class='qty'>Số lượng: <span>" . '1' . "</span></p>";
+      echo "<p class='qty'>Số lượng: <span>" . $row['quantity'] . "</span></p>";
       echo "</div>";
       echo "</li>";
     // }

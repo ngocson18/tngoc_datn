@@ -127,7 +127,12 @@ include 'connect.php';
                                                             $result5 = mysqli_query($conn, $sql5);
                                                             $data5 = mysqli_fetch_assoc($result5);
                                                             $thang_all = number_format($data5['tongtien']);
-                                                            $tile = ($data5['tongtien'] / $data3['tongtien']) * 100;
+                                                            $tile = 0;
+                                                            if($data3['tongtien'] != 0) {
+                                                                 $tile = ($data5['tongtien'] / $data3['tongtien']) * 100;
+                                                            } else {
+
+                                                            }
                                                             ?>
                                                        <th><?= $thang_all ?> d</th>
 

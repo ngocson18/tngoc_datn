@@ -2,6 +2,33 @@
      include 'connect.php';
      include './header.php';
 ?>
+<?php
+     $sql = "SELECT * FROM bepcuangoc.order";
+     $res = mysqli_query($conn, $sql);
+     $count = mysqli_num_rows($res);
+
+     $total = "SELECT * FROM bepcuangoc.order";
+     $dadathang = "SELECT * FROM bepcuangoc.order  WHERE status = 0";
+     $daxacnhan = "SELECT * FROM bepcuangoc.order  WHERE status = 1";
+     $danggiao = "SELECT * FROM bepcuangoc.order  WHERE status = 2";
+     $huydon = "SELECT * FROM bepcuangoc.order  WHERE status = 3";
+     $donhoan = "SELECT * FROM bepcuangoc.order  WHERE status = 4";
+
+     $restotal = mysqli_query($conn, $total);
+     $resdadathang = mysqli_query($conn, $dadathang);
+     $resdaxacnhan = mysqli_query($conn, $daxacnhan);
+     $resdanggiao = mysqli_query($conn, $danggiao);
+     $reshuydon = mysqli_query($conn, $huydon);
+     $resdonhoan = mysqli_query($conn, $donhoan);
+
+     $counttotal = mysqli_num_rows($restotal);
+     $countdadathang = mysqli_num_rows($resdadathang);
+     $countdaxacnhan = mysqli_num_rows($resdaxacnhan);
+     $countdanggiao = mysqli_num_rows($resdanggiao);
+     $counthuydon = mysqli_num_rows($reshuydon);
+     $countdonhoan = mysqli_num_rows($resdonhoan);
+
+?>
 <div id="main-content-wp" class="list-product-page">
      <div class="wrap clearfix">
           <?php require './sidebar.php'; ?>
@@ -17,27 +44,23 @@
                     <div class="section-detail">
                          <div class="clearfix filter-wp">
                               <ul class="post-status fl-left">
-                                   <li class="all"><a href="">Tất cả <span class="count">(10)</span></a> |</li>
-                                   <li class="publish"><a href="">Đã kiểm tra <span class="count">(5)</span></a> |
+                                   <li class="all"><a href="">Tất cả <span class="count">(<?= $count ?>)</span></a> |</li>
+                                   <li class="publish"><a href="">Đã đặt hàng <span class="count">(<?= $countdadathang ?>)</span></a> |
                                    </li>
-                                   <li class="pending"><a href="">Chờ xét duyệt <span class="count">(2)</span></a> |
+                                   <li class="publish"><a href="">Đã xác nhận đơn hàng <span class="count">(<?= $countdaxacnhan ?>)</span></a> |
                                    </li>
-                                   <li class="trash"><a href="">Đã Xóa <span class="count">(2)</span></a></li>
+                                   <li class="publish"><a href="">Đang giao <span class="count">(<?= $countdanggiao ?>)</span></a> |
+                                   </li>
+                                   <li class="publish"><a href="">Hủy đơn <span class="count">(<?= $counthuydon ?>)</span></a> |
+                                   </li>
+                                   <li class="publish"><a href="">Đơn hoàn <span class="count">(<?= $countdonhoan ?>)</span></a> |
+                                   </li>
+                                   
                               </ul>
-                              <form action="" method="get" class="form-s fl-right">
+                              <!-- <form action="" method="get" class="form-s fl-right">
                                    <input type="text" name="s" id="s">
                                    <input type="submit" name="sm_s" value="Tìm kiếm">
-                              </form>
-                         </div>
-                         <div class="actions">
-                              <form action="" class="form-actions" method="get">
-                                   <select name="actions">
-                                        <option value="0">Tác vụ</option>
-                                        <option value="1">Chỉnh sửa</option>
-                                        <option value="2">Bỏ vào thùng rác</option>
-                                   </select>
-                                   <input type="submit" name="sm_action" value="Áp dụng">
-                              </form>
+                              </form> -->
                          </div>
                          <div class="table-responsive">
                               <table class="table list-table-wp">
@@ -47,62 +70,83 @@
                                              <td><span class="thead-text">STT</span></td>
                                              <td><span class="thead-text">Mã đơn hàng</span></td>
                                              <td><span class="thead-text">Tên khách hàng</span></td>
-                                             <td><span class="thead-text">Số lượng</span></td>
                                              <td><span class="thead-text">Tổng giá</span></td>
                                              <td><span class="thead-text">Trạng thái</span></td>
                                              <td><span class="thead-text">Thời gian</span></td>
+                                             <td><span class="thead-text">SDT</span></td>
+                                             <td><span class="thead-text">Địa chỉ</span></td>
                                              <td><span class="thead-text">Chi tiết</span></td>
-                                             <td>Thao tác</td>
                                         </tr>
                                    </thead>
                                    <tbody>
+                                        <?php 
+                                        $sn = 1;
+
+                                        if ($count > 0) {
+                                             while ($row = mysqli_fetch_assoc($res)) {
+                                                  $order_id = $row['order_id'];
+                                                  $user_id = $row['user_id'];
+                                                  $status = $row['status'];
+                                                  $total_money = $row['total_money'];
+                                                  $created_at = $row['created_at'];
+                                                  $name = $row['name'];
+                                                  $phone = $row['phone'];
+                                                  $email = $row['email'];
+                                                  $address = $row['address'];
+                                        ?>
                                         <tr>
                                              <td><input type="checkbox" name="checkItem" class="checkItem"></td>
-                                             <td><span class="tbody-text"> 1</span></td>
-                                             <td><span class="tbody-text"> KB-1</span></td>
-                                             <td><span class="tbody-text tb-title fl-left"> Nguyễn Tuấn Ngọc</span></td>
-                                             <td><span class="tbody-text"> 1</span></td>
-                                             <td><span class="tbody-text"> 1.000.000 vnđ</span></td>
-                                             <td><span class="tbody-text"> Hoạt động</span></td>
-                                             <td><span class="tbody-text"> 15/04/2022</span></td>
+                                             <td><span class="tbody-text"><?= $sn++ ?></span></td>
+                                             <td><span class="tbody-text"><?= $order_id ?></span></td>
+                                             <td><span class="tbody-text tb-title fl-left"><?= $name ?></span></td>
+                                             <td><span class="tbody-text"><?= $total_money  ?></span></td>
                                              <td>
-                                                  <a href="?page=detail-order">Chi tiết</a>
+                                                  <span class="tbody-text">
+                                                  <?php
+                                                       switch ($status) {
+                                                            case 0:
+                                                                 echo 'Đã đặt hàng';
+                                                                 break;
+                                                            case 1:
+                                                                 echo 'Đã xác nhận đơn hàng';
+                                                                 break;
+                                                            case 2:
+                                                                 echo 'Đang giao';
+                                                                 break;
+                                                            case 3:
+                                                                 echo 'Huỷ đơn';
+                                                                 break;
+                                                            case 4:
+                                                                 echo 'Đơn hoàn';
+                                                                 break;
+                                                            default:
+                                                                 echo 'Đag xác nhận';
+                                                       }
+                                                  ?>
+                                                  </span>
                                              </td>
+                                             <td><span class="tbody-text"> <?= $created_at ?></span></td>
+                                             <td><span class="tbody-text"> <?= $phone ?></span></td>
+                                             <td><span class="tbody-text"> <?= $address ?></span></td>
                                              <td>
+                                                  <a href="?page=detail-order&order_id=<?= $order_id ?>">Chi tiết</a>
+                                             </td>
+                                             <!-- <td>
                                                   <ul class="list-operation fl-left">
                                                        <li><a href="" title="Sửa" class="edit"><i class="fa fa-pencil"
                                                                       aria-hidden="true"></i></a></li>
                                                        <li><a href="" title="Xóa" class="delete"><i class="fa fa-trash"
                                                                       aria-hidden="true"></i></a></li>
                                                   </ul>
-                                             </td>
+                                             </td> -->
                                         </tr>
+                                        <?php
+                                             }
+                                        }
+                                        ?>
                                    </tbody>
                               </table>
                          </div>
-                    </div>
-               </div>
-               <div class="section" id="paging-wp">
-                    <div class="section-detail clearfix">
-                         <p id="desc" class="fl-left">Chọn vào checkbox để lựa chọn tất cả</p>
-                         <ul id="list-paging" class="fl-right">
-                              <li>
-                                   <a href="" title="">
-                                        < </a>
-                              </li>
-                              <li>
-                                   <a href="" title="">1</a>
-                              </li>
-                              <li>
-                                   <a href="" title="">2</a>
-                              </li>
-                              <li>
-                                   <a href="" title="">3</a>
-                              </li>
-                              <li>
-                                   <a href="" title="">></a>
-                              </li>
-                         </ul>
                     </div>
                </div>
           </div>

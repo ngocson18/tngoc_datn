@@ -28,3 +28,23 @@ $(document).ready(function () {
 
     
 });
+
+function changeStatus(value, order_id) {
+    console.log(value,  order_id);
+    $.ajax({
+        url : 'page/update_order_status.php',
+        type : 'POST',
+        dataType: 'text',
+        data: { 
+          value: value,
+          order_id: order_id
+        },
+        success : function (result1) {
+            if(result1 == "success") {
+                alert("Cập nhật trạng thái đơn thành công");
+            }
+        }
+      });
+}
+
+$(document).ready(changeStatus);

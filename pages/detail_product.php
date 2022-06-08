@@ -81,10 +81,10 @@ $count = mysqli_num_rows($res);
                               </div>
                               <div class="num-product">
                                    <span class="">Sản phẩm: </span>
-                                   <?php if ($status == 1) : ?>
+                                   <?php if ($quantity > 0) : ?>
                                    <span class="status">Còn <?= $quantity ?> cái</span>
                                    <?php endif; ?>
-                                   <?php if ($status != 1) : ?>
+                                   <?php if ($quantity == 0) : ?>
                                    <span class="status">Hết hàng</span>
                                    <?php endif; ?>
                               </div>
@@ -96,8 +96,9 @@ $count = mysqli_num_rows($res);
                                    <a title="" id="minus"><i class="fa fa-minus"></i></a>
                                    <input type="text" name="num-order" value="1" id="num-order">
                                    <a title="" id="plus"><i class="fa fa-plus"></i></a>
+     
                               </div>
-                              <a href="?page=cart" title="Thêm giỏ hàng" class="add-cart">Thêm giỏ hàng</a>
+                              <button style="<?= $quantity == 0 ? 'background-color: grey' : ''  ?>" type="button" <?= $quantity == 0 ? ' disabled ' : ''  ?>  onClick="showHint2('<?= $prod_id_from_url ?>','<?= $prod_name ?>', '<?= $main_img ?>', '<?= $new_price  ?>')" title="Thêm giỏ hàng" class="add-cart">Thêm giỏ hàng</button>
                          </div>
                     </div>
                </div>

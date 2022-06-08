@@ -4,11 +4,11 @@
   $total_money = $_POST['total_money'];
   $name = $_POST['name'];
   $phone = $_POST['phone'];
-  $email = $_POST['email'];
-  $address = $_POST['address'];
+  // $email = $_POST['email'];
+  // $address = $_POST['address'];
   
   $created_at =  date('Y-m-d');
-  $sql =  "INSERT INTO bepcuangoc.order(user_id, status, total_money, created_at, name, phone, email, address) VALUES ('$user_id', 0,'$total_money', '$created_at', '$name', '$phone', '$email', '$address')";
+  $sql =  "INSERT INTO bepcuangoc.order(user_id, status, total_money, created_at, name, phone) VALUES ('$user_id', 0,'$total_money', '$created_at', '$name', '$phone')";
   $res = mysqli_query($conn, $sql);
   $sql2 =  "SELECT * FROM bepcuangoc.order WHERE user_id = '$user_id'";
   $res2 = mysqli_query($conn, $sql2);

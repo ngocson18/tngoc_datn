@@ -84,14 +84,14 @@ $(document).ready(function() {
     $('#plus').click(function() {
         value++;
         $('#num-order').attr('value', value);
-        update_href(value);
+        // update_href(value);
     });
     $('#minus').click(function() {
         if (value > 1) {
             value--;
             $('#num-order').attr('value', value);
         }
-        update_href(value);
+        // update_href(value);
     });
 
     //  MAIN MENU

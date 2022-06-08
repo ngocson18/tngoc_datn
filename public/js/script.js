@@ -49,6 +49,45 @@ function showHint(prod_id, name, img, new_price) {
   }
 }
 
+function showHint2(prod_id, name, img, new_price) {
+  let quantity = $('#num-order').val();
+  console.log(quantity);
+  if(typeof name === 'string') {
+    $.ajax({
+      url : 'pages/insert_cart_for_detail_page.php',
+      type : 'POST',
+      dataType: 'text',
+      data: { 
+        name: name, 
+        prod_id: prod_id,
+        new_price: new_price,
+        quantity: quantity,
+        user_id: user_id,
+        img: img,
+      },
+      success : function (result1) {
+        console.log(result1);
+        // document.getElementById("card-detail").innerHTML = "";
+        var param = `user_id=${user_id}`;
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("POST", `pages/load_cart2.php?user_id=${user_id}`);
+        xmlhttp.send(param); 
+        setTimeout(function() {
+          console.log(xmlhttp);
+          let total = 0;
+          document.getElementById("card-detail").innerHTML = xmlhttp.responseText;
+          var a = document.getElementsByClassName("price-cart");
+          console.log(a);
+          [...a].forEach(element => {
+            total += parseInt(element.innerHTML);
+            $('#total-price').text(total);
+          });
+        }, 2000); 
+      },
+    });
+  }
+}
+
 function changePrice(quantity, id) {
   let count = 0;
   $(`#total${id}`).html(parseInt(quantity) * parseInt($(`#price${id}`).html()));
@@ -62,7 +101,15 @@ function changePrice(quantity, id) {
 function goToCheckout() {
   
 }
-
+function checkLogin() {
+  let user_exist = localStorage.getItem('user_id');
+  if(user_exist == 0) {
+    document.getElementById('isLogin').innerHTML = "Login";
+  } else {
+    document.getElementById('isLogin').innerHTML = "Logout";
+  }
+}
 
 $(document).ready(showHint);
 $(document).ready(changePrice);
+$(document).ready(checkLogin);
