@@ -31,6 +31,11 @@ include './header.php';
                               </div>
 
                               <div class="form-group">
+                                   <label for="price">SL</label>
+                                   <input type="text" name="quantity" id="quantity">
+                              </div>
+
+                              <div class="form-group">
                                    <label for="discount">Khuyễn mãi</label>
                                    <input type="text" name="discount" id="price">
                               </div>
@@ -87,6 +92,7 @@ if (isset($_POST['submit'])) {
      $discount = $_POST['discount'];
      $price_discount = $_POST['price_discount'];
      $category = $_POST['category'];
+     $quantity = $_POST['quantity'];
 
      // $target_dir = "public/images/Food_img/";
      // $file = $_FILES['fileToUpload']['name'];
@@ -145,8 +151,8 @@ if (isset($_POST['submit'])) {
                echo "Có lỗi xảy ra khi upload file.";
           }
 
-          $sql = "INSERT INTO product(name, title, description, price, img, discount, price_discount, category) 
-               VALUES ('$name', '$title', '$description', '$price', '$target_file',  '$discount', '$price_discount','$category')";
+          $sql = "INSERT INTO product(name, title, description, price, img, discount, price_discount, category, quantity) 
+               VALUES ('$name', '$title', '$description', '$price', '$target_file',  '$discount', '$price_discount','$category', '$quantity')";
 
           $res = mysqli_query($conn, $sql);
 

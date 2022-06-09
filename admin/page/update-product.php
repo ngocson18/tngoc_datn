@@ -28,6 +28,7 @@
           $category = $row['category'];
           $isSpecial = $row['isSpecial'];
           $img = $row['img'];
+          $quantity = $row['quantity'];
      }
 
      // Update product
@@ -41,6 +42,7 @@
           $price_discount = $row['price_discount'];
           $category = $_POST['category'];
           $isSpecial = $_POST['isSpecial'];
+          $quantity = $_POST['quantity'];
           if($_POST['image'] != '') {
                $image = $_POST['image'];
                $imageForSave = 'public/images/Food_img/'.$image;
@@ -58,7 +60,8 @@
                price_discount = '$price_discount',
                category = '$category' ,
                isSpecial = '$isSpecial',
-               img = '$imageForSave'
+               img = '$imageForSave',
+               quantity = '$quantity'
                WHERE product_id = $product_id
           ";
           
@@ -108,6 +111,11 @@
                               <div class=" form-group">
                                    <label for="price">Giá món ăn</label>
                                    <input type="text" name="price" id="price" value="<?= $price; ?>">
+                              </div>
+
+                              <div class=" form-group">
+                                   <label for="price">SL</label>
+                                   <input type="text" name="quantity" id="quantity" value="<?= $quantity; ?>">
                               </div>
 
                               <div class="form-group">

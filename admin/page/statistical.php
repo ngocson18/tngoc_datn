@@ -49,7 +49,7 @@ include 'connect.php';
                                         <div class="card-footer d-flex align-items-center justify-content-between">
 
                                              <?php
-                                             $sql = "SELECT SUM(order.total_money) as tongtien FROM bepcuangoc.order WHERE DAY(`created_at`) = DAY(CURDATE()) AND  MONTH(`created_at`) = MONTH(CURDATE()) AND status = 1";
+                                             $sql = "SELECT SUM(order.total_money) as tongtien FROM bepcuangoc.order WHERE DAY(`created_at`) = DAY(CURDATE()) AND  MONTH(`created_at`) = MONTH(CURDATE()) AND status = 5";
                                              $result = mysqli_query($conn, $sql);
                                              $data = mysqli_fetch_assoc($result);
                                              $ngay = number_format($data['tongtien']);
@@ -63,7 +63,7 @@ include 'connect.php';
                                         <div class="card-body"> Doanh thu Tháng <?= date("m-Y"); ?></div>
                                         <div class="card-footer d-flex align-items-center justify-content-between">
                                              <?php
-                                             $sql2 = "SELECT SUM(order.total_money) as tongtien FROM bepcuangoc.order WHERE MONTH(`created_at`) = MONTH(CURDATE()) AND status =1";
+                                             $sql2 = "SELECT SUM(order.total_money) as tongtien FROM bepcuangoc.order WHERE MONTH(`created_at`) = MONTH(CURDATE()) AND status = 5";
                                              $result2 = mysqli_query($conn, $sql2);
                                              $data2 = mysqli_fetch_assoc($result2);
                                              $thang = number_format($data2['tongtien']);
@@ -78,7 +78,7 @@ include 'connect.php';
                                         <div class="card-body">Doanh thu Năm <?= date("Y"); ?></div>
                                         <div class="card-footer d-flex align-items-center justify-content-between">
                                              <?php
-                                             $sql3 = "SELECT SUM(order.total_money) as tongtien FROM bepcuangoc.order WHERE YEAR(`created_at`) = YEAR(CURDATE()) AND status = 1";
+                                             $sql3 = "SELECT SUM(order.total_money) as tongtien FROM bepcuangoc.order WHERE YEAR(`created_at`) = YEAR(CURDATE()) AND status = 5";
                                              $result3 = mysqli_query($conn, $sql3);
                                              $data3 = mysqli_fetch_assoc($result3);
                                              $nam = number_format($data3['tongtien']);
@@ -92,13 +92,79 @@ include 'connect.php';
                                         <div class="card-body">Tổng Doanh thu:</div>
                                         <div class="card-footer d-flex align-items-center justify-content-between">
                                              <?php
-                                             $sql4 = "SELECT SUM(order.total_money) as tongtien FROM bepcuangoc.order WHERE status =1";
+                                             $sql4 = "SELECT SUM(order.total_money) as tongtien FROM bepcuangoc.order WHERE status = 5";
                                              $result4 = mysqli_query($conn, $sql4);
                                              $data4 = mysqli_fetch_assoc($result4);
                                              $nam = number_format($data4['tongtien']);
                                              echo '<a class="small text-white stretched-link" href="#">' . $nam . ' d </a>';
                                              ?>
                                         </div>
+                                   </div>
+                              </div>
+                         </div>
+
+                         <input onChange="changeDay(this.value)" type="date" id="choose" name="choose">
+                         <div class="card mb-4 mt-3">
+                              <div class="card-body">
+                                   <div id="result-area" class="table-responsive">
+                                        <?php
+                                             $time = date('Y/m/d');
+                                             $sqlSoDonDaGiao = "SELECT COUNT(order_id) as sodondagiao FROM bepcuangoc.order WHERE created_at = '$time' AND status = 5";
+                                             $resultSoDonDaGiao = mysqli_query($conn, $sqlSoDonDaGiao);
+                                             foreach ($resultSoDonDaGiao as $key => $value):
+                                                  echo '<span>Số đơn hàng đã giao:</span>';
+                                                  echo '<span class="ml-3">'. $value['sodondagiao'] . ' Đơn</span> <br />';
+                                             endforeach;
+                                        ?>
+                                        <?php
+                                             $time = date('Y/m/d');
+                                             $sqlSoDonHoan = "SELECT COUNT(order_id) as sodonhoan FROM bepcuangoc.order WHERE created_at = '$time' AND status = 4";
+                                             $resultSoDonHoan = mysqli_query($conn, $sqlSoDonHoan);
+                                             foreach ($resultSoDonHoan as $key => $value):
+                                                  echo '<span>Số đơn hoàn:</span>';
+                                                  echo '<span class="ml-3">'. $value['sodonhoan'] . ' Đơn</span> <br />';
+                                             endforeach;
+                                        ?>
+
+                                        <?php
+                                             $time = date('Y/m/d');
+                                             $sqlSoDonHuy = "SELECT COUNT(order_id) as sodonhuy FROM bepcuangoc.order WHERE created_at = '$time' AND status = 3";
+                                             $resultSoDonHuy = mysqli_query($conn, $sqlSoDonHuy);
+                                             foreach ($resultSoDonHuy as $key => $value):
+                                                  echo '<span>Số đơn hủy:</span>';
+                                                  echo '<span class="ml-3">'. $value['sodonhuy'] . ' Đơn</span> <br />';
+                                             endforeach;
+                                        ?>
+                                        
+                                        <?php
+                                             $time = date('Y/m/d');
+                                             $sqlSoDonDangGiao = "SELECT COUNT(order_id) as sodondanggiao FROM bepcuangoc.order WHERE created_at = '$time' AND status = 2";
+                                             $resultSoDonDangGiao = mysqli_query($conn, $sqlSoDonDangGiao);
+                                             foreach ($resultSoDonDangGiao as $key => $value):
+                                                  echo '<span>Số đơn hàng đang giao:</span>';
+                                                  echo '<span class="ml-3">'. $value['sodondanggiao'] . ' Đơn</span> <br />';
+                                             endforeach;
+                                        ?>
+
+                                        <?php
+                                             $time = date('Y/m/d');
+                                             $sqlSoDonDaXacNhan = "SELECT COUNT(order_id) as sodondaxacnhan FROM bepcuangoc.order WHERE created_at = '$time' AND status = 1";
+                                             $resultSoDonDaXacNhan = mysqli_query($conn, $sqlSoDonDaXacNhan);
+                                             foreach ($resultSoDonDaXacNhan as $key => $value):
+                                                  echo '<span>Số đơn hàng đã xác nhận:</span>';
+                                                  echo '<span class="ml-3">'. $value['sodondaxacnhan'] . ' Đơn</span> <br />';
+                                             endforeach;
+                                        ?>
+
+                                        <?php
+                                             $time = date('Y/m/d');
+                                             $sqlSoDonMoi = "SELECT COUNT(order_id) as sodonmoi FROM bepcuangoc.order WHERE created_at = '$time' AND status = 0";
+                                             $resultSoDonMoi = mysqli_query($conn, $sqlSoDonMoi);
+                                             foreach ($resultSoDonMoi as $key => $value):
+                                                  echo '<span>Số đơn hàng mới:</span>';
+                                                  echo '<span class="ml-3">'. $value['sodonmoi'] . ' Đơn</span> <br />';
+                                             endforeach;
+                                        ?>
                                    </div>
                               </div>
                          </div>
@@ -123,16 +189,14 @@ include 'connect.php';
                                                   <tr>
                                                        <th>Tháng <?= $i ?></th>
                                                        <?php
-                                                            $sql5 = "SELECT SUM(order.total_money) as tongtien FROM bepcuangoc.order WHERE status = 1  and MONTH(`created_at`) = $i and Year(`created_at`) = 2022";
+                                                            $sql5 = "SELECT SUM(order.total_money) as tongtien FROM bepcuangoc.order WHERE status = 5  and MONTH(`created_at`) = $i and Year(`created_at`) = 2022";
                                                             $result5 = mysqli_query($conn, $sql5);
                                                             $data5 = mysqli_fetch_assoc($result5);
                                                             $thang_all = number_format($data5['tongtien']);
                                                             $tile = 0;
-                                                            if($data3['tongtien'] != 0) {
+                                                            // if($data3['tongtien'] != 0) {
                                                                  $tile = ($data5['tongtien'] / $data3['tongtien']) * 100;
-                                                            } else {
-
-                                                            }
+                                                            // }
                                                             ?>
                                                        <th><?= $thang_all ?> d</th>
 
@@ -174,7 +238,7 @@ include 'connect.php';
                                              <tbody>
 
                                                   <?php
-                                                  $sql6 = "SELECT SUM(order.total_money) as tongtien ,user.user_id,user.user_name,user.user_phone FROM bepcuangoc.order,user WHERE status = 1 AND user.user_id = order.user_id  GROUP BY order.user_id";
+                                                  $sql6 = "SELECT SUM(order.total_money) as tongtien ,user.user_id,user.user_name,user.user_phone FROM bepcuangoc.order,user WHERE status = 5 AND user.user_id = order.user_id  GROUP BY order.user_id";
                                                   $result6 = mysqli_query($conn, $sql6);
                                                   ?>
                                                   <?php foreach ($result6 as $key => $value) : ?>
@@ -184,7 +248,7 @@ include 'connect.php';
                                                        <th><?= $value['user_id'] ?></th>
                                                        <th><?= $value['user_name'] ?></th>
                                                        <?php for ($i = 1; $i < 13; $i++) {
-                                                                 $sql7 = "SELECT SUM(bepcuangoc.order.total_money) as tongtien ,bepcuangoc.user.user_id, bepcuangoc.user.user_name,bepcuangoc.user.user_phone FROM bepcuangoc.order, bepcuangoc.user WHERE status = 1 AND bepcuangoc.user.user_id = bepcuangoc.order.user_id and Year(`created_at`) = 2022  and MONTH(`created_at`) = $i AND bepcuangoc.user.user_id= $value[user_id] GROUP BY bepcuangoc.order.user_id ";
+                                                                 $sql7 = "SELECT SUM(bepcuangoc.order.total_money) as tongtien ,bepcuangoc.user.user_id, bepcuangoc.user.user_name,bepcuangoc.user.user_phone FROM bepcuangoc.order, bepcuangoc.user WHERE status = 5 AND bepcuangoc.user.user_id = bepcuangoc.order.user_id and Year(`created_at`) = 2022  and MONTH(`created_at`) = $i AND bepcuangoc.user.user_id= $value[user_id] GROUP BY bepcuangoc.order.user_id ";
                                                                  $result7 = mysqli_query($conn, $sql7);
                                                                  $data7 = mysqli_fetch_assoc($result7);
                                                                  if ($data7 != null && $data3 != null) {
@@ -210,10 +274,9 @@ include 'connect.php';
           </div>
      </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous">
 </script>
-<script src="js/scripts.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 <script src="assets/demo/chart-area-demo.js"></script>
 <script src="assets/demo/chart-bar-demo.js"></script>
@@ -222,13 +285,9 @@ include 'connect.php';
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous">
 </script>
-<script src="js/scripts.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-<script src="assets/demo/chart-area-demo.js"></script>
-<script src="assets/demo/chart-bar-demo.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-<script src="assets/demo/datatables-demo.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script> -->
 <script type="text/javascript">
 $(document).ready(function() {
      $('#click').change(function() {

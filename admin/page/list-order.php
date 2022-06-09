@@ -119,6 +119,9 @@
                                                             case 4:
                                                                  echo 'Đơn hoàn';
                                                                  break;
+                                                            case 5:
+                                                                 echo 'Đã giao';
+                                                                 break;
                                                             default:
                                                                  echo 'Đag xác nhận';
                                                        }

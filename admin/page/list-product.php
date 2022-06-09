@@ -63,6 +63,7 @@ if (isset($_GET['id'])) {
                                              <td class="thead-text"><span>Mô tả món ăn</span></td>
                                              <td class="thead-text">Danh mục sản phẩm</td>
                                              <td class="thead-text"><span>Giá</span></td>
+                                             <td class="thead-text"><span>SL</span></td>
                                              <td class="thead-text"><span>Khuyến mãi</span></td>
                                              <td class="thead-text"><span>Giá ưu đãi</span></td>
                                              <td class="thead-text"><span>Hình ảnh món ăn</span></td>
@@ -89,6 +90,7 @@ if (isset($_GET['id'])) {
                                                   $discount = $row['discount'];
                                                   $new_price = $row['price'] - $row['price'] * $row['discount'] / 100;
                                                   $category = $row['category'];
+                                                  $sl = $row['quantity'];
                                                   $img = $row['img'];
                                                   $isSpecial = $row['isSpecial'];
                                                   $img_src = '../' . $img;
@@ -122,6 +124,8 @@ if (isset($_GET['id'])) {
                                                   </span></td>
                                              <td style="max-width: 100px;"><span
                                                        class="tbody-text"><?php echo $price; ?> đ</span></td>
+                                             <td style="max-width: 100px;"><span
+                                             class="tbody-text"><?php echo $sl; ?></span></td>
                                              <td><span class="tbody-text"><?php echo $discount; ?>%</span></td>
                                              <td><span class="tbody-text"><?php echo $new_price; ?> đ</span></td>
                                              <td><span class="tbody-text">
