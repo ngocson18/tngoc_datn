@@ -1,12 +1,12 @@
-<?php 
-     include 'connect.php';
-     include './header.php';
-     $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-     $parts = parse_url($url);
-     parse_str($parts['query'], $query);
-     $order_id = $query['order_id'];
+<?php
+include 'connect.php';
+include './header.php';
+$url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$parts = parse_url($url);
+parse_str($parts['query'], $query);
+$order_id = $query['order_id'];
 
-     $sql = "
+$sql = "
      SELECT 
           order_details.quantity as quantity,
           order_details.product_id as prod_id,
@@ -22,14 +22,24 @@
      INNER JOIN bepcuangoc.order ON order_details.order_id = bepcuangoc.order.order_id 
      WHERE order_details.order_id = $order_id
      ";
-     $res = mysqli_query($conn, $sql);
-     $count = mysqli_num_rows($res);
+$res = mysqli_query($conn, $sql);
+$count = mysqli_num_rows($res);
 
-     $sqlectorder = "SELECT * FROM bepcuangoc.order WHERE order_id = $order_id";
-     $resorder = mysqli_query($conn, $sqlectorder);
-     $countorder = mysqli_num_rows($resorder);
+$sqlectorder = "SELECT * FROM bepcuangoc.order WHERE order_id = $order_id";
+$resorder = mysqli_query($conn, $sqlectorder);
+$countorder = mysqli_num_rows($resorder);
 
-     
+// Format money
+if (!function_exists('currency_format')) {
+     function currency_format($number, $suffix = ' vnđ')
+     {
+          if (!empty($number)) {
+               return number_format($number, 0, ',', '.') . "{$suffix}";
+          }
+     }
+}
+
+
 ?>
 <div id="main-content-wp" class="list-product-page">
      <div class="wrap clearfix">
@@ -41,12 +51,12 @@
                     </div>
                     <ul class="list-item">
                          <?php
-                              if ($countorder > 0) {
-                                   while ($roworder = mysqli_fetch_assoc($resorder)) {
-                                        $address = $roworder['address'];
-                                        $status = $roworder['status'];
-                                        $total_money = $roworder['total_money'];
-                                   
+                         if ($countorder > 0) {
+                              while ($roworder = mysqli_fetch_assoc($resorder)) {
+                                   $address = $roworder['address'];
+                                   $status = $roworder['status'];
+                                   $total_money = $roworder['total_money'];
+
                          ?>
                          <li>
                               <h3 class="title">Mã đơn hàng</h3>
@@ -67,13 +77,15 @@
                          <form method="POST" action="">
                               <li>
                                    <h3 class="title">Tình trạng đơn hàng</h3>
-                                   <select onChange="changeStatus(this.value, <?= $order_id ?>)"  name="status">
+                                   <select onChange="changeStatus(this.value, <?= $order_id ?>)" name="status">
                                         <option value=''>Chọn</option>
                                         <option value='0' <?= $status == 0 ? ' selected' : '' ?>>Đã đặt hàng</option>
-                                        <option value='1' <?= $status == 1 ? ' selected' : '' ?>>Đã xác nhận đơn hàng</option>
+                                        <option value='1' <?= $status == 1 ? ' selected' : '' ?>>Đã xác nhận đơn hàng
+                                        </option>
                                         <option value='2' <?= $status == 2 ? ' selected' : '' ?>>Đang giao</option>
                                         <option value='3' <?= $status == 3 ? ' selected' : '' ?>>Huỷ đơn</option>
                                         <option value='4' <?= $status == 4 ? ' selected' : '' ?>>Đơn hoàn</option>
+                                        <option value='5' <?= $status == 5 ? ' selected' : '' ?>>Đơn đã giao</option>
                                    </select>
                               </li>
                          </form>
@@ -86,7 +98,7 @@
                     <div class="table-responsive">
                          <table class="table info-exhibition">
                               <thead>
-                                  
+
                                    <tr>
                                         <td class="thead-text">STT</td>
                                         <td class="thead-text">Ảnh sản phẩm</td>
@@ -97,7 +109,7 @@
                                    </tr>
                               </thead>
                               <tbody>
-                              <?php 
+                                   <?php
                                    if ($count > 0) {
                                         $sn = 1;
                                         while ($row = mysqli_fetch_assoc($res)) {
@@ -115,9 +127,11 @@
                                              </div>
                                         </td>
                                         <td class="thead-text"><?= $name ?></td>
-                                        <td class="thead-text"><?= $price ?></td>
+                                        <td class="thead-text"><?= currency_format($price); ?></td>
                                         <td class="thead-text"><?= $quantity ?></td>
-                                        <td class="thead-text"><span><?= $price * $quantity ?></span><span> đ</span></td>
+                                        <td class="thead-text">
+                                             <span><?= currency_format($price * $quantity); ?></span>
+                                        </td>
                                    </tr>
                                    <?php
                                         }
@@ -137,14 +151,25 @@
                               </li>
                               <li>
                                    <span class="total-fee"><?= $count ?> sản phẩm</span>
-                                   <span class="total"><?= $total_money ?></span>
+                                   <span class="total"><?= currency_format($total_money); ?></span>
                               </li>
                          </ul>
                     </div>
                </div>
+
+               <div class="section">
+                    <a href="?page=print&order_id=<?= $order_id ?>" title="" id="add-new" class="fl-left">In
+                         hóa
+                         đơn</a>
+                    <a href="?page=list-order" title="" id="add-new" class="fl-left">Quay lại Admin</a>
+
+               </div>
           </div>
      </div>
 </div>
-<?php 
-     include './footer.php';
+<?php
+include './footer.php';
+?>
+<?php
+
 ?>

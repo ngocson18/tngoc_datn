@@ -89,16 +89,29 @@ $count = mysqli_num_rows($res);
                                    <?php endif; ?>
                               </div>
                               <div class="price">
-                                   <span class="new"><?= $new_price ?> vnđ</span>
-                                   <span class="old"><?= $old_price ?> vnđ</span>
+                                   <?php
+                                   if (!function_exists('currency_format')) {
+                                        function currency_format($number, $suffix = ' vnđ')
+                                        {
+                                             if (!empty($number)) {
+                                                  return number_format($number, 0, ',', '.') . "{$suffix}";
+                                             }
+                                        }
+                                   }
+                                   ?>
+                                   <span class="new"><?= currency_format($new_price); ?></span>
+                                   <span class="old"><?= currency_format($old_price); ?></span>
                               </div>
                               <div id="num-order-wp">
                                    <a title="" id="minus"><i class="fa fa-minus"></i></a>
                                    <input type="text" name="num-order" value="1" id="num-order">
                                    <a title="" id="plus"><i class="fa fa-plus"></i></a>
-     
+
                               </div>
-                              <button style="<?= $quantity == 0 ? 'background-color: grey' : ''  ?>" type="button" <?= $quantity == 0 ? ' disabled ' : ''  ?>  onClick="showHint2('<?= $prod_id_from_url ?>','<?= $prod_name ?>', '<?= $main_img ?>', '<?= $new_price  ?>')" title="Thêm giỏ hàng" class="add-cart">Thêm giỏ hàng</button>
+                              <button style="<?= $quantity == 0 ? 'background-color: grey' : ''  ?>" type="button"
+                                   <?= $quantity == 0 ? ' disabled ' : ''  ?>
+                                   onClick="showHint2('<?= $prod_id_from_url ?>','<?= $prod_name ?>', '<?= $main_img ?>', '<?= $new_price  ?>')"
+                                   title="Thêm giỏ hàng" class="add-cart">Thêm giỏ hàng</button>
                          </div>
                     </div>
                </div>

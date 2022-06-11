@@ -91,7 +91,7 @@ require("page/session-user.php");
                               </li> -->
 
                               <li>
-                                   <a href="#">Đơn đặt hàng</a>
+                                   <a href="?page=list-order">Đơn đặt hàng</a>
                                    <ul class="sub-menu">
                                         <li>
                                              <a href="?page=list-order">Danh sách đơn hàng</a>

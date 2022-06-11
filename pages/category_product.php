@@ -136,8 +136,18 @@ $count3 = mysqli_num_rows($res3);
                                    <a href="?page=detail_product&id=<?= $prod_id ?>" title=""
                                         class="product-name"><?= $name  ?></a>
                                    <div class="price">
-                                        <span class="new"><?= $new_price; ?> vnđ</span>
-                                        <span class="old"><?= $old_price; ?> vnđ</span>
+                                        <?php
+                                                  if (!function_exists('currency_format')) {
+                                                       function currency_format($number, $suffix = ' vnđ')
+                                                       {
+                                                            if (!empty($number)) {
+                                                                 return number_format($number, 0, ',', '.') . "{$suffix}";
+                                                            }
+                                                       }
+                                                  }
+                                                  ?>
+                                        <span class="new"><?= currency_format($new_price); ?></span>
+                                        <span class="old"><?= currency_format($old_price); ?></span>
                                    </div>
                                    <div class="action clearfix">
                                         <a href="?page=cart" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ

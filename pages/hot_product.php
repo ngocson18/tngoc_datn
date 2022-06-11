@@ -26,11 +26,22 @@ include './admin/page/connect.php';
                     </a>
                     <a href="?page=detail_product&id=<?= $prod_id ?>" title="" class="product-name"><?= $name; ?></a>
                     <div class="price">
-                         <span class="new"><?= $new_price; ?> vnđ</span>
-                         <span class="old"><?= $old_price; ?> vnđ</span>
+                         <?php
+                                   if (!function_exists('currency_format')) {
+                                        function currency_format($number, $suffix = ' vnđ')
+                                        {
+                                             if (!empty($number)) {
+                                                  return number_format($number, 0, ',', '.') . "{$suffix}";
+                                             }
+                                        }
+                                   }
+                                   ?>
+                         <span class="new"><?= currency_format($new_price); ?></span>
+                         <span class="old"><?= currency_format($old_price); ?></span>
                     </div>
                     <div class="action clearfix">
-                         <a type="button" onClick="showHint('<?= $prod_id ?>','<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"
+                         <a type="button"
+                              onClick="showHint('<?= $prod_id ?>','<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"
                               title="" class="add-cart fl-left">Thêm giỏ hàng</a>
                          <a href="?page=checkout" title="" class="buy-now fl-right">Mua ngay</a>
                     </div>

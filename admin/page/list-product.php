@@ -37,6 +37,15 @@ if (isset($_GET['id'])) {
           echo "Error: " . $sql . ":-" . mysqli_error($conn);
      }
 }
+
+if (!function_exists('currency_format')) {
+     function currency_format($number, $suffix = ' vnđ')
+     {
+          if (!empty($number)) {
+               return number_format($number, 0, ',', '.') . "{$suffix}";
+          }
+     }
+}
 ?>
 
 <div id="main-content-wp" class="list-product-page">
@@ -100,34 +109,39 @@ if (isset($_GET['id'])) {
                                         <tr>
                                              <!-- <td><input type="checkbox" name="checkItem" class="checkItem"></td> -->
                                              <td><span class="tbody-text"><?php echo $sn++; ?></span></td>
-                                             <td><span class="tbody-text <?php if($isSpecial == 1) {echo ' hight-light';} ?>"><?php echo $name; ?></span></td>
+                                             <td><span class="tbody-text <?php if ($isSpecial == 1) {
+                                                                                          echo ' hight-light';
+                                                                                     } ?>"><?php echo $name; ?></span>
+                                             </td>
                                              <td style="max-width: 100px;"><span
                                                        class="tbody-text"><?php echo $title; ?></span></td>
                                              <td style="max-width: 200px;"><span
                                                        class="tbody-text"><?php echo $description; ?></span></td>
                                              <td><span class="tbody-text">
                                                        <?php
-                                                            if ($category == 1) {
-                                                                 echo "Đồ ăn vặt Việt Nam";
-                                                            } elseif ($category == 2) {
-                                                                 echo "Đồ ăn vặt Hàn Quốc";
-                                                            } elseif ($category == 3) {
-                                                                 echo "Đồ ăn vặt Thái Lan";
-                                                            } elseif ($category == 4) {
-                                                                 echo "Đồ ăn vặt Khác";
-                                                            } elseif ($category == 5) {
-                                                                 echo "Đồ uống";
-                                                            } elseif ($category == 6) {
-                                                                 echo "Bánh ngọt";
-                                                            }
-                                                       ?>
+                                                                 if ($category == 1) {
+                                                                      echo "Đồ ăn vặt Việt Nam";
+                                                                 } elseif ($category == 2) {
+                                                                      echo "Đồ ăn vặt Hàn Quốc";
+                                                                 } elseif ($category == 3) {
+                                                                      echo "Đồ ăn vặt Thái Lan";
+                                                                 } elseif ($category == 4) {
+                                                                      echo "Đồ ăn vặt Khác";
+                                                                 } elseif ($category == 5) {
+                                                                      echo "Đồ uống";
+                                                                 } elseif ($category == 6) {
+                                                                      echo "Bánh ngọt";
+                                                                 }
+                                                                 ?>
                                                   </span></td>
                                              <td style="max-width: 100px;"><span
-                                                       class="tbody-text"><?php echo $price; ?> đ</span></td>
+                                                       class="tbody-text"><?php echo currency_format($price); ?>
+                                                  </span></td>
                                              <td style="max-width: 100px;"><span
-                                             class="tbody-text"><?php echo $sl; ?></span></td>
+                                                       class="tbody-text"><?php echo $sl; ?></span></td>
                                              <td><span class="tbody-text"><?php echo $discount; ?>%</span></td>
-                                             <td><span class="tbody-text"><?php echo $new_price; ?> đ</span></td>
+                                             <td><span class="tbody-text"><?php echo currency_format($new_price); ?>
+                                                  </span></td>
                                              <td><span class="tbody-text">
                                                        <?php
                                                                  echo "<div><img src=$img_src style='width:250px'></div>";

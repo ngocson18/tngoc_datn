@@ -1,33 +1,41 @@
-<?php 
-     include 'connect.php';
-     include './header.php';
+<?php
+include 'connect.php';
+include './header.php';
 ?>
 <?php
-     $sql = "SELECT * FROM bepcuangoc.order";
-     $res = mysqli_query($conn, $sql);
-     $count = mysqli_num_rows($res);
+$sql = "SELECT * FROM bepcuangoc.order";
+$res = mysqli_query($conn, $sql);
+$count = mysqli_num_rows($res);
 
-     $total = "SELECT * FROM bepcuangoc.order";
-     $dadathang = "SELECT * FROM bepcuangoc.order  WHERE status = 0";
-     $daxacnhan = "SELECT * FROM bepcuangoc.order  WHERE status = 1";
-     $danggiao = "SELECT * FROM bepcuangoc.order  WHERE status = 2";
-     $huydon = "SELECT * FROM bepcuangoc.order  WHERE status = 3";
-     $donhoan = "SELECT * FROM bepcuangoc.order  WHERE status = 4";
+$total = "SELECT * FROM bepcuangoc.order";
+$dadathang = "SELECT * FROM bepcuangoc.order  WHERE status = 0";
+$daxacnhan = "SELECT * FROM bepcuangoc.order  WHERE status = 1";
+$danggiao = "SELECT * FROM bepcuangoc.order  WHERE status = 2";
+$huydon = "SELECT * FROM bepcuangoc.order  WHERE status = 3";
+$donhoan = "SELECT * FROM bepcuangoc.order  WHERE status = 4";
 
-     $restotal = mysqli_query($conn, $total);
-     $resdadathang = mysqli_query($conn, $dadathang);
-     $resdaxacnhan = mysqli_query($conn, $daxacnhan);
-     $resdanggiao = mysqli_query($conn, $danggiao);
-     $reshuydon = mysqli_query($conn, $huydon);
-     $resdonhoan = mysqli_query($conn, $donhoan);
+$restotal = mysqli_query($conn, $total);
+$resdadathang = mysqli_query($conn, $dadathang);
+$resdaxacnhan = mysqli_query($conn, $daxacnhan);
+$resdanggiao = mysqli_query($conn, $danggiao);
+$reshuydon = mysqli_query($conn, $huydon);
+$resdonhoan = mysqli_query($conn, $donhoan);
 
-     $counttotal = mysqli_num_rows($restotal);
-     $countdadathang = mysqli_num_rows($resdadathang);
-     $countdaxacnhan = mysqli_num_rows($resdaxacnhan);
-     $countdanggiao = mysqli_num_rows($resdanggiao);
-     $counthuydon = mysqli_num_rows($reshuydon);
-     $countdonhoan = mysqli_num_rows($resdonhoan);
+$counttotal = mysqli_num_rows($restotal);
+$countdadathang = mysqli_num_rows($resdadathang);
+$countdaxacnhan = mysqli_num_rows($resdaxacnhan);
+$countdanggiao = mysqli_num_rows($resdanggiao);
+$counthuydon = mysqli_num_rows($reshuydon);
+$countdonhoan = mysqli_num_rows($resdonhoan);
 
+if (!function_exists('currency_format')) {
+     function currency_format($number, $suffix = ' vnđ')
+     {
+          if (!empty($number)) {
+               return number_format($number, 0, ',', '.') . "{$suffix}";
+          }
+     }
+}
 ?>
 <div id="main-content-wp" class="list-product-page">
      <div class="wrap clearfix">
@@ -44,18 +52,24 @@
                     <div class="section-detail">
                          <div class="clearfix filter-wp">
                               <ul class="post-status fl-left">
-                                   <li class="all"><a href="">Tất cả <span class="count">(<?= $count ?>)</span></a> |</li>
-                                   <li class="publish"><a href="">Đã đặt hàng <span class="count">(<?= $countdadathang ?>)</span></a> |
+                                   <li class="all"><a href="">Tất cả <span class="count">(<?= $count ?>)</span></a> |
                                    </li>
-                                   <li class="publish"><a href="">Đã xác nhận đơn hàng <span class="count">(<?= $countdaxacnhan ?>)</span></a> |
+                                   <li class="publish"><a href="">Đã đặt hàng <span
+                                                  class="count">(<?= $countdadathang ?>)</span></a> |
                                    </li>
-                                   <li class="publish"><a href="">Đang giao <span class="count">(<?= $countdanggiao ?>)</span></a> |
+                                   <li class="publish"><a href="">Đã xác nhận đơn hàng <span
+                                                  class="count">(<?= $countdaxacnhan ?>)</span></a> |
                                    </li>
-                                   <li class="publish"><a href="">Hủy đơn <span class="count">(<?= $counthuydon ?>)</span></a> |
+                                   <li class="publish"><a href="">Đang giao <span
+                                                  class="count">(<?= $countdanggiao ?>)</span></a> |
                                    </li>
-                                   <li class="publish"><a href="">Đơn hoàn <span class="count">(<?= $countdonhoan ?>)</span></a> |
+                                   <li class="publish"><a href="">Hủy đơn <span
+                                                  class="count">(<?= $counthuydon ?>)</span></a> |
                                    </li>
-                                   
+                                   <li class="publish"><a href="">Đơn hoàn <span
+                                                  class="count">(<?= $countdonhoan ?>)</span></a> |
+                                   </li>
+
                               </ul>
                               <!-- <form action="" method="get" class="form-s fl-right">
                                    <input type="text" name="s" id="s">
@@ -79,7 +93,7 @@
                                         </tr>
                                    </thead>
                                    <tbody>
-                                        <?php 
+                                        <?php
                                         $sn = 1;
 
                                         if ($count > 0) {
@@ -99,33 +113,34 @@
                                              <td><span class="tbody-text"><?= $sn++ ?></span></td>
                                              <td><span class="tbody-text"><?= $order_id ?></span></td>
                                              <td><span class="tbody-text tb-title fl-left"><?= $name ?></span></td>
-                                             <td><span class="tbody-text"><?= $total_money  ?></span></td>
+                                             <td><span class="tbody-text"><?= currency_format($total_money);  ?></span>
+                                             </td>
                                              <td>
                                                   <span class="tbody-text">
-                                                  <?php
-                                                       switch ($status) {
-                                                            case 0:
-                                                                 echo 'Đã đặt hàng';
-                                                                 break;
-                                                            case 1:
-                                                                 echo 'Đã xác nhận đơn hàng';
-                                                                 break;
-                                                            case 2:
-                                                                 echo 'Đang giao';
-                                                                 break;
-                                                            case 3:
-                                                                 echo 'Huỷ đơn';
-                                                                 break;
-                                                            case 4:
-                                                                 echo 'Đơn hoàn';
-                                                                 break;
-                                                            case 5:
-                                                                 echo 'Đã giao';
-                                                                 break;
-                                                            default:
-                                                                 echo 'Đag xác nhận';
-                                                       }
-                                                  ?>
+                                                       <?php
+                                                                 switch ($status) {
+                                                                      case 0:
+                                                                           echo 'Đã đặt hàng';
+                                                                           break;
+                                                                      case 1:
+                                                                           echo 'Đã xác nhận đơn hàng';
+                                                                           break;
+                                                                      case 2:
+                                                                           echo 'Đang giao';
+                                                                           break;
+                                                                      case 3:
+                                                                           echo 'Huỷ đơn';
+                                                                           break;
+                                                                      case 4:
+                                                                           echo 'Đơn hoàn';
+                                                                           break;
+                                                                      case 5:
+                                                                           echo 'Đã giao';
+                                                                           break;
+                                                                      default:
+                                                                           echo 'Đag xác nhận';
+                                                                 }
+                                                                 ?>
                                                   </span>
                                              </td>
                                              <td><span class="tbody-text"> <?= $created_at ?></span></td>
@@ -155,6 +170,6 @@
           </div>
      </div>
 </div>
-<?php 
-     include './footer.php';
+<?php
+include './footer.php';
 ?>
