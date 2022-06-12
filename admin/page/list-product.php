@@ -4,25 +4,6 @@ include './header.php';
 ?>
 
 <?php
-// include 'login.php';
-
-// if(isset($_SESSION['submit'])){
-//      $sql2 = "SELECT * FROM user WHERE user_phone =".$_SESSION['user'];
-//      $res2 = mysqli_query($conn, $sql2);
-//      $row = mysqli_fetch_assoc($res2);
-
-//      if($row['role_user'] == 0){
-
-//      }else{
-//           echo "Login successfully";
-//           echo "<script type='text/javascript'> window.location.assign('?page=list-product')</script>";
-//      }
-// }else{
-//      echo "<script type='text/javascript'> window.location.assign('?page=login')</script>";
-// }
-?>
-
-<?php
 //Delete product by ID
 if (isset($_GET['id'])) {
      $id = $_GET['id'];

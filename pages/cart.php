@@ -1,5 +1,15 @@
 <?php
 include './admin/page/connect.php';
+
+if (!function_exists('currency_format')) {
+     function currency_format($number, $suffix = ' vnđ')
+     {
+          if (!empty($number)) {
+               return number_format($number, 0, ',', '.') . "{$suffix}";
+          }
+     }
+}
+
 ?>
 <div id="main-content-wp" class="cart-page">
      <div id="wrapper" class="wp-inner clearfix">
@@ -17,26 +27,26 @@ include './admin/page/connect.php';
                          </thead>
                          <tbody>
                               <?php
-                                   $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-                                   $parts = parse_url($url);
-                                   parse_str($parts['query'], $query);
-                                   $user_id = $query['user_id'];
-                                   $sql = "SELECT * FROM cart WHERE user_id = '$user_id' GROUP BY name";
+                              $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+                              $parts = parse_url($url);
+                              parse_str($parts['query'], $query);
+                              $user_id = $query['user_id'];
+                              $sql = "SELECT * FROM cart WHERE user_id = '$user_id' GROUP BY name";
 
-                                   $res = mysqli_query($conn, $sql);
-                                   $count = mysqli_num_rows($res);
-                                   $total = 0;
-                                   if ($count > 0) {
-                                        while ($row = mysqli_fetch_assoc($res)) {
-                                             $img = $row['img'];
-                                             $name = $row['name'];
-                                             $price = $row['price'];
-                                             $quantity = $row['quantity'];
-                                             $priceDisplay = number_format($row['price']);
-                                             $id = $row['prod_id'];
-                                             $total = $total + $price * $quantity;
-                                             // $temp = $total;
-                                             // $totalDisplay = number_format($total);
+                              $res = mysqli_query($conn, $sql);
+                              $count = mysqli_num_rows($res);
+                              $total = 0;
+                              if ($count > 0) {
+                                   while ($row = mysqli_fetch_assoc($res)) {
+                                        $img = $row['img'];
+                                        $name = $row['name'];
+                                        $price = $row['price'];
+                                        $quantity = $row['quantity'];
+                                        $priceDisplay = number_format($row['price']);
+                                        $id = $row['prod_id'];
+                                        $total = $total + $price * $quantity;
+                                        // $temp = $total;
+                                        // $totalDisplay = number_format($total);
                               ?>
                               <tr id="tr<?= $id ?>">
                                    <td>
@@ -47,16 +57,18 @@ include './admin/page/connect.php';
                                    <td>
                                         <div><?= $name ?></div>
                                    </td>
-                                   <td id="price<?= $id ?>"><?= $price ?></td>
+                                   <td id="price<?= $id ?>"><?= $price; ?></td>
                                    <td>
-                                        <input class="prod-id" style="display: none" value="<?=$id ?>" />
-                                        <input onChange="changePrice(this.value, <?= $id ?>)" type="text" name="num-order" value="<?= $quantity ?>" class="num-order">
+                                        <input class="prod-id" style="display: none" value="<?= $id ?>" />
+                                        <input onChange="changePrice(this.value, <?= $id ?>)" type="text"
+                                             name="num-order" value="<?= $quantity ?>" class="num-order">
                                    </td>
                                    <td class="priceTotal" id="total<?= $id ?>">
                                         <?= $price * $quantity ?>
                                    </td>
                                    <td>
-                                        <a onclick="removeItem('<?= $id ?>')" type="button"title="" class="del-product"><i class="fa fa-trash-o"></i></a>
+                                        <a onclick="removeItem('<?= $id ?>')" type="button" title=""
+                                             class="del-product"><i class="fa fa-trash-o"></i></a>
                                    </td>
                               </tr>
                               <?php
@@ -68,7 +80,10 @@ include './admin/page/connect.php';
                               <tr>
                                    <td colspan="7">
                                         <div class="clearfix">
-                                             <p id="total-price" class="fl-right">Tổng giá: <span id="allPrice"><?= $total ?></span> <span>đ</span></p>
+                                             <p id="total-price" class="fl-right">Tổng giá: <span
+                                                       id="allPrice"><?= currency_format($total); ?></span>
+                                                  <span>vnđ</span>
+                                             </p>
                                         </div>
                                    </td>
                               </tr>

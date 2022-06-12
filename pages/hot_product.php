@@ -8,7 +8,7 @@ include './admin/page/connect.php';
      <div class="section-detail">
           <ul class="list-item">
                <?php
-               $sql = "SELECT * FROM product WHERE isSpecial = 1 ORDER BY RAND() LIMIT 4";
+               $sql = "SELECT * FROM product WHERE isSpecial = 1 AND quantity != 0 ORDER BY RAND() LIMIT 4";
 
                $res = mysqli_query($conn, $sql);
                $count = mysqli_num_rows($res);
