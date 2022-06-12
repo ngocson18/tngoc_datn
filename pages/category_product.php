@@ -150,9 +150,10 @@ $count3 = mysqli_num_rows($res3);
                                         <span class="old"><?= currency_format($old_price); ?></span>
                                    </div>
                                    <div class="action clearfix">
-                                        <a href="?page=cart" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ
+                                        <a style="text-align: center;" href="?page=cart" ti tle="Thêm giỏ hàng"
+                                             class="add-cart fl-center">Thêm giỏ
                                              hàng</a>
-                                        <a href="?page=checkout" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
+
                                    </div>
                               </li>
                               <?php

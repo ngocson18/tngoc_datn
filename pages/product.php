@@ -41,9 +41,9 @@ include './admin/page/connect.php';
                     </div>
                     <div class="action clearfix">
                          <a type="button"
-                              style="<?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
+                              style="text-align: center; <?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
                               onClick="showHint('<?= $prod_id ?>','<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"
-                              title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ
+                              title="Thêm giỏ hàng" class="add-cart fl-center">Thêm giỏ
                               hàng</a>
                     </div>
                </li>
@@ -94,9 +94,9 @@ include './admin/page/connect.php';
                     </div>
                     <div class="action clearfix">
                          <a type="button"
-                              style="<?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
+                              style="text-align: center; <?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
                               onClick="showHint('<?= $prod_id ?>','<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"
-                              title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ
+                              title="Thêm giỏ hàng" class="add-cart fl-center">Thêm giỏ
                               hàng</a>
                     </div>
                </li>
@@ -147,9 +147,9 @@ include './admin/page/connect.php';
                     </div>
                     <div class="action clearfix">
                          <a type="button"
-                              style="<?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
+                              style="text-align: center; <?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
                               onClick="showHint('<?= $prod_id ?>','<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"
-                              title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ
+                              title="Thêm giỏ hàng" class="add-cart fl-center">Thêm giỏ
                               hàng</a>
                     </div>
                </li>
@@ -200,9 +200,9 @@ include './admin/page/connect.php';
                     </div>
                     <div class="action clearfix">
                          <a type="button"
-                              style="<?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
+                              style="text-align: center; <?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
                               onClick="showHint('<?= $prod_id ?>','<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"
-                              title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ
+                              title="Thêm giỏ hàng" class="add-cart fl-center">Thêm giỏ
                               hàng</a>
                     </div>
                </li>
