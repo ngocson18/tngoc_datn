@@ -68,7 +68,7 @@ include './admin/page/connect.php';
                <div class="section-detail">
                     <ul class="list-item">
                          <?php
-                         $sql = "SELECT * FROM product ORDER BY RAND() LIMIT 2";
+                         $sql = "SELECT * FROM product WHERE quantity > 0 ORDER BY RAND() LIMIT 2";
 
                          $res = mysqli_query($conn, $sql);
 
@@ -102,7 +102,9 @@ include './admin/page/connect.php';
                                         <span class="new"><?= currency_format($new_price); ?></span>
                                         <span class="old"><?= currency_format($old_price); ?></span>
                                    </div>
-                                   <a href="" title="" class="buy-now">Mua ngay</a>
+                                   <!-- <a href="" title="" class="buy-now">Mua ngay</a> -->
+                                   <a href="?page=detail_product&id=<?= $prod_id ?>" title=""
+                                        class="product-name">Mua ngay</a>
                               </div>
                          </li>
                          <?php

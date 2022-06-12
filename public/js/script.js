@@ -28,7 +28,6 @@ function showHint(prod_id, name, img, new_price) {
       },
       success : function (result1) {
         console.log(result1);
-        // document.getElementById("card-detail").innerHTML = "";
         var param = `user_id=${user_id}`;
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("POST", `pages/load_cart2.php?user_id=${user_id}`);
@@ -49,7 +48,7 @@ function showHint(prod_id, name, img, new_price) {
   }
 }
 
-function showHint2(prod_id, name, img, new_price) {
+function insertCartForDetailpage(prod_id, name, img, new_price) {
   let quantity = $('#num-order').val();
   console.log(quantity);
   if(typeof name === 'string') {

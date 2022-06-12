@@ -108,10 +108,28 @@ $count = mysqli_num_rows($res);
                                    <a title="" id="plus"><i class="fa fa-plus"></i></a>
 
                               </div>
+                              <?php
+                                   if($quantity == 0) {
+                              ?>
                               <button style="<?= $quantity == 0 ? 'background-color: grey' : ''  ?>" type="button"
                                    <?= $quantity == 0 ? ' disabled ' : ''  ?>
-                                   onClick="showHint2('<?= $prod_id_from_url ?>','<?= $prod_name ?>', '<?= $main_img ?>', '<?= $new_price  ?>')"
+                                   onClick="insertCartForDetailpage('<?= $prod_id_from_url ?>','<?= $prod_name ?>', '<?= $main_img ?>', '<?= $new_price  ?>')"
+                                   title="Thêm giỏ hàng" class="add-cart">Hết hàng</button>
+
+                              <?php
+                                   }
+                              ?>
+
+                              <?php 
+                                   if($quantity != 0) {
+                              ?>
+                              <button style="<?= $quantity == 0 ? 'background-color: grey' : ''  ?>" type="button"
+                                   <?= $quantity == 0 ? ' disabled ' : ''  ?>
+                                   onClick="insertCartForDetailpage('<?= $prod_id_from_url ?>','<?= $prod_name ?>', '<?= $main_img ?>', '<?= $new_price  ?>')"
                                    title="Thêm giỏ hàng" class="add-cart">Thêm giỏ hàng</button>
+                              <?php
+                                   }
+                                   ?>   
                          </div>
                     </div>
                </div>

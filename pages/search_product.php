@@ -38,6 +38,7 @@ $count2 = mysqli_num_rows($res2);
                                         $prod_id = $row2['product_id'];
                                         $img = $row2['img'];
                                         $name = $row2['name'];
+                                        $quantity = $row2['quantity'];
                                         $old_price = $row2['price'];
                                         $new_price = $row2['price'] - $row2['price'] * $row2['discount'] / 100;
                               ?>
@@ -62,8 +63,23 @@ $count2 = mysqli_num_rows($res2);
                                         <span class="old"><?= currency_format($old_price); ?></span>
                                    </div>
                                    <div class="action clearfix">
-                                        <a href="?page=cart" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ
-                                             hàng</a>
+                                        <?php 
+                                        if($quantity == 0) {
+                                        ?>
+                                        <a type="button"  style="text-align: center; <?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
+                              onClick="showHint('<?= $prod_id ?>','<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"  title="Thêm giỏ hàng" class="add-cart fl-left">Hết hàng</a>
+                                             <?php
+                                        }
+                                        ?>
+
+<?php 
+                                        if($quantity > 0) {
+                                        ?>
+                                         <a type="button" style="text-align: center; <?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
+                              onClick="showHint('<?= $prod_id ?>','<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
+                                         <?php
+                                        }
+                                        ?>
                                    </div>
                               </li>
                               <?php

@@ -169,12 +169,12 @@ if (!function_exists('currency_format')) {
                          <div id="payment-checkout-wp">
                               <ul id="payment_methods">
                                    <li>
-                                        <input type="radio" id="direct-payment" name="payment-method"
+                                        <input checked required type="radio" id="direct-payment" name="payment-method"
                                              value="direct-payment">
                                         <label for="direct-payment">Thanh toán tại cửa hàng</label>
                                    </li>
                                    <li>
-                                        <input type="radio" id="payment-home" name="payment-method"
+                                        <input  type="radio" id="payment-home" name="payment-method"
                                              value="payment-home">
                                         <label for="payment-home">Thanh toán tại nhà</label>
                                    </li>

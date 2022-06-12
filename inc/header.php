@@ -156,7 +156,7 @@
      </script>
 </head>
 
-<body>
+<body style="overflow-x: hidden">
      <div id="site">
           <div id="container">
                <div id="header-wp">
@@ -168,14 +168,14 @@
                                         <li>
                                              <a href="?page=home" title="">Trang chủ</a>
                                         </li>
-                                        <li>
+                                        <!-- <li>
                                              <a href="?page=category_product" title="">Món ăn</a>
-                                        </li>
+                                        </li> -->
                                         <li>
                                              <a href="?page=blog" title="">Blog</a>
                                         </li>
                                         <li>
-                                             <a href="#" id="user_name">
+                                             <a href="#" id="user_name" style="font-weight: 800">
                                              </a>
                                         </li>
                                         <li>
@@ -193,7 +193,7 @@
                               <div id="search-wp" class="fl-left">
                                    <form method="POST" action="">
                                         <input type="text" name="s" id="s" onkeyup="search(this.value)"
-                                             placeholder="Nhập từ khóa tìm kiếm tại đây!">
+                                             placeholder="Nhập từ khóa tìm kiếm tại đây!" >
                                         <a type="button" onClick="gotoSearch()" id="sm-s">Tìm kiếm</a>
                                    </form>
                                    <div id="result"></div>

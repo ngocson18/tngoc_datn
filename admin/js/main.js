@@ -28,6 +28,8 @@ $(document).ready(function () {
     
 });
 
+// here
+
 function changeStatus(value, order_id) {
     $.ajax({
         url : 'page/update_order_status.php',
