@@ -110,6 +110,25 @@ function checkLogin() {
   }
 }
 
+function removeItem(id) {
+  let element = document.getElementById(`tr${id}`);
+  element.remove();
+
+  $.ajax({
+    url : 'pages/deleteItem.php',
+    type : 'POST',
+    dataType: 'text',
+    data: { 
+      prod_id: id,
+      user_id: user_id,
+    },
+    success : function (result1) {
+
+    },
+  });
+}
+
 $(document).ready(showHint);
 $(document).ready(changePrice);
 $(document).ready(checkLogin);
+$(document).ready(removeItem);

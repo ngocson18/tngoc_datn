@@ -64,7 +64,6 @@ $count2 = mysqli_num_rows($res2);
                                    <div class="action clearfix">
                                         <a href="?page=cart" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ
                                              hàng</a>
-                                        <a href="?page=checkout" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
                                    </div>
                               </li>
                               <?php

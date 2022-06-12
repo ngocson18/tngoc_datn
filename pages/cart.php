@@ -38,8 +38,7 @@ include './admin/page/connect.php';
                                              // $temp = $total;
                                              // $totalDisplay = number_format($total);
                               ?>
-                              <tr>
-
+                              <tr id="tr<?= $id ?>">
                                    <td>
                                         <a href="" title="" class="thumb">
                                              <img style="width: 150px; height: 100px" src="<?= $img ?>" alt="">
@@ -57,7 +56,7 @@ include './admin/page/connect.php';
                                         <?= $price * $quantity ?>
                                    </td>
                                    <td>
-                                        <a href="" title="" class="del-product"><i class="fa fa-trash-o"></i></a>
+                                        <a onclick="removeItem('<?= $id ?>')" type="button"title="" class="del-product"><i class="fa fa-trash-o"></i></a>
                                    </td>
                               </tr>
                               <?php

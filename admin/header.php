@@ -118,6 +118,10 @@ require("page/session-user.php");
                                    <a href="?page=statistical">Báo cáo - thống kê</a>
                               </li>
 
+                              <!-- <li>
+                                   <a href="?page=hangton">Hàng tồn</a>
+                              </li> -->
+
                               <li>
                                    <a href="?page=login" onClick="<?= session_unset();
                                                                       session_destroy(); ?>" title="">Logout</a>

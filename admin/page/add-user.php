@@ -19,23 +19,24 @@
                          <form action="" method="POST">
                               <div class="form-group">
                                    <label for="title">Tên người dùng</label>
-                                   <input class="form-control" type="text" name="user_name" id="title">
+                                   <input required class="form-control" type="text" name="user_name" id="title">
                               </div>
                               <div class="form-group">
                                    <label for="title">Mật khẩu</label>
-                                   <input class="form-control" type="text" name="password" id="password">
+                                   <input required class="form-control" type="text" name="password" id="password">
                               </div>
                               <div class="form-group">
                                    <label for="title">Địa chỉ</label>
-                                   <input class="form-control" type="text" name="user_address" id="address">
+                                   <input required class="form-control" type="text" name="user_address" id="address">
                               </div>
                               <div class="form-group">
                                    <label for="title">Số điện thoại</label>
-                                   <input class="form-control" type="text" name="user_phone" id="phone">
+                                   <input required onkeyup="validatePhone(this.value)" class="form-control" type="text" name="user_phone" id="phone">
+                                   <span id="validatePhone" style="color: red; display: none">Sai định dạng</span>
                               </div>
                               <div class="form-group">
                                    <label for="title">Email</label>
-                                   <input class="form-control" type="text" name="user_email" id="email">
+                                   <input required class="form-control" type="text" name="user_email" id="email">
                               </div>
                               <div class="form-group">
                                    <label for="exampleFormControlSelect1">Quyền truy cập</label>
@@ -46,7 +47,7 @@
                               </div>
 
 
-                              <button type="submit" name="submit" id="btn-submit">Thêm người dùng</button>
+                              <button disabled type="submit" name="submit" id="btn-submit">Thêm người dùng</button>
                          </form>
                          <?php 
                               if(isset($_POST['submit'])){

@@ -15,6 +15,7 @@ include './admin/page/connect.php';
                     while ($row = mysqli_fetch_assoc($res)) {
                          $prod_id = $row['product_id'];
                          $img = $row['img'];
+                         $quantity = $row['quantity'];
                          $name = $row['name'];
                          $old_price = $row['price'];
                          $new_price = $row['price'] - $row['price'] * $row['discount'] / 100;
@@ -40,10 +41,10 @@ include './admin/page/connect.php';
                     </div>
                     <div class="action clearfix">
                          <a type="button"
+                              style="<?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
                               onClick="showHint('<?= $prod_id ?>','<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"
                               title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ
                               hàng</a>
-                         <a href="?page=checkout" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
                     </div>
                </li>
                <?php
@@ -67,6 +68,7 @@ include './admin/page/connect.php';
                     while ($row = mysqli_fetch_assoc($res)) {
                          $prod_id = $row['product_id'];
                          $img = $row['img'];
+                         $quantity = $row['quantity'];
                          $name = $row['name'];
                          $old_price = $row['price'];
                          $new_price = $row['price'] - $row['price'] * $row['discount'] / 100;
@@ -92,10 +94,10 @@ include './admin/page/connect.php';
                     </div>
                     <div class="action clearfix">
                          <a type="button"
+                              style="<?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
                               onClick="showHint('<?= $prod_id ?>','<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"
                               title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ
                               hàng</a>
-                         <a href="?page=checkout" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
                     </div>
                </li>
                <?php
@@ -119,6 +121,7 @@ include './admin/page/connect.php';
                     while ($row = mysqli_fetch_assoc($res)) {
                          $prod_id = $row['product_id'];
                          $img = $row['img'];
+                         $quantity = $row['quantity'];
                          $name = $row['name'];
                          $old_price = $row['price'];
                          $new_price = $row['price'] - $row['price'] * $row['discount'] / 100;
@@ -144,10 +147,10 @@ include './admin/page/connect.php';
                     </div>
                     <div class="action clearfix">
                          <a type="button"
+                              style="<?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
                               onClick="showHint('<?= $prod_id ?>','<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"
                               title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ
                               hàng</a>
-                         <a href="?page=checkout" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
                     </div>
                </li>
                <?php
@@ -171,6 +174,7 @@ include './admin/page/connect.php';
                     while ($row = mysqli_fetch_assoc($res)) {
                          $prod_id = $row['product_id'];
                          $img = $row['img'];
+                         $quantity = $row['quantity'];
                          $name = $row['name'];
                          $old_price = $row['price'];
                          $new_price = $row['price'] - $row['price'] * $row['discount'] / 100;
@@ -196,10 +200,10 @@ include './admin/page/connect.php';
                     </div>
                     <div class="action clearfix">
                          <a type="button"
+                              style="<?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
                               onClick="showHint('<?= $prod_id ?>','<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"
                               title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ
                               hàng</a>
-                         <a href="?page=checkout" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
                     </div>
                </li>
                <?php

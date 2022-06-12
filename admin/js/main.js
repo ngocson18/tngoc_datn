@@ -46,6 +46,26 @@ function changeStatus(value, order_id) {
 
 }
 
+function validateUSPhoneNumber(phoneNumber) {
+    var regExp = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
+    var phone = phoneNumber.match(regExp);
+    if (phone) {
+      return true;
+    }
+    return false;
+}
+
+function validatePhone(value) {
+    console.log(value);
+    if(value.length > 0 && value.length <= 10 && validateUSPhoneNumber(value)) {
+        document.getElementById("btn-submit").removeAttribute("disabled");
+        document.getElementById("validatePhone").style.display = 'none';
+    } else {
+        document.getElementById("btn-submit").setAttribute("disabled", true);
+        document.getElementById("validatePhone").style.display = 'block';
+    }
+}
+
 function convertDate() {
     let newDate = new Date();
     let year = new Date(newDate).getFullYear();
@@ -75,3 +95,5 @@ function changeDay(value) {
 $(document).ready(changeStatus);
 $(document).ready(convertDate);
 $(document).ready(changeDay);
+$(document).ready(validatePhone);
+$(document).ready(validateUSPhoneNumber);

@@ -102,8 +102,10 @@ include 'connect.php';
                                    </div>
                               </div>
                          </div>
-
-                         <input onChange="changeDay(this.value)" type="date" id="choose" name="choose">
+                         <!-- <div style="display: flex; flex-direction: row; justify-content: space-between"> -->
+                              <input onChange="changeDay(this.value)" type="date" id="choose" name="choose">
+                              <a style="float: right"href="?page=hangton">Kiểm tra SL hàng</a> <br />
+                         <!-- </div> -->
                          <div class="card mb-4 mt-3">
                               <div class="card-body">
                                    <div id="result-area" class="table-responsive">

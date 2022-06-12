@@ -96,7 +96,8 @@
                     phone: "000",
                },
                success: function(result2) {
-                    console.log('111', result2);
+                    orderForUpdate = result2;
+                    localStorage.setItem('order_id', result2);
                     for (let i = 0; i < iDArr.length; i++) {
                          $.ajax({
                               url: 'pages/update_order_detail.php',
@@ -108,7 +109,6 @@
                                    order_id: result2,
                               },
                               success: function(result3) {
-                                   // console.log(result2);
                                    window.location.href =
                                         `?page=checkout&user_id=${user_exist}`;
 
@@ -125,7 +125,8 @@
           let phone = document.getElementById('phone').value;
           let email = document.getElementById('email').value;
           let address = document.getElementById('address').value;
-          if (name !== '' && phone !== '') {
+          let orderId = localStorage.getItem('order_id');
+          if (name !== '' && phone !== '' && email !== '' && address !== '' ) {
                $.ajax({
                     url: 'pages/giaohang.php',
                     type: 'POST',
@@ -134,10 +135,12 @@
                          name: name,
                          phone: phone,
                          email: email,
-                         address: address
+                         address: address,
+                         order_id: orderId
                     },
                     success: function(result2) {
                          alert("Đặt hàng thành công");
+                         localStorage.removeItem('order_id');
                          window.location.href = `?page=home`;
                     }
                })
