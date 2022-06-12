@@ -21,94 +21,22 @@
                          <ul class="list-item">
                               <li class="clearfix">
                                    <a href="?page=detail_blog" title="" class="thumb fl-left">
-                                        <img src="public/images/img-post-01.jpg" alt="">
+                                        <img src="./public/images/Food_img/banhcay_vn.jpg" alt="">
                                    </a>
                                    <div class="info fl-right">
-                                        <a href="?page=detail_blog" title="" class="title">Mời gọi kiều bào hiến kế,
-                                             chung sức xây dựng phát triển TP. Hồ Chí Minh</a>
-                                        <span class="create-date">28/11/2017</span>
-                                        <p class="desc">Trong ngày hôm nay (11/11) đoàn kiều bào đã tổ chức thành 4 nhóm
-                                             đi tham quan các điểm như huyện Cần Giờ, Đại học Quốc gia, Khu công nghệ
-                                             cao TP.HCM, Công viên phần mềm Quang Trung, Khu Nông nghiệp Công nghệ cao,
-                                             Khu Đô thị mới Thủ Thiêm, Cảng Cát Lái... để kiều bào hiểu thêm về tình
-                                             hình phát [...]</p>
+                                        <a href="?page=detail_blog" title="" class="title">Bánh cay việt nam đang trở
+                                             nên gây sốt trên mạng xã hội.</a>
+                                        <span class="create-date">12/06/2022</span>
+                                        <p class="desc">Gần đây, món bánh cay thần thánh đang gây sốt trong giới trẻ Hà
+                                             Thành. Bánh cay được làm từ sắn, tôm nõn xay trộn cùng hành và bột ớt, ăn
+                                             vào ngòn ngọt, giòn giòn. Ăn cái thứ nhất, bạn sẽ chưa cảm nhận được vị
+                                             cay, nhưng càng ăn càng thấy cay cay, tê tê, tuy cay mà ngọt nên cũng hấp
+                                             dẫn, dễ ăn. Không gian quán khá rộng rãi, nên các bạn thoải mái ngồi thưởng
+                                             thức. Tại đây, ngoài bánh cay cũng bán cả bánh ngô, khoai, chuối với giá
+                                             7.000đ/chiếc.</p>
                                    </div>
                               </li>
-                              <li class="clearfix">
-                                   <a href="?page=detail_blog" title="" class="thumb fl-left">
-                                        <img src="public/images/img-post-01.jpg" alt="">
-                                   </a>
-                                   <div class="info fl-right">
-                                        <a href="?page=detail_blog" title="" class="title">Mời gọi kiều bào hiến kế,
-                                             chung sức xây dựng phát triển TP. Hồ Chí Minh</a>
-                                        <span class="create-date">28/11/2017</span>
-                                        <p class="desc">Trong ngày hôm nay (11/11) đoàn kiều bào đã tổ chức thành 4 nhóm
-                                             đi tham quan các điểm như huyện Cần Giờ, Đại học Quốc gia, Khu công nghệ
-                                             cao TP.HCM, Công viên phần mềm Quang Trung, Khu Nông nghiệp Công nghệ cao,
-                                             Khu Đô thị mới Thủ Thiêm, Cảng Cát Lái... để kiều bào hiểu thêm về tình
-                                             hình phát [...]</p>
-                                   </div>
-                              </li>
-                              <li class="clearfix">
-                                   <a href="?page=detail_blog" title="" class="thumb fl-left">
-                                        <img src="public/images/img-post-01.jpg" alt="">
-                                   </a>
-                                   <div class="info fl-right">
-                                        <a href="?page=detail_blog" title="" class="title">Mời gọi kiều bào hiến kế,
-                                             chung sức xây dựng phát triển TP. Hồ Chí Minh</a>
-                                        <span class="create-date">28/11/2017</span>
-                                        <p class="desc">Trong ngày hôm nay (11/11) đoàn kiều bào đã tổ chức thành 4 nhóm
-                                             đi tham quan các điểm như huyện Cần Giờ, Đại học Quốc gia, Khu công nghệ
-                                             cao TP.HCM, Công viên phần mềm Quang Trung, Khu Nông nghiệp Công nghệ cao,
-                                             Khu Đô thị mới Thủ Thiêm, Cảng Cát Lái... để kiều bào hiểu thêm về tình
-                                             hình phát [...]</p>
-                                   </div>
-                              </li>
-                              <li class="clearfix">
-                                   <a href="?page=detail_blog" title="" class="thumb fl-left">
-                                        <img src="public/images/img-post-01.jpg" alt="">
-                                   </a>
-                                   <div class="info fl-right">
-                                        <a href="?page=detail_blog" title="" class="title">Mời gọi kiều bào hiến kế,
-                                             chung sức xây dựng phát triển TP. Hồ Chí Minh</a>
-                                        <span class="create-date">28/11/2017</span>
-                                        <p class="desc">Trong ngày hôm nay (11/11) đoàn kiều bào đã tổ chức thành 4 nhóm
-                                             đi tham quan các điểm như huyện Cần Giờ, Đại học Quốc gia, Khu công nghệ
-                                             cao TP.HCM, Công viên phần mềm Quang Trung, Khu Nông nghiệp Công nghệ cao,
-                                             Khu Đô thị mới Thủ Thiêm, Cảng Cát Lái... để kiều bào hiểu thêm về tình
-                                             hình phát [...]</p>
-                                   </div>
-                              </li>
-                              <li class="clearfix">
-                                   <a href="?page=detail_blog" title="" class="thumb fl-left">
-                                        <img src="public/images/img-post-01.jpg" alt="">
-                                   </a>
-                                   <div class="info fl-right">
-                                        <a href="?page=detail_blog" title="" class="title">Mời gọi kiều bào hiến kế,
-                                             chung sức xây dựng phát triển TP. Hồ Chí Minh</a>
-                                        <span class="create-date">28/11/2017</span>
-                                        <p class="desc">Trong ngày hôm nay (11/11) đoàn kiều bào đã tổ chức thành 4 nhóm
-                                             đi tham quan các điểm như huyện Cần Giờ, Đại học Quốc gia, Khu công nghệ
-                                             cao TP.HCM, Công viên phần mềm Quang Trung, Khu Nông nghiệp Công nghệ cao,
-                                             Khu Đô thị mới Thủ Thiêm, Cảng Cát Lái... để kiều bào hiểu thêm về tình
-                                             hình phát [...]</p>
-                                   </div>
-                              </li>
-                              <li class="clearfix">
-                                   <a href="?page=detail_blog" title="" class="thumb fl-left">
-                                        <img src="public/images/img-post-01.jpg" alt="">
-                                   </a>
-                                   <div class="info fl-right">
-                                        <a href="?page=detail_blog" title="" class="title">Mời gọi kiều bào hiến kế,
-                                             chung sức xây dựng phát triển TP. Hồ Chí Minh</a>
-                                        <span class="create-date">28/11/2017</span>
-                                        <p class="desc">Trong ngày hôm nay (11/11) đoàn kiều bào đã tổ chức thành 4 nhóm
-                                             đi tham quan các điểm như huyện Cần Giờ, Đại học Quốc gia, Khu công nghệ
-                                             cao TP.HCM, Công viên phần mềm Quang Trung, Khu Nông nghiệp Công nghệ cao,
-                                             Khu Đô thị mới Thủ Thiêm, Cảng Cát Lái... để kiều bào hiểu thêm về tình
-                                             hình phát [...]</p>
-                                   </div>
-                              </li>
+
                          </ul>
                     </div>
                </div>
@@ -128,128 +56,8 @@
                     </div>
                </div>
           </div>
-          <div class="sidebar fl-left">
-               <div class="section" id="selling-wp">
-                    <div class="section-head">
-                         <h3 class="section-title">Sản phẩm bán chạy</h3>
-                    </div>
-                    <div class="section-detail">
-                         <ul class="list-item">
-                              <li class="clearfix">
-                                   <a href="?page=detail_product" title="" class="thumb fl-left">
-                                        <img src="public/images/img-pro-13.png" alt="">
-                                   </a>
-                                   <div class="info fl-right">
-                                        <a href="?page=detail_product" title="" class="product-name">Laptop Asus A540UP
-                                             I5</a>
-                                        <div class="price">
-                                             <span class="new">5.190.000đ</span>
-                                             <span class="old">7.190.000đ</span>
-                                        </div>
-                                        <a href="" title="" class="buy-now">Mua ngay</a>
-                                   </div>
-                              </li>
-                              <li class="clearfix">
-                                   <a href="?page=detail_product" title="" class="thumb fl-left">
-                                        <img src="public/images/img-pro-11.png" alt="">
-                                   </a>
-                                   <div class="info fl-right">
-                                        <a href="?page=detail_product" title="" class="product-name">Iphone X Plus</a>
-                                        <div class="price">
-                                             <span class="new">15.190.000đ</span>
-                                             <span class="old">17.190.000đ</span>
-                                        </div>
-                                        <a href="" title="" class="buy-now">Mua ngay</a>
-                                   </div>
-                              </li>
-                              <li class="clearfix">
-                                   <a href="?page=detail_product" title="" class="thumb fl-left">
-                                        <img src="public/images/img-pro-12.png" alt="">
-                                   </a>
-                                   <div class="info fl-right">
-                                        <a href="?page=detail_product" title="" class="product-name">Iphone X Plus</a>
-                                        <div class="price">
-                                             <span class="new">15.190.000đ</span>
-                                             <span class="old">17.190.000đ</span>
-                                        </div>
-                                        <a href="" title="" class="buy-now">Mua ngay</a>
-                                   </div>
-                              </li>
-                              <li class="clearfix">
-                                   <a href="?page=detail_product" title="" class="thumb fl-left">
-                                        <img src="public/images/img-pro-05.png" alt="">
-                                   </a>
-                                   <div class="info fl-right">
-                                        <a href="?page=detail_product" title="" class="product-name">Iphone X Plus</a>
-                                        <div class="price">
-                                             <span class="new">15.190.000đ</span>
-                                             <span class="old">17.190.000đ</span>
-                                        </div>
-                                        <a href="" title="" class="buy-now">Mua ngay</a>
-                                   </div>
-                              </li>
-                              <li class="clearfix">
-                                   <a href="?page=detail_product" title="" class="thumb fl-left">
-                                        <img src="public/images/img-pro-22.png" alt="">
-                                   </a>
-                                   <div class="info fl-right">
-                                        <a href="?page=detail_product" title="" class="product-name">Iphone X Plus</a>
-                                        <div class="price">
-                                             <span class="new">15.190.000đ</span>
-                                             <span class="old">17.190.000đ</span>
-                                        </div>
-                                        <a href="" title="" class="buy-now">Mua ngay</a>
-                                   </div>
-                              </li>
-                              <li class="clearfix">
-                                   <a href="?page=detail_product" title="" class="thumb fl-left">
-                                        <img src="public/images/img-pro-23.png" alt="">
-                                   </a>
-                                   <div class="info fl-right">
-                                        <a href="?page=detail_product" title="" class="product-name">Iphone X Plus</a>
-                                        <div class="price">
-                                             <span class="new">15.190.000đ</span>
-                                             <span class="old">17.190.000đ</span>
-                                        </div>
-                                        <a href="" title="" class="buy-now">Mua ngay</a>
-                                   </div>
-                              </li>
-                              <li class="clearfix">
-                                   <a href="?page=detail_product" title="" class="thumb fl-left">
-                                        <img src="public/images/img-pro-18.png" alt="">
-                                   </a>
-                                   <div class="info fl-right">
-                                        <a href="?page=detail_product" title="" class="product-name">Iphone X Plus</a>
-                                        <div class="price">
-                                             <span class="new">15.190.000đ</span>
-                                             <span class="old">17.190.000đ</span>
-                                        </div>
-                                        <a href="" title="" class="buy-now">Mua ngay</a>
-                                   </div>
-                              </li>
-                              <li class="clearfix">
-                                   <a href="?page=detail_product" title="" class="thumb fl-left">
-                                        <img src="public/images/img-pro-15.png" alt="">
-                                   </a>
-                                   <div class="info fl-right">
-                                        <a href="?page=detail_product" title="" class="product-name">Iphone X Plus</a>
-                                        <div class="price">
-                                             <span class="new">15.190.000đ</span>
-                                             <span class="old">17.190.000đ</span>
-                                        </div>
-                                        <a href="" title="" class="buy-now">Mua ngay</a>
-                                   </div>
-                              </li>
-                         </ul>
-                    </div>
-               </div>
-               <div class="section" id="banner-wp">
-                    <div class="section-detail">
-                         <a href="?page=detail_blog_product" title="" class="thumb">
-                              <img src="public/images/banner.png" alt="">
-                         </a>
-                    </div>
-               </div>
-          </div>
+          <?php
+          require './inc/sidebar.php';
+          ?>
      </div>
 </div>
