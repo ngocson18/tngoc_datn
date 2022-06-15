@@ -71,16 +71,27 @@ if (!function_exists('currency_format')) {
                                    </li>
 
                               </ul>
-                              <!-- <form action="" method="get" class="form-s fl-right">
+                              <form action="" method="get" class="form-s fl-right">
                                    <input type="text" name="s" id="s">
                                    <input type="submit" name="sm_s" value="Tìm kiếm">
-                              </form> -->
+                              </form>
+                         </div>
+                         <div class="actions">
+                              <form method="GET" action="" class="form-actions">
+                                   <select name="actions">
+                                        <option value="0">Tác vụ</option>
+                                        <option value="1">Công khai</option>
+                                        <option value="1">Chờ duyệt</option>
+                                        <option value="2">Bỏ vào thủng rác</option>
+                                   </select>
+                                   <input type="submit" name="sm_action" value="Lọc">
+                              </form>
                          </div>
                          <div class="table-responsive">
                               <table class="table list-table-wp">
                                    <thead>
                                         <tr>
-                                             <td><input type="checkbox" name="checkAll" id="checkAll"></td>
+                                             <!-- <td><input type="checkbox" name="checkAll" id="checkAll"></td> -->
                                              <td><span class="thead-text">STT</span></td>
                                              <td><span class="thead-text">Mã đơn hàng</span></td>
                                              <td><span class="thead-text">Tên khách hàng</span></td>
@@ -109,7 +120,7 @@ if (!function_exists('currency_format')) {
                                                   $address = $row['address'];
                                         ?>
                                         <tr>
-                                             <td><input type="checkbox" name="checkItem" class="checkItem"></td>
+                                             <!-- <td><input type="checkbox" name="checkItem" class="checkItem"></td> -->
                                              <td><span class="tbody-text"><?= $sn++ ?></span></td>
                                              <td><span class="tbody-text"><?= $order_id ?></span></td>
                                              <td><span class="tbody-text tb-title fl-left"><?= $name ?></span></td>

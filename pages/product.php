@@ -40,28 +40,28 @@ include './admin/page/connect.php';
                          <span class="old"><?= currency_format($old_price); ?></span>
                     </div>
                     <div class="action clearfix">
-                    <?php 
-                         if($quantity == 0) {
-                         ?>
-                              <a type="button"
+                         <?php
+                                   if ($quantity == 0) {
+                                   ?>
+                         <a type="button"
                               style="text-align: center; <?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
                               onClick="showHint('<?= $prod_id ?>','<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"
                               title="Thêm giỏ hàng" class="add-cart fl-center">Hết hàng</a>
                          <?php
-                         }
-                         ?>
-                         <?php 
-                         if($quantity != 0) {
-                         ?>
-                          <a type="button"
+                                   }
+                                   ?>
+                         <?php
+                                   if ($quantity != 0) {
+                                   ?>
+                         <a type="button"
                               style="text-align: center; <?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
                               onClick="showHint('<?= $prod_id ?>','<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"
                               title="Thêm giỏ hàng" class="add-cart fl-center">Thêm giỏ
                               hàng</a>
 
                          <?php
-                         }
-                         ?>
+                                   }
+                                   ?>
                     </div>
                </li>
                <?php
@@ -110,28 +110,28 @@ include './admin/page/connect.php';
                          <span class="old"><?= currency_format($old_price); ?></span>
                     </div>
                     <div class="action clearfix">
-                    <?php 
-                         if($quantity == 0) {
-                         ?>
-                              <a type="button"
+                         <?php
+                                   if ($quantity == 0) {
+                                   ?>
+                         <a type="button"
                               style="text-align: center; <?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
                               onClick="showHint('<?= $prod_id ?>','<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"
                               title="Thêm giỏ hàng" class="add-cart fl-center">Hết hàng</a>
                          <?php
-                         }
-                         ?>
-                         <?php 
-                         if($quantity != 0) {
-                         ?>
-                          <a type="button"
+                                   }
+                                   ?>
+                         <?php
+                                   if ($quantity != 0) {
+                                   ?>
+                         <a type="button"
                               style="text-align: center; <?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
                               onClick="showHint('<?= $prod_id ?>','<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"
                               title="Thêm giỏ hàng" class="add-cart fl-center">Thêm giỏ
                               hàng</a>
 
                          <?php
-                         }
-                         ?>
+                                   }
+                                   ?>
                     </div>
                </li>
                <?php
@@ -180,29 +180,29 @@ include './admin/page/connect.php';
                          <span class="old"><?= currency_format($old_price); ?></span>
                     </div>
                     <div class="action clearfix">
-                         <?php 
-                         if($quantity == 0) {
-                         ?>
-                              <a type="button"
+                         <?php
+                                   if ($quantity == 0) {
+                                   ?>
+                         <a type="button"
                               style="text-align: center; <?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
                               onClick="showHint('<?= $prod_id ?>','<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"
                               title="Thêm giỏ hàng" class="add-cart fl-center">Hết hàng</a>
                          <?php
-                         }
-                         ?>
-                         <?php 
-                         if($quantity != 0) {
-                         ?>
-                          <a type="button"
+                                   }
+                                   ?>
+                         <?php
+                                   if ($quantity != 0) {
+                                   ?>
+                         <a type="button"
                               style="text-align: center; <?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
                               onClick="showHint('<?= $prod_id ?>','<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"
                               title="Thêm giỏ hàng" class="add-cart fl-center">Thêm giỏ
                               hàng</a>
 
                          <?php
-                         }
-                         ?>
-                         
+                                   }
+                                   ?>
+
                     </div>
                </li>
                <?php
@@ -251,28 +251,28 @@ include './admin/page/connect.php';
                          <span class="old"><?= currency_format($old_price); ?></span>
                     </div>
                     <div class="action clearfix">
-                    <?php 
-                         if($quantity == 0) {
-                         ?>
-                              <a type="button"
+                         <?php
+                                   if ($quantity == 0) {
+                                   ?>
+                         <a type="button"
                               style="text-align: center; <?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
                               onClick="showHint('<?= $prod_id ?>','<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"
                               title="Thêm giỏ hàng" class="add-cart fl-center">Hết hàng</a>
                          <?php
-                         }
-                         ?>
-                         <?php 
-                         if($quantity != 0) {
-                         ?>
-                          <a type="button"
+                                   }
+                                   ?>
+                         <?php
+                                   if ($quantity != 0) {
+                                   ?>
+                         <a type="button"
                               style="text-align: center; <?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
                               onClick="showHint('<?= $prod_id ?>','<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"
                               title="Thêm giỏ hàng" class="add-cart fl-center">Thêm giỏ
                               hàng</a>
 
                          <?php
-                         }
-                         ?>
+                                   }
+                                   ?>
                     </div>
                </li>
                <?php

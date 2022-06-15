@@ -1,57 +1,57 @@
 <?php
-     require 'connect.php';
-     include './header.php';
+require 'connect.php';
+include './header.php';
 ?>
 <?php
-     // Select data
-     $id = $_GET['id'];
+// Select data
+$id = $_GET['id'];
 
-     $sql = "SELECT * FROM product WHERE product_id = $id";
-     $sql5 = "SELECT * FROM category WHERE parent = 0";
+$sql = "SELECT * FROM product WHERE product_id = $id";
+$sql5 = "SELECT * FROM category WHERE parent = 0";
 
-     $res = mysqli_query($conn, $sql);
-     $res5 = mysqli_query($conn, $sql5);
+$res = mysqli_query($conn, $sql);
+$res5 = mysqli_query($conn, $sql5);
 
-     if(!$res){
-          die("Không thể thực hiện câu lệnh SQL: ".mysqli_error($conn));
-          exit();
+if (!$res) {
+     die("Không thể thực hiện câu lệnh SQL: " . mysqli_error($conn));
+     exit();
+}
+
+while ($row = mysqli_fetch_assoc($res)) {
+     $product_id = $row['product_id'];
+     $name = $row['name'];
+     $title = $row['title'];
+     $description = $row['description'];
+     $price = $row['price'];
+     $discount = $row['discount'];
+     $price_discount = $row['price_discount'];
+     $category = $row['category'];
+     $isSpecial = $row['isSpecial'];
+     $img = $row['img'];
+     $quantity = $row['quantity'];
+}
+
+// Update product
+if (isset($_POST['submit'])) {
+     $product_id = $_POST['product_id'];
+     $name = $_POST['name'];
+     $title = $_POST['title'];
+     $description = $_POST['description'];
+     $price = $_POST['price'];
+     $discount = $_POST['discount'];
+     $price_discount = $row['price_discount'];
+     $category = $_POST['category'];
+     $isSpecial = $_POST['isSpecial'];
+     $quantity = $_POST['quantity'];
+     if ($_POST['image'] != '') {
+          $image = $_POST['image'];
+          $imageForSave = 'public/images/Food_img/' . $image;
+     } else {
+          $image = $img;
+          $imageForSave = $image;
      }
 
-     while($row = mysqli_fetch_assoc($res)){
-          $product_id = $row['product_id'];
-          $name = $row['name'];
-          $title = $row['title'];
-          $description = $row['description'];
-          $price = $row['price'];
-          $discount = $row['discount'];
-          $price_discount = $row['price_discount'];
-          $category = $row['category'];
-          $isSpecial = $row['isSpecial'];
-          $img = $row['img'];
-          $quantity = $row['quantity'];
-     }
-
-     // Update product
-     if(isset($_POST['submit'])){
-          $product_id = $_POST['product_id'];
-          $name = $_POST['name'];
-          $title = $_POST['title'];
-          $description = $_POST['description'];
-          $price = $_POST['price'];
-          $discount = $_POST['discount'];
-          $price_discount = $row['price_discount'];
-          $category = $_POST['category'];
-          $isSpecial = $_POST['isSpecial'];
-          $quantity = $_POST['quantity'];
-          if($_POST['image'] != '') {
-               $image = $_POST['image'];
-               $imageForSave = 'public/images/Food_img/'.$image;
-          } else {
-               $image = $img;
-               $imageForSave = $image;
-          }
-
-          $sql2 = "UPDATE Product SET
+     $sql2 = "UPDATE Product SET
                name = '$name',
                title = '$title',
                description = '$description',
@@ -64,20 +64,19 @@
                quantity = '$quantity'
                WHERE product_id = $product_id
           ";
-          
-          $res2 = mysqli_query($conn, $sql2);
-          
-          if($res2 === TRUE){
-               echo "Add product Successfully";
-               echo "<script type='text/javascript'> window.location.assign('?page=list-product')</script>";
-          }else{
-               echo "Error: ".$sql.":-".mysqli_error($conn);
-          }
 
-     }
-     if(isset($_POST['rSubmit'])){
+     $res2 = mysqli_query($conn, $sql2);
+
+     if ($res2 === TRUE) {
+          echo "Add product Successfully";
           echo "<script type='text/javascript'> window.location.assign('?page=list-product')</script>";
+     } else {
+          echo "Error: " . $sql . ":-" . mysqli_error($conn);
      }
+}
+if (isset($_POST['rSubmit'])) {
+     echo "<script type='text/javascript'> window.location.assign('?page=list-product')</script>";
+}
 ?>
 <div id="main-content-wp" class="add-cat-page">
      <div class="wrap clearfix">
@@ -120,14 +119,15 @@
 
                               <div class="form-group">
                                    <label for="discount">Khuyễn mãi</label>
-                                   <input type="number" name="discount" min="0" max="100" id="price" value="<?= $discount; ?>">
+                                   <input type="number" name="discount" min="0" max="100" id="price"
+                                        value="<?= $discount; ?>">
                                    <span>%</span>
                               </div>
 
                               <div class="form-group">
                                    <label for="discretion">Mô tả món ăn</label>
                                    <textarea name="description" id="desc" cols="30" rows="10" class="ckeditor">
-                                        <?php echo $description;?>
+                                        <?php echo $description; ?>
                                    </textarea>
                               </div>
 
@@ -135,9 +135,9 @@
                                    <label for="exampleFormControlSelect1">Danh mục món ăn</label>
                                    <select name="category" class="form-control">
                                         <?php
-                                             foreach ($res5 as $key => $value):
-                                                  echo '<option value="'. $value['category_id'].'" '. ($category === $value['category_id'] ? "selected" : "") .'>'.$value['category_name'].'</option>';
-                                             endforeach
+                                        foreach ($res5 as $key => $value) :
+                                             echo '<option value="' . $value['category_id'] . '" ' . ($category === $value['category_id'] ? "selected" : "") . '>' . $value['category_name'] . '</option>';
+                                        endforeach
                                         ?>
                                    </select>
                               </div>
@@ -155,8 +155,12 @@
                               <div class="form-group">
                                    <label>Món đặc biệt</label>
                                    <select name="isSpecial">
-                                        <option value="1" <?php if($isSpecial == 1) {echo 'selected';} ?>>Có</option>
-                                        <option value="0" <?php if($isSpecial == 0) {echo 'selected';} ?>>Không</option>
+                                        <option value="1" <?php if ($isSpecial == 1) {
+                                                                 echo 'selected';
+                                                            } ?>>Có</option>
+                                        <option value="0" <?php if ($isSpecial == 0) {
+                                                                 echo 'selected';
+                                                            } ?>>Không</option>
                                    </select>
                               </div>
                               <div class="from-group">
@@ -170,6 +174,6 @@
      </div>
 </div>
 
-<?php 
-     include './footer.php';
+<?php
+include './footer.php';
 ?>

@@ -37,7 +37,7 @@ include './header.php';
 
                               <div class="form-group">
                                    <label for="discount">Khuyễn mãi</label>
-                                   <input type="text" name="discount" id="price">
+                                   <input type="number" name="discount" id="price" min="0" max="100">
                               </div>
 
 
@@ -100,7 +100,7 @@ if (isset($_POST['submit'])) {
      // $uploadOk = 1;
 
      //Thư mục bạn sẽ lưu file upload
-     $target_dir    = "public/images/Food_img/";
+     $target_dir    = "./public/images/Food_img/";
      //Vị trí file lưu tạm trong server (file sẽ lưu trong uploads, với tên giống tên ban đầu)
      $target_file   = $target_dir . basename($_FILES["upload-thumb"]["name"]);
 

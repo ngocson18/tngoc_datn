@@ -1,5 +1,42 @@
 <?php
 session_start();
+
+// session_start();
+include 'connect.php';
+if (isset($_POST['submit'])) {
+     $user_phone = $_POST['user_phone'];
+
+     $password = $_POST['password'];
+
+     $sql = "SELECT * FROM user WHERE user_phone = '$user_phone' AND password = '$password'";
+
+     $res = mysqli_query($conn, $sql);
+
+     $count = mysqli_num_rows($res);
+
+     if ($count == 1) {
+          // session_start();
+          $_SESSION['login'] = $user_phone;
+          $sql2 = "SELECT * FROM user WHERE user_phone = " . $_SESSION['login'];
+          $res2 = mysqli_query($conn, $sql2);
+          $row = mysqli_fetch_assoc($res2);
+          $name = $row['user_name'];
+          $user_id = $row['user_id'];
+          $_SESSION['role_user'] = $row['role_user'];
+
+          // if (isset($_SESSION['login'])) {
+          if ($row['role_user'] == 0) {
+               echo "<script type='text/javascript'> window.location.assign('?page=list-user'); localStorage.setItem('name', '" . $name . "');</script>";
+          } else {
+               echo "<script type='text/javascript'> window.location.assign('../?page=home&user_id=${user_id}'); localStorage.setItem('name', '" . $name . "');localStorage.setItem('user_id', '" . $user_id . "');</script>";
+          }
+          // }
+     } else {
+          // echo "<script type='text/javascript'> window.location.assign('?page=login')</script>";
+          $_SESSION['error'] = "Sai số điện thoại hoặc mật khẩu";
+     }
+     // }
+}
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +85,7 @@ session_start();
                     <h1 class="display-5"
                          style="font-weight: 150; border-bottom: 1px solid #FFF; padding-bottom: 12px;">Đăng nhập</h1>
 
-                    <form action="?page=session-user" method="POST">
+                    <form action="?page=login" method="POST">
                          <div class="form-group">
                               <label>Số điện thoại</label>
                               <input type="number" name="user_phone" class="form-control"

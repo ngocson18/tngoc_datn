@@ -82,6 +82,8 @@
                               <?php
                               if ($countorder > 0) {
                                    while ($roworder = mysqli_fetch_assoc($resorder)) {
+                                        $name = $roworder['name'];
+                                        $phone = $roworder['phone'];
                                         $address = $roworder['address'];
                                         $status = $roworder['status'];
                                         $total_money = $roworder['total_money'];
@@ -90,6 +92,14 @@
                               <li>
                                    <h3 class="title">Mã đơn hàng</h3>
                                    <span class="detail"><?= $order_id ?></span>
+                              </li>
+                              <li>
+                                   <h3 class="title">Tên khách hàng</h3>
+                                   <span class="detail"><?= $name ?></span>
+                              </li>
+                              <li>
+                                   <h3 class="title">SDT khách hàng</h3>
+                                   <span class="detail"><?= $phone ?></span>
                               </li>
                               <li>
                                    <h3 class="title">Địa chỉ nhận hàng</h3>

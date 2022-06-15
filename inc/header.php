@@ -126,7 +126,7 @@
           let email = document.getElementById('email').value;
           let address = document.getElementById('address').value;
           let orderId = localStorage.getItem('order_id');
-          if (name !== '' && phone !== '' && email !== '' && address !== '' ) {
+          if (name !== '' && phone !== '' && email !== '' && address !== '') {
                $.ajax({
                     url: 'pages/giaohang.php',
                     type: 'POST',
@@ -193,7 +193,7 @@
                               <div id="search-wp" class="fl-left">
                                    <form method="POST" action="">
                                         <input type="text" name="s" id="s" onkeyup="search(this.value)"
-                                             placeholder="Nhập từ khóa tìm kiếm tại đây!" >
+                                             placeholder="Nhập từ khóa tìm kiếm tại đây!">
                                         <a type="button" onClick="gotoSearch()" id="sm-s">Tìm kiếm</a>
                                    </form>
                                    <div id="result"></div>
@@ -218,29 +218,29 @@
                                              <!-- <p class="desc">Có <span>2 sản phẩm</span> trong giỏ hàng</p> -->
                                              <ul class="list-cart" id="card-detail">
                                                   <?php
-                    include './admin/page/connect.php';
-                    $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-                    $parts = parse_url($url);
-                    // var_dump(parse_str($parts));
-                    // die();
-                    if (isset($parts['query'])) {
-                      parse_str($parts['query'], $query);
-                      $user_id = $query['user_id'];
-                    } else {
-                      $user_id = 0;
-                    }
-                    $total = 0;
-                    $sql2 = "SELECT * FROM cart WHERE user_id = '$user_id'";
-                    $res2 = mysqli_query($conn, $sql2);
-                    $count2 = mysqli_num_rows($res2);
-                    if ($count2 > 0) {
-                      while ($row2 = mysqli_fetch_assoc($res2)) {
-                        $img = $row2['img'];
-                        $name_prod_in_cart = $row2['name'];
-                        $price_prod_in_cart = $row2['price'];
-                        $quantity_prod_in_cart = $row2['quantity'];
-                        $total = $total + $price_prod_in_cart * $quantity_prod_in_cart;
-                    ?>
+                                                  include './admin/page/connect.php';
+                                                  $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+                                                  $parts = parse_url($url);
+                                                  // var_dump(parse_str($parts));
+                                                  // die();
+                                                  if (isset($parts['query'])) {
+                                                       parse_str($parts['query'], $query);
+                                                       $user_id = $query['user_id'];
+                                                  } else {
+                                                       $user_id = 0;
+                                                  }
+                                                  $total = 0;
+                                                  $sql2 = "SELECT * FROM cart WHERE user_id = '$user_id'";
+                                                  $res2 = mysqli_query($conn, $sql2);
+                                                  $count2 = mysqli_num_rows($res2);
+                                                  if ($count2 > 0) {
+                                                       while ($row2 = mysqli_fetch_assoc($res2)) {
+                                                            $img = $row2['img'];
+                                                            $name_prod_in_cart = $row2['name'];
+                                                            $price_prod_in_cart = $row2['price'];
+                                                            $quantity_prod_in_cart = $row2['quantity'];
+                                                            $total = $total + $price_prod_in_cart * $quantity_prod_in_cart;
+                                                  ?>
                                                   <li class="clearfix">
                                                        <a href="" title="" class="thumb fl-left">
                                                             <img src="<?= $img ?>" alt="">
@@ -258,21 +258,20 @@
                                                        </div>
                                                   </li>
                                                   <?php
-                      }
-                    }
-                    ?>
+                                                       }
+                                                  }
+                                                  ?>
                                              </ul>
                                              <div class="total-price d-flex flex-row">
                                                   <span class="title">Tổng:</span>
                                                   <span id="total-price" class="price"><?= $total ?> </span>
                                                   <span>đ</span>
                                              </div>
-                                             <div class="action-cart clearfix">
+                                             <div style="text-align: center;" class="action-cart clearfix">
                                                   <a id="goCart" onClick="goCart()" title="Giỏ hàng"
-                                                       class="view-cart fl-left">Giỏ
+                                                       class="view-cart fl-center">Giỏ
                                                        hàng</a>
-                                                  <a href="?page=checkout" title="Thanh toán"
-                                                       class="checkout fl-right">Thanh toán</a>
+
                                              </div>
                                         </div>
                                    </div>

@@ -103,70 +103,73 @@ include 'connect.php';
                               </div>
                          </div>
                          <!-- <div style="display: flex; flex-direction: row; justify-content: space-between"> -->
-                              <input onChange="changeDay(this.value)" type="date" id="choose" name="choose">
-                              <a style="float: right"href="?page=hangton">Kiểm tra SL hàng</a> <br />
+                         <input onChange="changeDay(this.value)" type="date" id="choose" name="choose">
+                         <br />
                          <!-- </div> -->
                          <div class="card mb-4 mt-3">
                               <div class="card-body">
                                    <div id="result-area" class="table-responsive">
                                         <?php
-                                             $time = date('Y/m/d');
-                                             $sqlSoDonDaGiao = "SELECT COUNT(order_id) as sodondagiao FROM bepcuangoc.order WHERE created_at = '$time' AND status = 5";
-                                             $resultSoDonDaGiao = mysqli_query($conn, $sqlSoDonDaGiao);
-                                             foreach ($resultSoDonDaGiao as $key => $value):
-                                                  echo '<span>Số đơn hàng đã giao:</span>';
-                                                  echo '<span class="ml-3">'. $value['sodondagiao'] . ' Đơn</span> <br />';
-                                             endforeach;
+                                        $time = date('Y/m/d');
+                                        $sqlSoDonDaGiao = "SELECT COUNT(order_id) as sodondagiao FROM bepcuangoc.order WHERE created_at = '$time' AND status = 5";
+                                        $resultSoDonDaGiao = mysqli_query($conn, $sqlSoDonDaGiao);
+                                        foreach ($resultSoDonDaGiao as $key => $value) :
+                                             echo '<span>Số đơn hàng đã giao:</span>';
+                                             echo '<span class="ml-3">' . $value['sodondagiao'] . ' Đơn</span> <br />';
+                                        endforeach;
                                         ?>
                                         <?php
-                                             $time = date('Y/m/d');
-                                             $sqlSoDonHoan = "SELECT COUNT(order_id) as sodonhoan FROM bepcuangoc.order WHERE created_at = '$time' AND status = 4";
-                                             $resultSoDonHoan = mysqli_query($conn, $sqlSoDonHoan);
-                                             foreach ($resultSoDonHoan as $key => $value):
-                                                  echo '<span>Số đơn hoàn:</span>';
-                                                  echo '<span class="ml-3">'. $value['sodonhoan'] . ' Đơn</span> <br />';
-                                             endforeach;
+                                        $time = date('Y/m/d');
+                                        $sqlSoDonHoan = "SELECT COUNT(order_id) as sodonhoan FROM bepcuangoc.order WHERE created_at = '$time' AND status = 4";
+                                        $resultSoDonHoan = mysqli_query($conn, $sqlSoDonHoan);
+                                        foreach ($resultSoDonHoan as $key => $value) :
+                                             echo '<span>Số đơn hoàn:</span>';
+                                             echo '<span class="ml-3">' . $value['sodonhoan'] . ' Đơn</span> <br />';
+                                        endforeach;
                                         ?>
 
                                         <?php
-                                             $time = date('Y/m/d');
-                                             $sqlSoDonHuy = "SELECT COUNT(order_id) as sodonhuy FROM bepcuangoc.order WHERE created_at = '$time' AND status = 3";
-                                             $resultSoDonHuy = mysqli_query($conn, $sqlSoDonHuy);
-                                             foreach ($resultSoDonHuy as $key => $value):
-                                                  echo '<span>Số đơn hủy:</span>';
-                                                  echo '<span class="ml-3">'. $value['sodonhuy'] . ' Đơn</span> <br />';
-                                             endforeach;
-                                        ?>
-                                        
-                                        <?php
-                                             $time = date('Y/m/d');
-                                             $sqlSoDonDangGiao = "SELECT COUNT(order_id) as sodondanggiao FROM bepcuangoc.order WHERE created_at = '$time' AND status = 2";
-                                             $resultSoDonDangGiao = mysqli_query($conn, $sqlSoDonDangGiao);
-                                             foreach ($resultSoDonDangGiao as $key => $value):
-                                                  echo '<span>Số đơn hàng đang giao:</span>';
-                                                  echo '<span class="ml-3">'. $value['sodondanggiao'] . ' Đơn</span> <br />';
-                                             endforeach;
+                                        $time = date('Y/m/d');
+                                        $sqlSoDonHuy = "SELECT COUNT(order_id) as sodonhuy FROM bepcuangoc.order WHERE created_at = '$time' AND status = 3";
+                                        $resultSoDonHuy = mysqli_query($conn, $sqlSoDonHuy);
+                                        foreach ($resultSoDonHuy as $key => $value) :
+                                             echo '<span>Số đơn hủy:</span>';
+                                             echo '<span class="ml-3">' . $value['sodonhuy'] . ' Đơn</span> <br />';
+                                        endforeach;
                                         ?>
 
                                         <?php
-                                             $time = date('Y/m/d');
-                                             $sqlSoDonDaXacNhan = "SELECT COUNT(order_id) as sodondaxacnhan FROM bepcuangoc.order WHERE created_at = '$time' AND status = 1";
-                                             $resultSoDonDaXacNhan = mysqli_query($conn, $sqlSoDonDaXacNhan);
-                                             foreach ($resultSoDonDaXacNhan as $key => $value):
-                                                  echo '<span>Số đơn hàng đã xác nhận:</span>';
-                                                  echo '<span class="ml-3">'. $value['sodondaxacnhan'] . ' Đơn</span> <br />';
-                                             endforeach;
+                                        $time = date('Y/m/d');
+                                        $sqlSoDonDangGiao = "SELECT COUNT(order_id) as sodondanggiao FROM bepcuangoc.order WHERE created_at = '$time' AND status = 2";
+                                        $resultSoDonDangGiao = mysqli_query($conn, $sqlSoDonDangGiao);
+                                        foreach ($resultSoDonDangGiao as $key => $value) :
+                                             echo '<span>Số đơn hàng đang giao:</span>';
+                                             echo '<span class="ml-3">' . $value['sodondanggiao'] . ' Đơn</span> <br />';
+                                        endforeach;
                                         ?>
 
                                         <?php
-                                             $time = date('Y/m/d');
-                                             $sqlSoDonMoi = "SELECT COUNT(order_id) as sodonmoi FROM bepcuangoc.order WHERE created_at = '$time' AND status = 0";
-                                             $resultSoDonMoi = mysqli_query($conn, $sqlSoDonMoi);
-                                             foreach ($resultSoDonMoi as $key => $value):
-                                                  echo '<span>Số đơn hàng mới:</span>';
-                                                  echo '<span class="ml-3">'. $value['sodonmoi'] . ' Đơn</span> <br />';
-                                             endforeach;
+                                        $time = date('Y/m/d');
+                                        $sqlSoDonDaXacNhan = "SELECT COUNT(order_id) as sodondaxacnhan FROM bepcuangoc.order WHERE created_at = '$time' AND status = 1";
+                                        $resultSoDonDaXacNhan = mysqli_query($conn, $sqlSoDonDaXacNhan);
+                                        foreach ($resultSoDonDaXacNhan as $key => $value) :
+                                             echo '<span>Số đơn hàng đã xác nhận:</span>';
+                                             echo '<span class="ml-3">' . $value['sodondaxacnhan'] . ' Đơn</span> <br />';
+                                        endforeach;
                                         ?>
+
+                                        <?php
+                                        $time = date('Y/m/d');
+                                        $sqlSoDonMoi = "SELECT COUNT(order_id) as sodonmoi FROM bepcuangoc.order WHERE created_at = '$time' AND status = 0";
+                                        $resultSoDonMoi = mysqli_query($conn, $sqlSoDonMoi);
+                                        foreach ($resultSoDonMoi as $key => $value) :
+                                             echo '<span>Số đơn hàng mới:</span>';
+                                             echo '<span class="ml-3">' . $value['sodonmoi'] . ' Đơn</span> <br />';
+                                        endforeach;
+                                        ?>
+                                        <a style="float: left" href="?page=hangton" id="add-new" class="fl-right">Kiểm
+                                             tra SL hàng</a>
+
                                    </div>
                               </div>
                          </div>
@@ -182,7 +185,7 @@ include 'connect.php';
                                                   <tr>
                                                        <th>Tháng</th>
                                                        <th>Doanh thu</th>
-                                                       <th style="max-width: 100px;">Tổng lượng doanh thu theo nam
+                                                       <th style="max-width: 100px;">Tổng lượng doanh thu theo năm
                                                             <?= date("Y"); ?></th>
                                                   </tr>
                                              </thead>
@@ -197,7 +200,7 @@ include 'connect.php';
                                                             $thang_all = number_format($data5['tongtien']);
                                                             $tile = 0;
                                                             // if($data3['tongtien'] != 0) {
-                                                                 $tile = ($data5['tongtien'] / $data3['tongtien']) * 100;
+                                                            $tile = ($data5['tongtien'] / $data3['tongtien']) * 100;
                                                             // }
                                                             ?>
                                                        <th><?= $thang_all ?> d</th>
