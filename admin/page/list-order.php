@@ -38,73 +38,93 @@ if (!function_exists('currency_format')) {
 }
 ?>
 <div id="main-content-wp" class="list-product-page">
-     <div class="wrap clearfix">
-          <?php require './sidebar.php'; ?>
+  <div class="wrap clearfix">
+    <?php require './sidebar.php'; ?>
 
-          <div id="content" class="fl-right">
-               <div class="section" id="title-page">
-                    <div class="clearfix">
-                         <h3 class="fl-left" id="index">Danh sách đơn hàng</h3>
-                    </div>
-               </div>
+    <div id="content" class="fl-right">
+      <div class="section" id="title-page">
+        <div class="clearfix">
+          <h3 class="fl-left" id="index">Danh sách đơn hàng</h3>
+        </div>
+      </div>
 
-               <div class="section" id="detail-page">
-                    <div class="section-detail">
-                         <div class="clearfix filter-wp">
-                              <ul class="post-status fl-left">
-                                   <li class="all"><a href="">Tất cả <span class="count">(<?= $count ?>)</span></a> |
-                                   </li>
-                                   <li class="publish"><a href="">Đã đặt hàng <span
-                                                  class="count">(<?= $countdadathang ?>)</span></a> |
-                                   </li>
-                                   <li class="publish"><a href="">Đã xác nhận đơn hàng <span
-                                                  class="count">(<?= $countdaxacnhan ?>)</span></a> |
-                                   </li>
-                                   <li class="publish"><a href="">Đang giao <span
-                                                  class="count">(<?= $countdanggiao ?>)</span></a> |
-                                   </li>
-                                   <li class="publish"><a href="">Hủy đơn <span
-                                                  class="count">(<?= $counthuydon ?>)</span></a> |
-                                   </li>
-                                   <li class="publish"><a href="">Đơn hoàn <span
-                                                  class="count">(<?= $countdonhoan ?>)</span></a> |
-                                   </li>
+      <div class="section" id="detail-page">
+        <div class="section-detail">
+          <div class="clearfix filter-wp">
+            <ul class="post-status fl-left">
+              <li class="all"><a href="">Tất cả <span class="count">(<?= $count ?>)</span></a> |
+              </li>
+              <li class="publish"><a href="">Đã đặt hàng <span class="count">(<?= $countdadathang ?>)</span></a> |
+              </li>
+              <li class="publish"><a href="">Đã xác nhận đơn hàng <span
+                    class="count">(<?= $countdaxacnhan ?>)</span></a> |
+              </li>
+              <li class="publish"><a href="">Đang giao <span class="count">(<?= $countdanggiao ?>)</span></a> |
+              </li>
+              <li class="publish"><a href="">Hủy đơn <span class="count">(<?= $counthuydon ?>)</span></a> |
+              </li>
+              <li class="publish"><a href="">Đơn hoàn <span class="count">(<?= $countdonhoan ?>)</span></a> |
+              </li>
 
-                              </ul>
-                              <form action="" method="get" class="form-s fl-right">
-                                   <input type="text" name="s" id="s">
-                                   <input type="submit" name="sm_s" value="Tìm kiếm">
-                              </form>
-                         </div>
-                         <div class="actions">
-                              <form method="GET" action="" class="form-actions">
-                                   <select name="actions">
-                                        <option value="0">Tác vụ</option>
-                                        <option value="1">Công khai</option>
-                                        <option value="1">Chờ duyệt</option>
-                                        <option value="2">Bỏ vào thủng rác</option>
-                                   </select>
-                                   <input type="submit" name="sm_action" value="Lọc">
-                              </form>
-                         </div>
-                         <div class="table-responsive">
-                              <table class="table list-table-wp">
-                                   <thead>
-                                        <tr>
-                                             <!-- <td><input type="checkbox" name="checkAll" id="checkAll"></td> -->
-                                             <td><span class="thead-text">STT</span></td>
-                                             <td><span class="thead-text">Mã đơn hàng</span></td>
-                                             <td><span class="thead-text">Tên khách hàng</span></td>
-                                             <td><span class="thead-text">Tổng giá</span></td>
-                                             <td><span class="thead-text">Trạng thái</span></td>
-                                             <td><span class="thead-text">Thời gian</span></td>
-                                             <td><span class="thead-text">SDT</span></td>
-                                             <td><span class="thead-text">Địa chỉ</span></td>
-                                             <td><span class="thead-text">Chi tiết</span></td>
-                                        </tr>
-                                   </thead>
-                                   <tbody>
-                                        <?php
+            </ul>
+            <!-- <form action="" method="get" class="form-s fl-right">
+              <input type="text" name="s" id="s">
+              <input type="submit" name="sm_s" value="Tìm kiếm">
+            </form> -->
+          </div>
+          <div class="actions">
+            <form method="POST" action="list-order" class="form-actions">
+              <div style="display: flex; flex-direction: row">
+                <div style="display: flex; flex-direction: column">
+                  <label>Trạng thái đơn</label>
+                  <select id="status">
+                    <option value="">--Chọn--</option>
+                    <option value="0">Đã đặt hàng</option>
+                    <option value="1">Đã xác nhận đơn hàng</option>
+                    <option value="2">Đang giao</option>
+                    <option value="3">Hủy đơn</option>
+                    <option value="4">Đơn hoàn</option>
+                    <option value="5">Đã giao</option>
+                  </select>
+                </div>
+                <!-- <div style="display: flex; flex-direction: column; margin-left: 15px; margin-right: 15px">
+                  <label>Tiền</label>
+                  <select id="price">
+                    <option value="">--Chọn--</option>
+                    <option value="0"> Nhỏ hơn 100.000 đ</option>
+                    <option value="1"> 100.000 - 500.000</option>
+                    <option value="2"> Lớn hơn 500.000 đ </option>
+                  </select>
+                </div> -->
+                <div style="display: flex; flex-direction: column">
+                    <label>Thời gian</label>
+                    <input id="datePicker" type="date" name="date" value="" />
+                </div>
+                <div style="display: flex; flex-direction: column; margin-left: 15px">
+                    <label>&nbsp;</label>
+                    <input onClick="filterOrder()" type="button" name="sm_action" value="Lọc">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="table-responsive">
+            <table class="table list-table-wp">
+              <thead>
+                <tr>
+                  <!-- <td><input type="checkbox" name="checkAll" id="checkAll"></td> -->
+                  <td><span class="thead-text">STT</span></td>
+                  <td><span class="thead-text">Mã đơn hàng</span></td>
+                  <td><span class="thead-text">Tên khách hàng</span></td>
+                  <td><span class="thead-text">Tổng giá</span></td>
+                  <td><span class="thead-text">Trạng thái</span></td>
+                  <td><span class="thead-text">Thời gian</span></td>
+                  <td><span class="thead-text">SDT</span></td>
+                  <td><span class="thead-text">Địa chỉ</span></td>
+                  <td><span class="thead-text">Chi tiết</span></td>
+                </tr>
+              </thead>
+              <tbody id="tbody">
+                <?php
                                         $sn = 1;
 
                                         if ($count > 0) {
@@ -119,67 +139,59 @@ if (!function_exists('currency_format')) {
                                                   $email = $row['email'];
                                                   $address = $row['address'];
                                         ?>
-                                        <tr>
-                                             <!-- <td><input type="checkbox" name="checkItem" class="checkItem"></td> -->
-                                             <td><span class="tbody-text"><?= $sn++ ?></span></td>
-                                             <td><span class="tbody-text"><?= $order_id ?></span></td>
-                                             <td><span class="tbody-text tb-title fl-left"><?= $name ?></span></td>
-                                             <td><span class="tbody-text"><?= currency_format($total_money);  ?></span>
-                                             </td>
-                                             <td>
-                                                  <span class="tbody-text">
-                                                       <?php
-                                                                 switch ($status) {
-                                                                      case 0:
-                                                                           echo 'Đã đặt hàng';
-                                                                           break;
-                                                                      case 1:
-                                                                           echo 'Đã xác nhận đơn hàng';
-                                                                           break;
-                                                                      case 2:
-                                                                           echo 'Đang giao';
-                                                                           break;
-                                                                      case 3:
-                                                                           echo 'Huỷ đơn';
-                                                                           break;
-                                                                      case 4:
-                                                                           echo 'Đơn hoàn';
-                                                                           break;
-                                                                      case 5:
-                                                                           echo 'Đã giao';
-                                                                           break;
-                                                                      default:
-                                                                           echo 'Đag xác nhận';
-                                                                 }
-                                                                 ?>
-                                                  </span>
-                                             </td>
-                                             <td><span class="tbody-text"> <?= $created_at ?></span></td>
-                                             <td><span class="tbody-text"> <?= $phone ?></span></td>
-                                             <td><span class="tbody-text"> <?= $address ?></span></td>
-                                             <td>
-                                                  <a href="?page=detail-order&order_id=<?= $order_id ?>">Chi tiết</a>
-                                             </td>
-                                             <!-- <td>
-                                                  <ul class="list-operation fl-left">
-                                                       <li><a href="" title="Sửa" class="edit"><i class="fa fa-pencil"
-                                                                      aria-hidden="true"></i></a></li>
-                                                       <li><a href="" title="Xóa" class="delete"><i class="fa fa-trash"
-                                                                      aria-hidden="true"></i></a></li>
-                                                  </ul>
-                                             </td> -->
-                                        </tr>
-                                        <?php
+                <tr>
+                  <!-- <td><input type="checkbox" name="checkItem" class="checkItem"></td> -->
+                  <td><span class="tbody-text"><?= $sn++ ?></span></td>
+                  <td><span class="tbody-text"><?= $order_id ?></span></td>
+                  <td><span class="tbody-text tb-title fl-left"><?= $name ?></span></td>
+                  <td><span class="tbody-text"><?= currency_format($total_money);  ?></span>
+                  </td>
+                  <td>
+                    <span class="tbody-text">
+                      <?php
+                                                       switch ($status) {
+                                                            case 0:
+                                                                 echo 'Đã đặt hàng';
+                                                                 break;
+                                                            case 1:
+                                                                 echo 'Đã xác nhận đơn hàng';
+                                                                 break;
+                                                            case 2:
+                                                                 echo 'Đang giao';
+                                                                 break;
+                                                            case 3:
+                                                                 echo 'Huỷ đơn';
+                                                                 break;
+                                                            case 4:
+                                                                 echo 'Đơn hoàn';
+                                                                 break;
+                                                            case 5:
+                                                                 echo 'Đã giao';
+                                                                 break;
+                                                            default:
+                                                                 echo 'Đag xác nhận';
+                                                       }
+                                                       ?>
+                    </span>
+                  </td>
+                  <td><span class="tbody-text"> <?= $created_at ?></span></td>
+                  <td><span class="tbody-text"> <?= $phone ?></span></td>
+                  <td><span class="tbody-text"> <?= $address ?></span></td>
+                  <td>
+                    <a href="?page=detail-order&order_id=<?= $order_id ?>">Chi tiết</a>
+                  </td>
+                </tr>
+                <?php
                                              }
                                         }
                                         ?>
-                                   </tbody>
-                              </table>
-                         </div>
-                    </div>
-               </div>
+              </tbody>
+            </table>
           </div>
-     </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <?php
 include './footer.php';

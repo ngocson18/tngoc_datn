@@ -88,10 +88,44 @@ function changeDay(value) {
               date: value
             },
             success : function (result1) {
-                $("#result-area").html(result1);
+                console.log(result1);
+                // $("#tbody").html(result1);
             }
         });
     }
+}
+function filterOrder() {
+    let status = $("#status")[0];
+    let datePicker = $("#datePicker")[0];
+    $.ajax({
+        url : 'page/ajax_filterOrder.php',
+        type : 'POST',
+        data: { 
+          status: status.value,
+          datePicker: datePicker.value,
+        },
+        success : function (result1) {
+            // console.log(123);
+            $("#tbody").html(result1);
+        }
+    });
+}
+
+function filterProd() {
+    let cate = $("#prod")[0];
+    let price = $("#price")[0];
+    $.ajax({
+        url : 'page/ajax_filterProd.php',
+        type : 'POST',
+        data: { 
+          cate: cate.value,
+          price: price.value,
+        },
+        success : function (result1) {
+            // console.log(123);
+            $("#tbody").html(result1);
+        }
+    });
 }
 // $('#choose').val(convertDate(new Date()));
 $(document).ready(changeStatus);

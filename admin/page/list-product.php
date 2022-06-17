@@ -28,55 +28,68 @@ if (!function_exists('currency_format')) {
      }
 }
 ?>
+<?php
+$sqlCate = "SELECT * FROM category WHERE parent = 0";
+$resCate = mysqli_query($conn, $sqlCate);
+?>
 
 <div id="main-content-wp" class="list-product-page">
-     <div class="wrap clearfix">
-          <?php require './sidebar.php'; ?>
-          <div id="content" class="fl-right">
-               <div class="section" id="title-page">
-                    <div class="clearfix">
-                         <h3 id="index" class="fl-left">Danh sách món ăn</h3>
-                         <a href="?page=add-product" title="" id="add-new" class="fl-left">Thêm mới</a>
-                    </div>
-                    <form method="GET" class="form-s fl-right">
+  <div class="wrap clearfix">
+    <?php require './sidebar.php'; ?>
+    <div id="content" class="fl-right">
+      <div class="section" id="title-page">
+        <div class="clearfix">
+          <h3 id="index" class="fl-left">Danh sách món ăn</h3>
+          <a href="?page=add-product" title="" id="add-new" class="fl-left">Thêm mới</a>
+        </div>
+        <!-- <form method="GET" class="form-s fl-right">
                          <input type="text" name="s" id="s">
                          <input type="submit" name="sm_s" value="Tìm kiếm">
-                    </form>
-               </div>
-               <div class="actions">
-                    <form method="GET" action="" class="form-actions">
-                         <select name="actions">
-                              <option value="0">Tác vụ</option>
-                              <option value="1">Công khai</option>
-                              <option value="1">Chờ duyệt</option>
-                              <option value="2">Bỏ vào thủng rác</option>
-                         </select>
-                         <input type="submit" name="sm_action" value="Áp dụng">
-                    </form>
-               </div>
-               <div class="section" id="detail-page">
-                    <div class="section-detail">
-                         <div class="table-responsive">
-                              <table class="table list-table-wp table-bordered">
-                                   <thead>
-                                        <tr>
-                                             <!-- <td><input type="checkbox" name="checkAll" id="checkALL"></td> -->
-                                             <td class="thead-text"><span>STT</span></td>
-                                             <td class="thead-text"><span>Tên món ăn</span></td>
-                                             <td class="thead-text">Tiêu đề món ăn</td>
-                                             <td class="thead-text"><span>Mô tả món ăn</span></td>
-                                             <td class="thead-text">Danh mục sản phẩm</td>
-                                             <td class="thead-text"><span>Giá</span></td>
-                                             <td class="thead-text"><span>SL</span></td>
-                                             <td class="thead-text"><span>Khuyến mãi</span></td>
-                                             <td class="thead-text"><span>Giá ưu đãi</span></td>
-                                             <td class="thead-text"><span>Hình ảnh món ăn</span></td>
-                                             <td class="thead-text"><span>Thao tác</span></td>
-                                        </tr>
-                                   </thead>
+                    </form> -->
+      </div>
+      <div class="actions">
+        <form method="GET" action="" class="form-actions">
+          <select id="prod" name="actions">
+            <option value="">--Chọn danh mục--</option>
+            <?php
+                              foreach ($resCate as $key => $value) :
+                                   echo '<option value="' . $value['category_id'] . '" ' . ($category === $value['category_id'] ? "selected" : "") . '>' . $value['category_name'] . '</option>';
+                              endforeach
+                              ?>
+          </select>
+          <select id="price" name="actions">
+            <option value="">--Chọn khoảng giá--</option>
+            <option value="0">Nhỏ hơn 100.000</option>
+            <option value="1">Từ 100.000 - 500.000</option>
+            <option value="2">Lớn hơn 500.000</option>
+            ?>
+          </select>
+          <input onClick="filterProd()" type="button" name="" value="Lọc">
+        </form>
+      </div>
+      <div class="section" id="detail-page">
+        <div class="section-detail">
+          <div class="table-responsive">
+            <table class="table list-table-wp table-bordered">
+              <thead>
+                <tr>
+                  <!-- <td><input type="checkbox" name="checkAll" id="checkALL"></td> -->
+                  <td class="thead-text"><span>STT</span></td>
+                  <td class="thead-text"><span>Tên món ăn</span></td>
+                  <td class="thead-text">Tiêu đề món ăn</td>
+                  <td class="thead-text"><span>Mô tả món ăn</span></td>
+                  <td class="thead-text">Danh mục sản phẩm</td>
+                  <td class="thead-text"><span>Giá</span></td>
+                  <td class="thead-text"><span>SL</span></td>
+                  <td class="thead-text"><span>Khuyến mãi</span></td>
+                  <td class="thead-text"><span>Giá ưu đãi</span></td>
+                  <td class="thead-text"><span>Hình ảnh món ăn</span></td>
+                  <td class="thead-text"><span>Thao tác</span></td>
+                </tr>
+              </thead>
 
-                                   <tbody>
-                                        <?php
+              <tbody id="tbody">
+                <?php
                                         $sql = "SELECT * FROM product ORDER BY product_id DESC";
 
                                         $res = mysqli_query($conn, $sql);
@@ -101,19 +114,17 @@ if (!function_exists('currency_format')) {
                                                   // $img = $row['img'];
                                                   // $name = $row['name'];
                                         ?>
-                                        <tr>
-                                             <!-- <td><input type="checkbox" name="checkItem" class="checkItem"></td> -->
-                                             <td><span class="tbody-text"><?php echo $sn++; ?></span></td>
-                                             <td><span class="tbody-text <?php if ($isSpecial == 1) {
+                <tr>
+                  <!-- <td><input type="checkbox" name="checkItem" class="checkItem"></td> -->
+                  <td><span class="tbody-text"><?php echo $sn++; ?></span></td>
+                  <td><span class="tbody-text <?php if ($isSpecial == 1) {
                                                                                           echo ' hight-light';
                                                                                      } ?>"><?php echo $name; ?></span>
-                                             </td>
-                                             <td style="max-width: 100px;"><span
-                                                       class="tbody-text"><?php echo $title; ?></span></td>
-                                             <td style="max-width: 200px;"><span
-                                                       class="tbody-text"><?php echo $description; ?></span></td>
-                                             <td><span class="tbody-text">
-                                                       <?php
+                  </td>
+                  <td style="max-width: 100px;"><span class="tbody-text"><?php echo $title; ?></span></td>
+                  <td style="max-width: 200px;"><span class="tbody-text"><?php echo $description; ?></span></td>
+                  <td><span class="tbody-text">
+                      <?php
                                                                  if ($category == 1) {
                                                                       echo "Đồ ăn vặt Việt Nam";
                                                                  } elseif ($category == 2) {
@@ -128,46 +139,41 @@ if (!function_exists('currency_format')) {
                                                                       echo "Bánh ngọt";
                                                                  }
                                                                  ?>
-                                                  </span></td>
-                                             <td style="max-width: 100px;"><span
-                                                       class="tbody-text"><?php echo currency_format($price); ?>
-                                                  </span></td>
-                                             <td style="max-width: 100px;"><span
-                                                       class="tbody-text"><?php echo $sl; ?></span></td>
-                                             <td><span class="tbody-text"><?php echo $discount; ?>%</span></td>
-                                             <td><span class="tbody-text"><?php echo currency_format($new_price); ?>
-                                                  </span></td>
-                                             <td><span class="tbody-text">
-                                                       <?php
-                                                                 echo "<div><img src=$img_src style='width:250px'></div>";
-                                                                 ?>
-                                             </td>
-                                             <td class="tbody-text">
-                                                  <ul class="list-operation fl-left">
-                                                       <li><a href="?page=update-product&id=<?= $product_id; ?>"
-                                                                 title="Sửa" class="edit"><i class="fa fa-pencil"
-                                                                      aria-hidden="true"
-                                                                      style="font-size: 20px; margin-bottom: 10px; padding-bottom: 10px ;"></i></a>
-                                                       </li>
-                                                       <li><a href="?page=list-product&id=<?= $product_id; ?>"
-                                                                 title="Xóa" class="delete"><i class="fa fa-trash"
-                                                                      aria-hidden="true"
-                                                                      style="font-size: 20px;"></i></a>
-                                                       </li>
-                                                  </ul>
-                                             </td>
-                                        </tr>
-                                        <?php
+                    </span></td>
+                  <td style="max-width: 100px;"><span class="tbody-text"><?php echo currency_format($price); ?>
+                    </span></td>
+                  <td style="max-width: 100px;"><span class="tbody-text"><?php echo $sl; ?></span></td>
+                  <td><span class="tbody-text"><?php echo $discount; ?>%</span></td>
+                  <td><span class="tbody-text"><?php echo currency_format($new_price); ?>
+                    </span></td>
+                  <td><span class="tbody-text">
+                      <?php
+                        echo "<div><img src=$img_src style='width:250px'></div>";
+                        ?>
+                  </td>
+                  <td class="tbody-text">
+                    <ul class="list-operation fl-left">
+                      <li><a href="?page=update-product&id=<?= $product_id; ?>" title="Sửa" class="edit"><i
+                            class="fa fa-pencil" aria-hidden="true"
+                            style="font-size: 20px; margin-bottom: 10px; padding-bottom: 10px ;"></i></a>
+                      </li>
+                      <li><a href="?page=list-product&id=<?= $product_id; ?>" title="Xóa" class="delete"><i
+                            class="fa fa-trash" aria-hidden="true" style="font-size: 20px;"></i></a>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+                <?php
                                              }
                                         }
                                         ?>
-                                   </tbody>
-                              </table>
-                         </div>
-                    </div>
-               </div>
+              </tbody>
+            </table>
           </div>
-     </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <?php
 include './footer.php';
