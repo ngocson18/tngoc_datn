@@ -13,6 +13,13 @@
      <link href="./public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
      <link href="./public/style.css" rel="stylesheet" type="text/css" />
      <link href="./public/responsive.css" rel="stylesheet" type="text/css" />
+     <link rel="stylesheet" href="./public/css/import/acount.css">
+
+     <!-- script -->
+     <script src="./js/bootstrap/bootstrap.min.js"></script>
+     <script src="./js/jquery-2.2.4.min.js"></script>
+     <script src="./js/plugins/ckeditor/ckeditor.js"></script>
+     <script src="./js/main.js"></script>
 
      <script src="public/js/jquery-2.2.4.min.js" type="text/javascript"></script>
      <script src="public/js/elevatezoom-master/jquery.elevatezoom.js" type="text/javascript"></script>
@@ -175,7 +182,7 @@
                                              <a href="?page=blog" title="">Blog</a>
                                         </li>
                                         <li>
-                                             <a href="#" id="user_name" style="font-weight: 800">
+                                             <a href="?page=acount-order" id="user_name" style="font-weight: 800">
                                              </a>
                                         </li>
                                         <li>

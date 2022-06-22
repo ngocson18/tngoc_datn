@@ -1,0 +1,98 @@
+.ip-style {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+
+/* tr:nth-child(even) {
+    background-color: #dddddd;
+} */
+
+.img-acount {
+    width: 100px;
+    height: 100px;
+    object-fit: cover
+}
+
+.section .section-title {
+    padding: 0;
+    line-height: inherit;
+    border-bottom: none;
+}
+
+.section .section-detail {
+    padding: 0;
+}
+
+.section .section-detail .list-item {
+    border-top: 1px solid #f5f5f5;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.section .section-detail .list-item li {
+    float: left;
+    padding: 12px 24px;
+    border-left: 1px solid #f5f5f5;
+}
+
+.section .section-detail .list-item li span {
+    display: block;
+    padding-bottom: 5px;
+    color: #333;
+    font-size: 14px;
+}
+
+.section .section-detail .list-item li .total {
+    font-size: 16px;
+    color: #e60000;
+    padding-bottom: 0;
+    font-family: 'Roboto Medium';
+    font-weight: normal;
+}
+
+
+/* button */
+
+.button {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button1 {
+    background-color: #4CAF50;
+}
+
+
+/* Green */
+
+.button2 {
+    background-color: #e60000;
+}
+
+
+/* Blue */

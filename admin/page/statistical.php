@@ -167,9 +167,15 @@ include 'connect.php';
                                              echo '<span class="ml-3">' . $value['sodonmoi'] . ' Đơn</span> <br />';
                                         endforeach;
                                         ?>
+
+                                   </div>
+                                   <div>
                                         <a style="float: left" href="?page=hangton" id="add-new" class="fl-right">Kiểm
                                              tra SL hàng</a>
-
+                                   </div>
+                                   <div>
+                                        <a style="float: left" href="?page=statistical-order-in-day" id="add-new"
+                                             class="fl-right">Thống kê đơn hàng trong ngày</a>
                                    </div>
                               </div>
                          </div>
