@@ -127,7 +127,26 @@ function removeItem(id) {
   });
 }
 
+function cancelOrder(order_id) {
+  console.log(order_id);
+  $.ajax({
+    url : 'pages/cancelOrder.php',
+    type : 'POST',
+    dataType: 'text',
+    data: { 
+      order_id: order_id
+    },
+    success : function (result1) {
+      if(result1 === 'success') {
+        alert("Hủy đơn thành công!!");
+        window.location.href = '?page=acount-order';
+      }
+    },
+  });
+}
+
 $(document).ready(showHint);
 $(document).ready(changePrice);
 $(document).ready(checkLogin);
 $(document).ready(removeItem);
+$(document).ready(cancelOrder);

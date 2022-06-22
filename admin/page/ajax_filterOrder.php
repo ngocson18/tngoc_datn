@@ -2,10 +2,20 @@
     include 'connect.php';
     $status = $_POST['status'];
     $datePicker = $_POST['datePicker'];
-    if($datePicker != '') {
+    if($datePicker != '' && $status != '') {
       $sql = "SELECT * FROM bepcuangoc.order WHERE status = '$status' AND created_at = '$datePicker'";
-    } else {
+    }
+
+    if($datePicker == '' && $status == '') {
+      $sql = "SELECT * FROM bepcuangoc.order";
+    }
+
+    if($datePicker == '' && $status != '')  {
       $sql = "SELECT * FROM bepcuangoc.order WHERE status = '$status'";
+    }
+
+    if($status == '' && $status != '')  {
+      $sql = "SELECT * FROM bepcuangoc.order WHERE created_at = '$datePicker'";
     }
 
     $res = mysqli_query($conn, $sql);

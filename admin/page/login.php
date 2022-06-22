@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 // session_start();
 include 'connect.php';
@@ -22,6 +21,7 @@ if (isset($_POST['submit'])) {
           $row = mysqli_fetch_assoc($res2);
           $name = $row['user_name'];
           $user_id = $row['user_id'];
+          $_SESSION['user_id'] = $user_id;
           $_SESSION['role_user'] = $row['role_user'];
 
           // if (isset($_SESSION['login'])) {

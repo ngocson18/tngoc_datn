@@ -97,6 +97,8 @@ function changeDay(value) {
 function filterOrder() {
     let status = $("#status")[0];
     let datePicker = $("#datePicker")[0];
+    console.log(datePicker.value);
+    console.log(status.value);
     $.ajax({
         url : 'page/ajax_filterOrder.php',
         type : 'POST',
