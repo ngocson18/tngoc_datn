@@ -249,7 +249,29 @@ if (!function_exists('currency_format')) {
                               </tbody>
                          </table>
                     </div>
-
+                    <br>
+                    <div class="section">
+                         <?php
+                         $sqltotalDay = "SELECT SUM(order.total_money) as tongtien FROM bepcuangoc.order WHERE DAY(`created_at`) = DAY(CURDATE()) AND  MONTH(`created_at`) = MONTH(CURDATE()) AND status = 5";
+                         $result = mysqli_query($conn, $sqltotalDay);
+                         $data = mysqli_fetch_assoc($result);
+                         $ngay = number_format($data['tongtien']);
+                         ?>
+                         <div class="section-detail">
+                              <ul class="list-item clearfix">
+                                   <li>
+                                        <span class="total-fee">Tổng số lượng: </span>
+                                        <span class="total"> <?= $count ?> Đơn hàng</span>
+                                   </li>
+                                   <li>
+                                        <span class="total-fee" style="font-size: 18px;">Tổng doanh thu ngày (Đơn đã
+                                             giao): </span>
+                                        <span class="total" style="font-size: 18px;"><strong><?= $ngay; ?>
+                                                  vnđ</strong></span>
+                                   </li>
+                              </ul>
+                         </div>
+                    </div>
                </div>
           </div>
      </div>

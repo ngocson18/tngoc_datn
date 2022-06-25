@@ -1,6 +1,6 @@
 <?php
 
-// session_start();
+session_start();
 include 'connect.php';
 if (isset($_POST['submit'])) {
      $user_phone = $_POST['user_phone'];

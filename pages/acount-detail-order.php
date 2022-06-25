@@ -6,6 +6,7 @@ parse_str($parts['query'], $query);
 $order_id = $query['order_id'];
 
 $user_id = $_SESSION['user_id'];
+
 $sql = "SELECT * FROM bepcuangoc.order_details WHERE order_id = '$order_id'";
 
 $res = mysqli_query($conn, $sql);
@@ -39,7 +40,7 @@ if (!function_exists('currency_format')) {
                          <div class="filter-wp fl-right">
                          </div>
                     </div>
-                    <table>
+                    <table class="tb-info">
                          <tr>
                               <th>Tên sản phẩm</th>
                               <th>Sô lượng</th>
@@ -47,7 +48,7 @@ if (!function_exists('currency_format')) {
                               <th>Giá tiền</th>
                          </tr>
                          <?php
-                             $sql2 = "
+                         $sql2 = "
                              SELECT 
                                   order_details.quantity as quantity,
                                   order_details.product_id as prod_id,
@@ -63,12 +64,12 @@ if (!function_exists('currency_format')) {
                              INNER JOIN bepcuangoc.order ON order_details.order_id = bepcuangoc.order.order_id 
                              WHERE order_details.order_id = $order_id
                              ";
-                              $res2 = mysqli_query($conn, $sql2);
-                              $count2 = mysqli_num_rows($res2);
-                              while ($row2= mysqli_fetch_assoc($res2)) {
-                                   $total_money = $row2['total_money'];
-                                   $status = $row2['status'];
-                                   $price = $row2['price'] - $row2['price'] * $row2['discount'] / 100;
+                         $res2 = mysqli_query($conn, $sql2);
+                         $count2 = mysqli_num_rows($res2);
+                         while ($row2 = mysqli_fetch_assoc($res2)) {
+                              $total_money = $row2['total_money'];
+                              $status = $row2['status'];
+                              $price = $row2['price'] - $row2['price'] * $row2['discount'] / 100;
                          ?>
                          <tr>
                               <td><?= $row2['name'] ?></td>
@@ -90,13 +91,13 @@ if (!function_exists('currency_format')) {
                               </li>
                               <li>
                                    <?php
-                                        $sqlCount = "select sum(order_details.quantity) as quantityCount FROM bepcuangoc.order_details WHERE order_id = $order_id";
-                                        $resCount = mysqli_query($conn, $sqlCount);
-                                        while ($row2= mysqli_fetch_assoc($resCount)) {
-                                             $quantityCount = $row2['quantityCount'];
+                                   $sqlCount = "select sum(order_details.quantity) as quantityCount FROM bepcuangoc.order_details WHERE order_id = $order_id";
+                                   $resCount = mysqli_query($conn, $sqlCount);
+                                   while ($row2 = mysqli_fetch_assoc($resCount)) {
+                                        $quantityCount = $row2['quantityCount'];
                                    ?>
                                    <span class="total-fee"><?= $quantityCount ?> sản phẩm</span>
-                                   <?php }?>
+                                   <?php } ?>
                                    <span class="total"><?= number_format($total_money) ?> đ</span>
                               </li>
                          </ul>
@@ -106,15 +107,16 @@ if (!function_exists('currency_format')) {
                     <button class="button button1"><a style="color: #fff;" href="?page=acount-order">Quay
                               lại</a></button>
                     <?php
-                         if($status == 3) {
+                    if ($status == 3) {
                     ?>
                     <button class="button button2"><a style="color: #fff;">Đã hủy</a></button>
                     <?php } ?>
 
                     <?php
-                         if($status != 3) {
+                    if ($status != 3) {
                     ?>
-                         <button class="button button2"><a style="color: #fff;" onClick="cancelOrder(<?= $order_id ?>)">Hủy đơn hàng</a></button>
+                    <button class="button button2"><a style="color: #fff;" onClick="cancelOrder(<?= $order_id ?>)">Hủy
+                              đơn hàng</a></button>
                     <?php } ?>
                </div>
           </div>
