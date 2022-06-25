@@ -89,7 +89,7 @@ function changeDay(value) {
             },
             success : function (result1) {
                 console.log(result1);
-                // $("#tbody").html(result1);
+                $("#result-area").html(result1);
             }
         });
     }
