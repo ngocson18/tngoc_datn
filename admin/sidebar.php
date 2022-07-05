@@ -53,7 +53,7 @@
                </a>
                <ul class="sub-menu">
                     <li class="nav-item">
-                         <a href="?page=list-categories-product" class="nav-link">Danh sách hóa đơn</a>
+                         <a href="?page=list-order" class="nav-link">Danh sách hóa đơn</a>
                     </li>
                </ul>
           </li>

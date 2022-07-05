@@ -28,21 +28,22 @@ if (isset($_GET['id'])) {
                          <h3 id="index" class="fl-left">Danh sách người dùng</h3>
                          <a href="?page=add-user" id="add-new" class="fl-left">Thêm mới</a>
                     </div>
-                    <form method="GET" class="form-s fl-right">
+                    <!-- <form method="GET" class="form-s fl-right">
                          <input type="text" name="s" id="s">
                          <input type="submit" name="sm_s" value="Tìm kiếm">
-                    </form>
+                    </form> -->
                </div>
-               <div class="actions">
-                    <form method="GET" action="" class="form-actions">
-                         <select name="actions">
-                              <option value="0">Tác vụ</option>
-                              <option value="1">Công khai</option>
-                              <option value="1">Chờ duyệt</option>
-                              <option value="2">Bỏ vào thủng rác</option>
-                         </select>
-                         <input type="submit" name="sm_action" value="Áp dụng">
-                    </form>
+               <div>
+                    <div class="actions">
+                         <form method="GET" action="" class="form-actions">
+                              <select name="actions" id="role">
+                                   <option value="2">--Quyền--</option>
+                                   <option value="0">Quản trị viên</option>
+                                   <option value="1">Khách hàng</option>
+                              </select>
+                              <input onclick="filterUser()" type="button" name="" value="Lọc">
+                         </form>
+                    </div>
                </div>
                <div class="section" id="detail-page">
                     <div class="section-detail">
@@ -62,7 +63,7 @@ if (isset($_GET['id'])) {
                                         </tr>
                                    </thead>
 
-                                   <tbody>
+                                   <tbody id="tbody">
 
                                         <?php
                                         $sql = "SELECT * FROM user";

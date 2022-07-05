@@ -40,7 +40,7 @@ include 'connect.php';
                     <div class="container-fluid">
                          <h1 class="mt-4">Thống kê doanh thu</h1>
                          <ol class="breadcrumb mb-4">
-                              <li class="breadcrumb-item active">Thống kê doanh thu theo ngày / tháng / nam </li>
+                              <li class="breadcrumb-item active">Thống kê doanh thu theo ngày <?= date("d-m-Y"); ?></li>
                          </ol>
                          <div class="row">
                               <div class="col-xl-3 col-md-6">
@@ -231,7 +231,7 @@ include 'connect.php';
                                              <thead>
                                                   <tr>
                                                        <th>ID</th>
-                                                       <th>Tên Admin</th>
+                                                       <th>Tên người dùng</th>
                                                        <th>Tháng 1</th>
                                                        <th>Tháng 2</th>
                                                        <th>Tháng 3</th>

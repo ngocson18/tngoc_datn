@@ -1,5 +1,46 @@
 <?php
-session_start();
+include 'connect.php';
+$err = [];
+
+if (isset($_POST['user_name'])) {
+     $user_name = $_POST['user_name'];
+     $user_email = $_POST['user_email'];
+     $user_phone = $_POST['user_phone'];
+     $user_address = $_POST['user_address'];
+     $password = $_POST['password'];
+     $rPassword = $_POST['rPassword'];
+     $role_user = $_POST['role_user'];
+     $role_user = 1;
+
+     if (empty($user_name)) {
+          $err['user_name'] = 'Bạn chưa nhập tên.';
+     }
+     if (empty($user_email)) {
+          $err['user_email'] = 'Bạn chưa nhập email.';
+     }
+     if (empty($user_phone)) {
+          $err['user_phone'] = 'Bạn chưa nhập số điện thoại.';
+     }
+     if (empty($user_address)) {
+          $err['user_address'] = 'Bạn chưa nhập địa chỉ.';
+     }
+     if (empty($password)) {
+          $err['password'] = 'Bạn chưa nhập mật khẩu.';
+     }
+     if ($password != $rPassword) {
+          $err['rPassword'] = 'Mật khẩu nhập lại không đúng! Vui lòng nhập lại.';
+     }
+     // var_dump(!empty($err));
+     // die();
+     if (empty($err)) {
+          $sql = "INSERT INTO user(user_name, user_email, user_phone, user_address, password, role_user) VALUES ('$user_name', '$user_email', '$user_phone', '$user_address', '$password', '$role_user')";
+          $res = mysqli_query($conn, $sql);
+          if ($res) {
+               header('location: ?page=login');
+          }
+     }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -39,6 +80,10 @@ session_start();
           padding: 0px !important;
           overflow-x: hidden !important;
      }
+
+     .has-error {
+          color: red;
+     }
      </style>
 </head>
 
@@ -48,41 +93,66 @@ session_start();
                <div class="login_form col-md-6">
                     <h1 class="display-5"
                          style="font-weight: 150; border-bottom: 1px solid #FFF; padding-bottom: 12px;">Đăng ký</h1>
-                    <form action="?page=session-user" method="POST">
+                    <form action="" method="POST">
                          <div class="form-group">
                               <label>Họ và tên</label>
-                              <input type="number" name="user_name" class="form-control" placeholder="Vui lòng nhập tên"
+                              <input type="text" name="user_name" class="form-control" placeholder="Vui lòng nhập tên"
                                    require>
+                              <div class="has-error">
+                                   <span><?php echo (isset($err['user_name'])) ? $err['user_name'] : '' ?></span>
+                              </div>
                          </div>
 
                          <div class="form-group">
                               <label>Số điện thoại</label>
                               <input type="number" name="user_phone" class="form-control"
                                    placeholder="Vui lòng nhập số điện thoại" require>
+                              <div class="has-error">
+                                   <span><?php echo (isset($err['user_phone'])) ? $err['user_phone'] : '' ?></span>
+                              </div>
+
                          </div>
 
                          <div class="form-group">
                               <label>Email</label>
-                              <input type="number" name="user_email" class="form-control"
+                              <input type="email" name="user_email" class="form-control"
                                    placeholder="Vui lòng nhập Email" require>
+                              <div class="has-error">
+                                   <span><?php echo (isset($err['user_email'])) ? $err['user_email'] : '' ?></span>
+                              </div>
+
                          </div>
 
                          <div class="form-group">
                               <label>Địa chỉ</label>
-                              <input type="number" name="user_address" class="form-control"
+                              <input type="text" name="user_address" class="form-control"
                                    placeholder="Vui lòng nhập địa chỉ" require>
+                              <div class="has-error">
+                                   <span><?php echo (isset($err['user_address'])) ? $err['user_address'] : '' ?></span>
+                              </div>
+                         </div>
+                         <div class="form-group" style="display: none;">
+                              <label>Quyền</label>
+                              <input type="text" name="role_user" class="form-control" require>
                          </div>
 
-                         <div class="form-group">
+                         <div class=" form-group">
                               <label>Mật khẩu</label>
-                              <input type="text" name="password" class="form-control"
+                              <input type="password" name="password" class="form-control"
                                    placeholder="Vui lòng nhập mật khẩu">
+                              <div class="has-error">
+                                   <span><?php echo (isset($err['password'])) ? $err['password'] : '' ?></span>
+                              </div>
+
                          </div>
 
                          <div class="form-group">
                               <label>Nhập lại mật khẩu</label>
-                              <input type="text" name="rPassword" class="form-control"
+                              <input type="password" name="rPassword" class="form-control"
                                    placeholder="Vui lòng nhập mật khẩu">
+                              <div class="has-error">
+                                   <span><?php echo (isset($err['rPassword'])) ? $err['rPassword'] : '' ?></span>
+                              </div>
                          </div>
                          <input type="submit" value="Đăng kí" name="submit" class="btn btn-info mb-3">
                          <a href="?page=login" class="float-right">Đăng nhập</a>

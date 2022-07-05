@@ -181,3 +181,10 @@
 .checkout-page #desire {
     margin-bottom: 0!important;
 }
+
+.button-fix {
+    background-color: #4CAF50;
+    border-radius: 3px;
+    font-size: 16px;
+    padding: 10px 26px;
+}

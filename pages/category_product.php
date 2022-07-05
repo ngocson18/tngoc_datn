@@ -8,6 +8,8 @@ parse_str($parts['query'], $query);
 // lấy ra parameter có tên là cate_id, paging
 $cate_id_from_url = $query['cate_id'];
 $paging = $query['paging'];
+// var_dump($paging);
+// die();
 
 $sql2 = "SELECT * FROM product WHERE category = $cate_id_from_url ";
 $res2 = mysqli_query($conn, $sql2);
@@ -75,6 +77,8 @@ $count3 = mysqli_num_rows($res3);
                                              $select = $_POST['taskOption'];
                                              include './admin/page/connect.php';
                                              $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+                                             // var_dump($url);
+                                             // die();
                                              $parts = parse_url($url);
                                              parse_str($parts['query'], $query);
                                              $cate_id_from_url = $query['cate_id'];
@@ -157,25 +161,24 @@ $count3 = mysqli_num_rows($res3);
                                         <!-- <a style="text-align: center;" href="?page=cart" ti tle="Thêm giỏ hàng"
                                              class="add-cart fl-center">Thêm giỏ
                                              hàng</a> -->
-                                             <?php if($quantity != 0) {
+                                        <?php if ($quantity != 0) {
 
-                                             ?>
-                                             <a type="button"
+                                                  ?>
+                                        <a type="button"
                                              style="text-align: center; <?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
                                              onClick="showHint('<?= $prod_id ?>','<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"
                                              title="Thêm giỏ hàng" class="add-cart fl-center">Thêm giỏ
                                              hàng</a>
-                                             <?php } ?>
+                                        <?php } ?>
 
-                                             <?php if($quantity == 0) {
+                                        <?php if ($quantity == 0) {
 
-                                             ?>
-                                             <a type="button"
+                                                  ?>
+                                        <a type="button"
                                              style="text-align: center; <?= $quantity == 0 ? 'background-color: grey; pointer-events: none;' : ''  ?>"
                                              onClick="showHint('<?= $prod_id ?>','<?= $name ?>', '<?= $img ?>', '<?= $new_price  ?>')"
                                              title="Thêm giỏ hàng" class="add-cart fl-center">Hết hàng</a>
-                                             <?php } ?>
-
+                                        <?php } ?>
                                    </div>
                               </li>
                               <?php

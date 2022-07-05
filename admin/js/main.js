@@ -1,17 +1,17 @@
-$(document).ready(function () {
+$(document).ready(function() {
     var height = $(window).height() - $('#footer-wp').outerHeight(true) - $('#header-wp').outerHeight(true);
     $('#content').css('min-height', height);
 
-//  CHECK ALL
-    $('input[name="checkAll"]').click(function () {
+    //  CHECK ALL
+    $('input[name="checkAll"]').click(function() {
         var status = $(this).prop('checked');
         $('.list-table-wp tbody tr td input[type="checkbox"]').prop("checked", status);
     });
 
-// EVENT SIDEBAR MENU
+    // EVENT SIDEBAR MENU
     $('#sidebar-menu .nav-item .nav-link .title').after('<span class="fa fa-angle-right arrow"></span>');
     var sidebar_menu = $('#sidebar-menu > .nav-item > .nav-link');
-    sidebar_menu.on('click', function () {
+    sidebar_menu.on('click', function() {
         if (!$(this).parent('li').hasClass('active')) {
             $('.sub-menu').slideUp();
             $(this).parent('li').find('.sub-menu').slideDown();
@@ -25,26 +25,26 @@ $(document).ready(function () {
         }
     });
 
-    
+
 });
 
 // here
 
 function changeStatus(value, order_id) {
     $.ajax({
-        url : 'page/update_order_status.php',
-        type : 'POST',
+        url: 'page/update_order_status.php',
+        type: 'POST',
         dataType: 'text',
-        data: { 
-          value: value,
-          order_id: order_id
+        data: {
+            value: value,
+            order_id: order_id
         },
-        success : function (result1) {
-            if(result1 == "success") {
+        success: function(result1) {
+            if (result1 == "success") {
                 alert("Cập nhật trạng thái đơn thành công");
             }
         }
-      });
+    });
 
 }
 
@@ -52,14 +52,14 @@ function validateUSPhoneNumber(phoneNumber) {
     var regExp = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
     var phone = phoneNumber.match(regExp);
     if (phone) {
-      return true;
+        return true;
     }
     return false;
 }
 
 function validatePhone(value) {
     console.log(value);
-    if(value.length > 0 && value.length <= 10 && validateUSPhoneNumber(value)) {
+    if (value.length > 0 && value.length <= 10 && validateUSPhoneNumber(value)) {
         document.getElementById("btn-submit").removeAttribute("disabled");
         document.getElementById("validatePhone").style.display = 'none';
     } else {
@@ -72,41 +72,42 @@ function convertDate() {
     let newDate = new Date();
     let year = new Date(newDate).getFullYear();
     let month = new Date(newDate).getMonth() + 1 < 10 ? "0" + (new Date(newDate).getMonth() + 1).toString() : (new Date(newDate).getMonth() + 1).toString();
-    let date = new Date(newDate).getDate() < 10 ? '0' +  (new Date(newDate).getDate()).toString() :  new Date(newDate).getDate();
+    let date = new Date(newDate).getDate() < 10 ? '0' + (new Date(newDate).getDate()).toString() : new Date(newDate).getDate();
     let re = year + '-' + month + '-' + date;
     $('#choose').val(re);
 }
 
 function changeDay(value) {
     console.log(value.length);
-    if(value.length > 2) {
+    if (value.length > 2) {
         $.ajax({
-            url : 'page/thong_ke_ngay.php',
-            type : 'POST',
+            url: 'page/thong_ke_ngay.php',
+            type: 'POST',
             dataType: 'text',
-            data: { 
-              date: value
+            data: {
+                date: value
             },
-            success : function (result1) {
+            success: function(result1) {
                 console.log(result1);
                 $("#result-area").html(result1);
             }
         });
     }
 }
+
 function filterOrder() {
     let status = $("#status")[0];
     let datePicker = $("#datePicker")[0];
     console.log(datePicker.value);
     console.log(status.value);
     $.ajax({
-        url : 'page/ajax_filterOrder.php',
-        type : 'POST',
-        data: { 
-          status: status.value,
-          datePicker: datePicker.value,
+        url: 'page/ajax_filterOrder.php',
+        type: 'POST',
+        data: {
+            status: status.value,
+            datePicker: datePicker.value,
         },
-        success : function (result1) {
+        success: function(result1) {
             // console.log(123);
             $("#tbody").html(result1);
         }
@@ -117,13 +118,29 @@ function filterProd() {
     let cate = $("#prod")[0];
     let price = $("#price")[0];
     $.ajax({
-        url : 'page/ajax_filterProd.php',
-        type : 'POST',
-        data: { 
-          cate: cate.value,
-          price: price.value,
+        url: 'page/ajax_filterProd.php',
+        type: 'POST',
+        data: {
+            cate: cate.value,
+            price: price.value,
         },
-        success : function (result1) {
+        success: function(result1) {
+            // console.log(123);
+            $("#tbody").html(result1);
+        }
+    });
+}
+
+function filterUser() {
+    let role = $("#role")[0];
+    console.log(role.value);
+    $.ajax({
+        url: 'page/ajax_filterUser.php',
+        type: 'POST',
+        data: {
+            role: role.value,
+        },
+        success: function(result1) {
             // console.log(123);
             $("#tbody").html(result1);
         }

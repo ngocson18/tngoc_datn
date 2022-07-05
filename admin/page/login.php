@@ -94,11 +94,13 @@ if (isset($_POST['submit'])) {
 
                          <div class="form-group">
                               <label>Mật khẩu</label>
-                              <input type="text" name="password" class="form-control"
+                              <input type="password" name="password" class="form-control"
                                    placeholder="Vui lòng nhập số mật khẩu">
                          </div>
                          <input type="submit" value="Đăng nhập" name="submit" class="btn btn-info mb-3">
                          <p class="float-right">Bạn chưa có tài khoản?<a href="?page=register"> Đăng kí</a></p>
+                         <p><a href="../?page=home">Trang chủ</a></p>
+
                     </form>
                     <div style="font-size:15px;text-align: center; color:red; margin-top:10px 0px 30px 0px;">
                          <?php if (isset($_SESSION['error'])) {

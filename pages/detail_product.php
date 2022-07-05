@@ -109,7 +109,7 @@ $count = mysqli_num_rows($res);
 
                               </div>
                               <?php
-                                   if($quantity == 0) {
+                              if ($quantity == 0) {
                               ?>
                               <button style="<?= $quantity == 0 ? 'background-color: grey' : ''  ?>" type="button"
                                    <?= $quantity == 0 ? ' disabled ' : ''  ?>
@@ -117,19 +117,19 @@ $count = mysqli_num_rows($res);
                                    title="Thêm giỏ hàng" class="add-cart">Hết hàng</button>
 
                               <?php
-                                   }
+                              }
                               ?>
 
-                              <?php 
-                                   if($quantity != 0) {
+                              <?php
+                              if ($quantity != 0) {
                               ?>
                               <button style="<?= $quantity == 0 ? 'background-color: grey' : ''  ?>" type="button"
                                    <?= $quantity == 0 ? ' disabled ' : ''  ?>
                                    onClick="insertCartForDetailpage('<?= $prod_id_from_url ?>','<?= $prod_name ?>', '<?= $main_img ?>', '<?= $new_price  ?>')"
                                    title="Thêm giỏ hàng" class="add-cart">Thêm giỏ hàng</button>
                               <?php
-                                   }
-                                   ?>   
+                              }
+                              ?>
                          </div>
                     </div>
                </div>
@@ -139,6 +139,33 @@ $count = mysqli_num_rows($res);
                     </div>
                     <div class="section-detail">
                          <?= $description ?>
+                    </div>
+               </div>
+               <div class="section" id="post-product-wp">
+                    <div class="section-head">
+                         <h3 class="section-title">Đánh giá và Bình luận</h3>
+                    </div>
+                    <div class="section-detail comment">
+                         <div class="stars">
+                              <label>Đánh giá</label><br>
+                              <form action="">
+                                   <input class="star star-5" id="star-5" type="radio" name="star" />
+                                   <label class="star star-5" for="star-5"></label>
+                                   <input class="star star-4" id="star-4" type="radio" name="star" />
+                                   <label class="star star-4" for="star-4"></label>
+                                   <input class="star star-3" id="star-3" type="radio" name="star" />
+                                   <label class="star star-3" for="star-3"></label>
+                                   <input class="star star-2" id="star-2" type="radio" name="star" />
+                                   <label class="star star-2" for="star-2"></label>
+                                   <input class="star star-1" id="star-1" type="radio" name="star" />
+                                   <label class="star star-1" for="star-1"></label>
+                              </form>
+                              <label style="padding-bottom: 5px;">Bình Luận</label><br>
+                              <textarea rows="4" cols="115" name="comment" form="usrform"
+                                   placeholder="Bình luận về món ăn..."></textarea>
+                              <button class="button button1"><a style="color: #fff; size: 20px;" href="#">Bình
+                                        luận</a></button>
+                         </div>
                     </div>
                </div>
                <?php

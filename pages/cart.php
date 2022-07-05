@@ -91,8 +91,10 @@ if (!function_exists('currency_format')) {
                                    <td colspan="7">
                                         <div class="clearfix">
                                              <div class="fl-right">
-                                                  <a href="" title="" id="update-cart">Cập nhật giỏ hàng</a>
-                                                  <a onClick="thanhtoan()" title="" id="checkout-cart">Thanh toán</a>
+                                                  <!-- <a href="" title="" id="update-cart">Cập nhật giỏ hàng</a> -->
+                                                  <a class="button-fix" onClick="thanhtoan()" title=""
+                                                       id="checkout-cart">Thanh
+                                                       toán</a>
                                              </div>
                                         </div>
                                    </td>
@@ -103,7 +105,7 @@ if (!function_exists('currency_format')) {
           </div>
           <div class="section" id="action-cart-wp">
                <div class="section-detail">
-                    <a href="" title="" id="delete-cart">Xóa giỏ hàng</a>
+                    <!-- <a href="" title="" id="delete-cart">Xóa giỏ hàng</a> -->
                </div>
           </div>
      </div>

@@ -4,7 +4,11 @@ $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $parts = parse_url($url);
 
 parse_str($parts['query'], $query);
+// var_dump($parts);
+// die();
 $keyword = $query['q'];
+// var_dump($keyword);
+// die();
 // http://localhost/tngoc_datn/?page=search_product&q=%C3%A1dsdsas
 $sql2 = "SELECT * FROM product WHERE name LIKE '%$keyword%'";
 $res2 = mysqli_query($conn, $sql2);

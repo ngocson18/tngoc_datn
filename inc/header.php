@@ -15,6 +15,7 @@ session_start();
      <link href="./public/css/carousel/owl.carousel.css" rel="stylesheet" type="text/css" />
      <link href="./public/css/carousel/owl.theme.css" rel="stylesheet" type="text/css" />
      <link href="./public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+     <link href="./public/css/fontawesome/fontawesome-free-6.1.1-web/css/all.css" rel="stylesheet" type="text/css" />
      <link href="./public/style.css" rel="stylesheet" type="text/css" />
      <link href="./public/responsive.css" rel="stylesheet" type="text/css" />
      <link rel="stylesheet" href="./public/css/import/acount.css">
@@ -150,7 +151,9 @@ session_start();
                          order_id: orderId
                     },
                     success: function(result2) {
-                         alert("Đặt hàng thành công");
+                         alert(
+                              "Đặt hàng thành công!! Vui lòng kiểm tra lại đơn hàng trong phần tài khoản"
+                              );
                          localStorage.removeItem('order_id');
                          window.location.href = `?page=home`;
                     }
@@ -201,6 +204,8 @@ session_start();
                          <div class="wp-inner">
                               <a href="#" title="" id="logo" class="fl-left"><img
                                         src="./public/images/logo_BCN.png" /></a>
+
+                              <!-- Search -->
                               <div id="search-wp" class="fl-left">
                                    <form method="POST" action="">
                                         <input type="text" name="s" id="s" onkeyup="search(this.value)"

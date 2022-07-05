@@ -1,5 +1,5 @@
 <?php
-require("page/session-user.php");
+// require("page/session-user.php");
 // if (isset($_SESSION['login'])) {
 //      $sql2 = "SELECT * FROM user where user_phone = " . $_SESSION['login'];
 //      $result2 = $conn->query($sql2);
@@ -121,10 +121,10 @@ require("page/session-user.php");
                               <!-- <li>
                                    <a href="?page=hangton">Hàng tồn</a>
                               </li> -->
-
                               <li>
                                    <a href="?page=login" onClick="<?= session_unset();
-                                                                      session_destroy(); ?>" title="">Logout</a>
+                                                                      session_destroy(); ?>" title="">Đăng
+                                        xuất</a>
                               </li>
                          </ul>
                          <div id="dropdown-user" class="dropdown dropdown-extended fl-right">
@@ -137,6 +137,7 @@ require("page/session-user.php");
                                              id="user_name"></a></h3>
                               </button>
                               <ul class="dropdown-menu">
+
                               </ul>
                          </div>
                     </div>

@@ -171,13 +171,13 @@ if (!function_exists('currency_format')) {
                                    <li>
                                         <input checked required type="radio" id="direct-payment" name="payment-method"
                                              value="direct-payment">
-                                        <label for="direct-payment">Thanh toán tại cửa hàng</label>
+                                        <label for="direct-payment">Thanh toán tại nhà.</label>
                                    </li>
-                                   <li>
+                                   <!-- <li>
                                         <input  type="radio" id="payment-home" name="payment-method"
                                              value="payment-home">
                                         <label for="payment-home">Thanh toán tại nhà</label>
-                                   </li>
+                                   </li> -->
                               </ul>
                          </div>
                          <div class="place-order-wp clearfix">

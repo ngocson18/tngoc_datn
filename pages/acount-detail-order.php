@@ -49,21 +49,21 @@ if (!function_exists('currency_format')) {
                          </tr>
                          <?php
                          $sql2 = "
-                             SELECT 
-                                  order_details.quantity as quantity,
-                                  order_details.product_id as prod_id,
-                                  order_details.order_detail_id as order_detail_id,
-                                  product.name as name,
-                                  product.img as img,
-                                  product.price as price,
-                                  product.discount as discount,
-                                  bepcuangoc.order.total_money as total_money,
-                                  bepcuangoc.order.status as status
-                             FROM bepcuangoc.order_details
-                             INNER JOIN bepcuangoc.product ON order_details.product_id = product.product_id 
-                             INNER JOIN bepcuangoc.order ON order_details.order_id = bepcuangoc.order.order_id 
-                             WHERE order_details.order_id = $order_id
-                             ";
+                              SELECT 
+                                   order_details.quantity as quantity,
+                                   order_details.product_id as prod_id,
+                                   order_details.order_detail_id as order_detail_id,
+                                   product.name as name,
+                                   product.img as img,
+                                   product.price as price,
+                                   product.discount as discount,
+                                   bepcuangoc.order.total_money as total_money,
+                                   bepcuangoc.order.status as status
+                              FROM bepcuangoc.order_details
+                              INNER JOIN bepcuangoc.product ON order_details.product_id = product.product_id 
+                              INNER JOIN bepcuangoc.order ON order_details.order_id = bepcuangoc.order.order_id 
+                              WHERE order_details.order_id = $order_id
+                              ";
                          $res2 = mysqli_query($conn, $sql2);
                          $count2 = mysqli_num_rows($res2);
                          while ($row2 = mysqli_fetch_assoc($res2)) {
@@ -87,9 +87,6 @@ if (!function_exists('currency_format')) {
                          <ul class="list-item clearfix">
                               <li>
                                    <span class="total-fee">Tổng số lượng:</span>
-                                   <span class="total">Tổng đơn hàng:</span>
-                              </li>
-                              <li>
                                    <?php
                                    $sqlCount = "select sum(order_details.quantity) as quantityCount FROM bepcuangoc.order_details WHERE order_id = $order_id";
                                    $resCount = mysqli_query($conn, $sqlCount);
@@ -98,7 +95,10 @@ if (!function_exists('currency_format')) {
                                    ?>
                                    <span class="total-fee"><?= $quantityCount ?> sản phẩm</span>
                                    <?php } ?>
-                                   <span class="total"><?= number_format($total_money) ?> đ</span>
+                              </li>
+                              <li>
+                                   <span class="total">Tổng đơn hàng:</span>
+                                   <strong><span class="total"><?= number_format($total_money) ?> đ</span></strong>
                               </li>
                          </ul>
                     </div>

@@ -34,6 +34,7 @@ include './header.php';
 $currentDay = date('Y-m-d');
 // var_dump($currentDay);
 // die();
+// $sql = "SELECT * FROM bepcuangoc.order WHERE created_at = '2022-06-24'";
 $sql = "SELECT * FROM bepcuangoc.order WHERE created_at = '$currentDay'";
 $res = mysqli_query($conn, $sql);
 $count = mysqli_num_rows($res);
@@ -93,6 +94,9 @@ if (!function_exists('currency_format')) {
                               <a href="?page=statistical" title="" id="add-new" class="fl-left">Quay lại</a>
                          </div>
                     </div>
+                    <input onChange="changeDay(this.value)" type="date" id="choose" name="choose">
+                    <br>
+                    <br>
                     <div class="card mb-4 mt-3">
                          <div class="card-body">
                               <div id="result-area" class="table-responsive">
@@ -155,100 +159,111 @@ if (!function_exists('currency_format')) {
                                    endforeach;
                                    ?>
                               </div>
+                              <br>
+                              <div class="table-responsive">
+                                   <h1>Đơn hàng trong ngày : <?= date("d-m-Y"); ?></h1>
+                                   <!-- <div style="display: flex; flex-direction: column">
+                                        <label>Thời gian</label>
+                                        <input id="datePicker" type="date" name="date" value="" />
+                                   </div>
+                                   <div style="display: flex; flex-direction: column; margin-left: 15px">
+                                        <label>&nbsp;</label>
+                                        <input onClick="filterOrder()" type="button" name="sm_action" value="Lọc">
+                                   </div> -->
+                                   <div>
+                                        <?php
+                                        $time = date('Y/m/d');
+                                        $tongSoDon = "SELECT COUNT(order_id) as tongsodon FROM bepcuangoc.order WHERE created_at = '$time'";
+                                        $resultTongSoDon = mysqli_query($conn, $tongSoDon);
+                                        foreach ($resultTongSoDon as $key => $value) :
+                                             echo '<span>Tổng số đơn: </span>';
+                                             echo '<span class="ml-3">' . $value['tongsodon'] . ' Đơn</span> <br />';
+                                        endforeach;
+                                        ?>
+                                   </div>
+                                   <table class="table list-table-wp">
+                                        <thead>
+                                             <tr>
+                                                  <!-- <td><input type="checkbox" name="checkAll" id="checkAll"></td> -->
+                                                  <td><span class="thead-text">STT</span></td>
+                                                  <td><span class="thead-text">Mã đơn hàng</span></td>
+                                                  <td><span class="thead-text">Tên khách hàng</span></td>
+                                                  <td><span class="thead-text">Tổng giá</span></td>
+                                                  <td><span class="thead-text">Trạng thái</span></td>
+                                                  <td><span class="thead-text">Thời gian</span></td>
+                                                  <td><span class="thead-text">SDT</span></td>
+                                                  <td><span class="thead-text">Địa chỉ</span></td>
+                                                  <!-- <td><span class="thead-text">Chi tiết</span></td> -->
+                                             </tr>
+                                        </thead>
+                                        <tbody>
+                                             <?php
+                                             $sn = 1;
+                                             if ($count > 0) {
+                                                  while ($row = mysqli_fetch_assoc($res)) {
+                                                       $order_id = $row['order_id'];
+                                                       $user_id = $row['user_id'];
+                                                       $status = $row['status'];
+                                                       $total_money = $row['total_money'];
+                                                       $created_at = $row['created_at'];
+                                                       $name = $row['name'];
+                                                       $phone = $row['phone'];
+                                                       $email = $row['email'];
+                                                       $address = $row['address'];
+                                             ?>
+                                             <tr>
+                                                  <!-- <td><input type="checkbox" name="checkItem" class="checkItem"></td> -->
+                                                  <td><span class="tbody-text"><?= $sn++ ?></span></td>
+                                                  <td><span class="tbody-text"><?= $order_id ?></span></td>
+                                                  <td><span class="tbody-text tb-title fl-left"><?= $name ?></span></td>
+                                                  <td><span
+                                                            class="tbody-text"><?= currency_format($total_money);  ?></span>
+                                                  </td>
+                                                  <td>
+                                                       <span class="tbody-text">
+                                                            <?php
+                                                                      switch ($status) {
+                                                                           case 0:
+                                                                                echo 'Đã đặt hàng';
+                                                                                break;
+                                                                           case 1:
+                                                                                echo 'Đã xác nhận đơn hàng';
+                                                                                break;
+                                                                           case 2:
+                                                                                echo 'Đang giao';
+                                                                                break;
+                                                                           case 3:
+                                                                                echo 'Huỷ đơn';
+                                                                                break;
+                                                                           case 4:
+                                                                                echo 'Đơn hoàn';
+                                                                                break;
+                                                                           case 5:
+                                                                                echo 'Đã giao';
+                                                                                break;
+                                                                           default:
+                                                                                echo 'Đag xác nhận';
+                                                                      }
+                                                                      ?>
+                                                       </span>
+                                                  </td>
+                                                  <td><span class="tbody-text"> <?= $created_at ?></span></td>
+                                                  <td><span class="tbody-text"> <?= $phone ?></span></td>
+                                                  <td><span class="tbody-text"> <?= $address ?></span></td>
+                                                  <!-- <td>
+                                                       <a href="?page=detail-order&order_id=<?= $order_id ?>">Chi tiết</a>
+                                                  </td> -->
+                                             </tr>
+                                             <?php
+                                                  }
+                                             }
+                                             ?>
+                                        </tbody>
+                                   </table>
+                              </div>
                          </div>
                     </div>
                     <br>
-                    <div class="table-responsive">
-                         <h1>Đơn hàng trong ngày : <?= date("d-m-Y"); ?></h1>
-                         <div>
-                              <?php
-                              $tongSoDon = "SELECT COUNT(order_id) as tongsodon FROM bepcuangoc.order WHERE created_at = '$currentDay'";
-                              $resultTongSoDon = mysqli_query($conn, $tongSoDon);
-                              foreach ($resultTongSoDon as $key => $value) :
-                                   echo '<span>Tổng số đơn: </span>';
-                                   echo '<span class="ml-3">' . $value['tongsodon'] . ' Đơn</span> <br />';
-                              endforeach;
-                              ?>
-                         </div>
-                         <table class="table list-table-wp">
-                              <thead>
-                                   <tr>
-                                        <!-- <td><input type="checkbox" name="checkAll" id="checkAll"></td> -->
-                                        <td><span class="thead-text">STT</span></td>
-                                        <td><span class="thead-text">Mã đơn hàng</span></td>
-                                        <td><span class="thead-text">Tên khách hàng</span></td>
-                                        <td><span class="thead-text">Tổng giá</span></td>
-                                        <td><span class="thead-text">Trạng thái</span></td>
-                                        <td><span class="thead-text">Thời gian</span></td>
-                                        <td><span class="thead-text">SDT</span></td>
-                                        <td><span class="thead-text">Địa chỉ</span></td>
-                                        <!-- <td><span class="thead-text">Chi tiết</span></td> -->
-                                   </tr>
-                              </thead>
-                              <tbody>
-                                   <?php
-                                   $sn = 1;
-                                   if ($count > 0) {
-                                        while ($row = mysqli_fetch_assoc($res)) {
-                                             $order_id = $row['order_id'];
-                                             $user_id = $row['user_id'];
-                                             $status = $row['status'];
-                                             $total_money = $row['total_money'];
-                                             $created_at = $row['created_at'];
-                                             $name = $row['name'];
-                                             $phone = $row['phone'];
-                                             $email = $row['email'];
-                                             $address = $row['address'];
-                                   ?>
-                                   <tr>
-                                        <!-- <td><input type="checkbox" name="checkItem" class="checkItem"></td> -->
-                                        <td><span class="tbody-text"><?= $sn++ ?></span></td>
-                                        <td><span class="tbody-text"><?= $order_id ?></span></td>
-                                        <td><span class="tbody-text tb-title fl-left"><?= $name ?></span></td>
-                                        <td><span class="tbody-text"><?= currency_format($total_money);  ?></span>
-                                        </td>
-                                        <td>
-                                             <span class="tbody-text">
-                                                  <?php
-                                                            switch ($status) {
-                                                                 case 0:
-                                                                      echo 'Đã đặt hàng';
-                                                                      break;
-                                                                 case 1:
-                                                                      echo 'Đã xác nhận đơn hàng';
-                                                                      break;
-                                                                 case 2:
-                                                                      echo 'Đang giao';
-                                                                      break;
-                                                                 case 3:
-                                                                      echo 'Huỷ đơn';
-                                                                      break;
-                                                                 case 4:
-                                                                      echo 'Đơn hoàn';
-                                                                      break;
-                                                                 case 5:
-                                                                      echo 'Đã giao';
-                                                                      break;
-                                                                 default:
-                                                                      echo 'Đag xác nhận';
-                                                            }
-                                                            ?>
-                                             </span>
-                                        </td>
-                                        <td><span class="tbody-text"> <?= $created_at ?></span></td>
-                                        <td><span class="tbody-text"> <?= $phone ?></span></td>
-                                        <td><span class="tbody-text"> <?= $address ?></span></td>
-                                        <!-- <td>
-                                             <a href="?page=detail-order&order_id=<?= $order_id ?>">Chi tiết</a>
-                                        </td> -->
-                                   </tr>
-                                   <?php
-                                        }
-                                   }
-                                   ?>
-                              </tbody>
-                         </table>
-                    </div>
                     <br>
                     <div class="section">
                          <?php
