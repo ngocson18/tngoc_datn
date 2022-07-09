@@ -142,6 +142,9 @@ if (!function_exists('currency_format')) {
                                                   $phone = $row['phone'];
                                                   $email = $row['email'];
                                                   $address = $row['address'];
+                                                  $time = date('Y/m/d');
+                                                  // var_dump($time);
+                                                  // die();
                                         ?>
                                         <tr>
                                              <!-- <td><input type="checkbox" name="checkItem" class="checkItem"></td> -->
@@ -152,6 +155,7 @@ if (!function_exists('currency_format')) {
                                              </td>
                                              <td>
                                                   <span class="tbody-text">
+                                                       <?php  ?>
                                                        <?php
                                                                  switch ($status) {
                                                                       case 0:
@@ -175,6 +179,9 @@ if (!function_exists('currency_format')) {
                                                                       default:
                                                                            echo 'Đag xác nhận';
                                                                  }
+                                                                 // if ($time == $created_at && $status == 0) {
+                                                                 //      echo "$status + new";
+                                                                 // }
                                                                  ?>
                                                   </span>
                                              </td>

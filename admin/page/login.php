@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
 
           // if (isset($_SESSION['login'])) {
           if ($row['role_user'] == 0) {
-               echo "<script type='text/javascript'> window.location.assign('?page=list-user'); localStorage.setItem('name', '" . $name . "');</script>";
+               echo "<script type='text/javascript'> window.location.assign('?page=statistical'); localStorage.setItem('name', '" . $name . "');</script>";
           } else {
                echo "<script type='text/javascript'> window.location.assign('../?page=home&user_id=${user_id}'); localStorage.setItem('name', '" . $name . "');localStorage.setItem('user_id', '" . $user_id . "');</script>";
           }

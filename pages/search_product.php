@@ -4,9 +4,14 @@ $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $parts = parse_url($url);
 
 parse_str($parts['query'], $query);
-// var_dump($parts);
+// var_dump($query['q']);
 // die();
+// $parts['query'] = string(24) "page=search_product&q="
+// $query = array(2) { ["page"]=> string(14) "search_product" ["q"]=> string(2) "ne" }
+// $query['q'] = string(2) "ne";
 $keyword = $query['q'];
+// var_dump($parts['query']);
+// die();
 // var_dump($keyword);
 // die();
 // http://localhost/tngoc_datn/?page=search_product&q=%C3%A1dsdsas

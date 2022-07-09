@@ -3,12 +3,18 @@ include '../admin/page/connect.php';
 // $user_id = 53;
 $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $parts = parse_url($url);
-// var_dump($url);
+// var_dump($parts);
 // die();
+// array(4) { 
+// ["scheme"]=> string(4) "http" 
+// ["host"]=> string(9) "localhost" 
+// ["path"]=> string(23) "/bepcuangoc/tngoc_datn/" 
+// ["query"]=> string(15) "page=load_cart2" }
 $total = 0;
 parse_str($parts['query'], $query);
 $user_id = $query['user_id'];
-
+// var_dump($user_id);
+// die();
 // $user_id = $_REQUEST['user_id'];
 $sql2 = "SELECT * FROM cart WHERE user_id = '$user_id'";
 $res2 = mysqli_query($conn, $sql2);

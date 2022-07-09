@@ -45,7 +45,6 @@ session_start();
                return;
           } else {
                var xmlhttp = new XMLHttpRequest();
-
                xmlhttp.onreadystatechange = function() {
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                          document.getElementById("result").style.display = 'block';
@@ -123,7 +122,6 @@ session_start();
                               success: function(result3) {
                                    window.location.href =
                                         `?page=checkout&user_id=${user_exist}`;
-
                               }
                          })
                     }
@@ -153,7 +151,7 @@ session_start();
                     success: function(result2) {
                          alert(
                               "Đặt hàng thành công!! Vui lòng kiểm tra lại đơn hàng trong phần tài khoản"
-                              );
+                         );
                          localStorage.removeItem('order_id');
                          window.location.href = `?page=home`;
                     }
@@ -166,6 +164,8 @@ session_start();
      function logout() {
           localStorage.removeItem("name");
           localStorage.removeItem("user_id");
+          session_unset();
+          session_destroy();
      }
      </script>
 </head>
@@ -207,12 +207,12 @@ session_start();
 
                               <!-- Search -->
                               <div id="search-wp" class="fl-left">
+                                   <div id="result"></div>
                                    <form method="POST" action="">
                                         <input type="text" name="s" id="s" onkeyup="search(this.value)"
                                              placeholder="Nhập từ khóa tìm kiếm tại đây!">
                                         <a type="button" onClick="gotoSearch()" id="sm-s">Tìm kiếm</a>
                                    </form>
-                                   <div id="result"></div>
                               </div>
 
                               <div id="action-wp" class="fl-right">
@@ -239,6 +239,7 @@ session_start();
                                                   $parts = parse_url($url);
                                                   // var_dump(parse_str($parts));
                                                   // die();
+                                                  // Kiểm tra user_id
                                                   if (isset($parts['query'])) {
                                                        parse_str($parts['query'], $query);
                                                        $user_id = $query['user_id'];

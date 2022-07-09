@@ -16,4 +16,3 @@
     $order_id = $row2['order_id'];
   }
   echo "$order_id";
-?>

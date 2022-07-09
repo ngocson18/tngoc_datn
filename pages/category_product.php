@@ -82,7 +82,10 @@ $count3 = mysqli_num_rows($res3);
                                              $parts = parse_url($url);
                                              parse_str($parts['query'], $query);
                                              $cate_id_from_url = $query['cate_id'];
+                                             // var_dump($cate_id_from_url);
                                              $paging = $query['paging'];
+                                             // var_dump($paging);
+                                             // die();
 
                                              $sql2 = "SELECT * FROM product WHERE category = $cate_id_from_url ";
                                              $res2 = mysqli_query($conn, $sql2);
