@@ -104,7 +104,7 @@ $count = mysqli_num_rows($res);
                               </div>
                               <div id="num-order-wp">
                                    <a title="" id="minus"><i class="fa fa-minus"></i></a>
-                                   <input style="width: 70px" type="text" name="num-order" value="1" id="num-order">
+                                   <input style="width: 70px" readonly type="text" name="num-order" value="1" id="num-order">
                                    <a title="" id="plus"><i class="fa fa-plus"></i></a>
 
                               </div>
