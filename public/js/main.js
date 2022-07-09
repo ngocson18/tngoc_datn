@@ -81,9 +81,12 @@ $(document).ready(function() {
 
     // CHOOSE NUMBER ORDER
     var value = parseInt($('#num-order').attr('value'));
+    var maxValue = parseInt($(`#max-value`).html());
     $('#plus').click(function() {
-        value++;
-        $('#num-order').attr('value', value);
+        if(value < maxValue) {
+            value++;
+            $('#num-order').attr('value', value);
+        }
         // update_href(value);
     });
     $('#minus').click(function() {

@@ -82,7 +82,7 @@ $count = mysqli_num_rows($res);
                               <div class="num-product">
                                    <span class="">Sản phẩm: </span>
                                    <?php if ($quantity > 0) : ?>
-                                   <span class="status">Còn <?= $quantity ?> cái</span>
+                                   <span class="status">Còn <span id="max-value"><?= $quantity ?></span> cái</span>
                                    <?php endif; ?>
                                    <?php if ($quantity == 0) : ?>
                                    <span class="status">Hết hàng</span>
@@ -104,7 +104,7 @@ $count = mysqli_num_rows($res);
                               </div>
                               <div id="num-order-wp">
                                    <a title="" id="minus"><i class="fa fa-minus"></i></a>
-                                   <input type="text" name="num-order" value="1" id="num-order">
+                                   <input style="width: 70px" type="text" name="num-order" value="1" id="num-order">
                                    <a title="" id="plus"><i class="fa fa-plus"></i></a>
 
                               </div>

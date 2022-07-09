@@ -142,7 +142,7 @@ if (!function_exists('currency_format')) {
                                                   $phone = $row['phone'];
                                                   $email = $row['email'];
                                                   $address = $row['address'];
-                                                  $time = date('Y/m/d');
+                                                  $time = date('Y-m-d');
                                                   // var_dump($time);
                                                   // die();
                                         ?>
@@ -160,6 +160,9 @@ if (!function_exists('currency_format')) {
                                                                  switch ($status) {
                                                                       case 0:
                                                                            echo 'Đã đặt hàng';
+                                                                           if ($created_at == $time) {
+                                                                                echo ' - <span style="font-style: italic; color: blue">Mới</span>';
+                                                                           };
                                                                            break;
                                                                       case 1:
                                                                            echo 'Đã xác nhận đơn hàng';
