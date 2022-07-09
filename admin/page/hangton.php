@@ -32,6 +32,10 @@ include './header.php';
                                    <div class="">
                                         <label>SL</label>
                                    </div>
+
+                                   <div class="" style="margin-left: 150px;">
+                                        <label>Số lượng bán trong ngày</label>
+                                   </div>
                               </div>
                               <?php
                               $sql = "SELECT * FROM product";
@@ -63,9 +67,14 @@ include './header.php';
                                         <?php
                                                   if ($quantity == 0) {
                                                   ?>
+                                        <br>
                                         <span style="color: red">Hết hàng</span>
                                         <?php } ?>
 
+                                   </div>
+                                   <div class="" style="margin-left: 60px;">
+                                        <input style="width: 100px;" readonly value="<?= $quantity ?>" type="number"
+                                             name="name" id="product-name">
                                    </div>
                               </div>
                               <?php

@@ -39,11 +39,14 @@
      <link rel="stylesheet" href="./css/global.css" />
      <link rel="stylesheet" href="./css/menu.css" />
      <link rel="stylesheet" href="./css/sidebar.css" />
+     <link rel="stylesheet" href="./css/morris.css" />
      <!-- script -->
      <script src="./js/bootstrap/bootstrap.min.js"></script>
      <script src="./js/jquery-2.2.4.min.js"></script>
      <script src="./js/plugins/ckeditor/ckeditor.js"></script>
      <script src="./js/main.js"></script>
+     <script src="../admin/js/raphael-min.js_2.2.0/raphael-min.js"></script>
+     <script src="./js/morris.js-0.5.1/morris.js-0.5.1/morris.min.js"></script>
 </head>
 
 <body>

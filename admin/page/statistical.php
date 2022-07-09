@@ -102,6 +102,10 @@ include 'connect.php';
                                    </div>
                               </div>
                          </div>
+                         <div class="card mb-4 mt3">
+                              <p>Biểu đồ:</p>
+                              <div id="chart" style="height: 250px;"></div>
+                         </div>
                          <!-- <div style="display: flex; flex-direction: row; justify-content: space-between"> -->
                          <input onChange="changeDay(this.value)" type="date" id="choose" name="choose">
                          <br />
@@ -316,6 +320,50 @@ $(document).ready(function() {
                $("#data").html(ketqua);
           });
      })
+});
+</script>
+
+<script type="text/javascript">
+new Morris.Line({
+     // ID of the element in which to draw the chart.
+     element: 'chart',
+     // Chart data records -- each entry in this array corresponds to a point on
+     // the chart.
+     data: [{
+               month: '1',
+               Sodon: 2
+          }, {
+               month: '2',
+               Sodon: 8
+          },
+          {
+               month: '3',
+               Sodon: 5
+          },
+          {
+               month: '4',
+               Sodon: 0
+          },
+          {
+               month: '5',
+               Sodon: 7
+          }, {
+               month: '6',
+               Sodon: 0
+          }, {
+               month: '7',
+               Sodon: 9
+          }, {
+               month: '8',
+               Sodon: 0
+          }
+     ],
+
+     xkey: 'month',
+
+     ykeys: ['Sodon'],
+
+     labels: ['Số đơn']
 });
 </script>
 <?php include './footer.php'; ?>
